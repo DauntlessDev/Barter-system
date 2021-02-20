@@ -1,34 +1,108 @@
-# CodeIgniter 4 Application
+# PSA-6 (Module 6 Activity)
+PSA6-Technical-MySQL-Database using Code Igniter 4
 
-## What is CodeIgniter?
+Can be run without xampp all you need is MySQL
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](http://codeigniter.com).
+<br>
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+## Installation :arrow_forward:
 
-More information about the plans for version 4 can be found in [the announcement](http://forum.codeigniter.com/thread-62615.html) on the forums.
+> open terminal/cmd and type the following:
 
-The user guide corresponding to this version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+`git clone https://github.com/app-dev-5/PSA6-CI.git`
 
-## Setup
+`cd PSA6-CI`
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+`composer update`
 
-## Important Change with index.php
+> Copy `env` to `.env` and tailor for your app, specifically the `CI_ENVIRONMENT` and any `database` settings.
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+```diff
+-# CI_ENVIRONMENT = production
+...
+-# database.default.hostname = localhost
+-# database.default.database = ci4
+-# database.default.username = root
+-# database.default.password = root
+-# database.default.DBDriver = MySQLi
++CI_ENVIRONMENT = development
+...
++database.default.hostname = localhost
++database.default.database = module6
++database.default.username = root
++database.default.password = ''
++database.default.DBDriver = MySQLi
+```
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+> start server
 
+`php spark serve`
 
-## Server Requirements
+You should see output like this:
+![php spark serve output](docs/img/serve.png)
 
-PHP version 7.3 or higher is required, with the following extensions installed
+Goto http://localhost:8080 to browse the website.
+
+<br>
+
+## Installation part 2 (Database) :fast_forward:
+> Start xampp's apache & mysql
+
+![xampp output](docs/img/xampp.png)
+
+> Create database called `module6`
+
+Goto http://localhost/phpmyadmin
+
+click "new" *(located in left most panel)*
+
+type "module6" *(without quotes)*
+
+then click "create"
+
+`module6` should now appear in the list of of your databases:
+![phpmyadmin output](docs/img/phpmyadmin.png)
+
+> migrate database
+
+`php spark migrate`
+
+`php spark db:seed BaseSeeder`
+
+> check results
+
+your `module6` database should contain the following:
+![module6 database output](docs/img/module6.png)
+
+your `dogs` table should look like this:
+![dogs table output](docs/img/dogs_table.png)
+
+<br>
+
+## Server Requirements :gear:
+
+- [Composer](https://getcomposer.org/)
+
+- PHP version 7.3 or higher is required, with the following extensions installed
+
+<br>
+
+## Authors
+
+<table>
+  <tr>
+      <td align="center">
+          <a href="https://github.com/Simperfy">
+              <img src="https://github.com/Simperfy.png?size=100" width="100px;" alt=""/>
+              <br/>
+              <sub>
+                  <b>Simperfy</b>
+              </sub>
+          </a>
+          <br/>
+          <a href="#" title="Frontend">🖼️</a>
+          <a href="#" title="Backend">🕹</a>
+          <a href="#" title="Documentation">📖</a>
+      </td>
+  </tr>
+</table>
