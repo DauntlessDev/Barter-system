@@ -1,11 +1,11 @@
-# PSA-6 (Module 6 Activity)
+# PSA-6 (Module 6 Activity) ⚡️
 PSA6-Technical-MySQL-Database using Code Igniter 4
 
 Can be run without xampp all you need is MySQL
 
 <br>
 
-## Installation :arrow_forward:
+## Installation ▶️
 
 > open terminal/cmd and type the following:
 
@@ -45,7 +45,7 @@ Goto http://localhost:8080 to browse the website.
 
 <br>
 
-## Installation part 2 (Database) :fast_forward:
+## Installation part 2 (Database) ⏩
 > Start xampp's apache & mysql
 
 ![xampp output](docs/img/xampp.png)
@@ -72,6 +72,7 @@ then click "create"
 > check results
 
 your `module6` database should contain the following:
+
 ![module6 database output](docs/img/module6.png)
 
 your `dogs` table should look like this:
@@ -79,7 +80,7 @@ your `dogs` table should look like this:
 
 <br>
 
-## Server Requirements :gear:
+## Server Requirements ⚙️
 
 - [Composer](https://getcomposer.org/)
 
@@ -87,7 +88,7 @@ your `dogs` table should look like this:
 
 <br>
 
-## Authors
+## Authors 🏅
 
 <table>
   <tr>
