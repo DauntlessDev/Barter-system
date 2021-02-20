@@ -61,6 +61,7 @@ type "module6" *(without quotes)*
 then click "create"
 
 `module6` should now appear in the list of of your databases:
+
 ![phpmyadmin output](docs/img/phpmyadmin.png)
 
 > migrate database
