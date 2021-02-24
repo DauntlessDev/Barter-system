@@ -11,9 +11,11 @@ Barter system using Code Igniter 4
 
 `cd Barter-system`
 
-`composer update`
+`composer install`
 
 > Copy `env` to `.env` and tailor for your app, specifically the `CI_ENVIRONMENT` and any `database` settings.
+
+Replace red line with green lines
 
 ```diff
 -# CI_ENVIRONMENT = production
@@ -46,6 +48,23 @@ You should see output like this:
 Goto http://localhost:8080 to browse the website.
 
 <br>
+
+## Troubleshooting ❗️
+
+In case you got an error like below:
+![composer install error](docs/img/composer-error.png)
+
+open `C:\xampp\php\php.ini` using any text editor
+
+delete "`;`" in "`;extension = int1`"
+```diff
+-;extension=intl
++extension=intl
+```
+
+<br>
+
+['php' is not recognized as an internal or external command](https://stackoverflow.com/questions/31291317/php-is-not-recognized-as-an-internal-or-external-command-in-command-prompt/31291404)
 
 ## Server Requirements ⚙️
 
