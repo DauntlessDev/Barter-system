@@ -18,12 +18,16 @@ Barter system using Code Igniter 4
 ```diff
 -# CI_ENVIRONMENT = production
 ...
+-app.baseURL = ''
+...
 -# database.default.hostname = localhost
 -# database.default.database = ci4
 -# database.default.username = root
 -# database.default.password = root
 -# database.default.DBDriver = MySQLi
 +CI_ENVIRONMENT = development
+...
++app.baseURL = 'http://localhost:8080/'
 ...
 +database.default.hostname = localhost
 +database.default.database = barter_system
