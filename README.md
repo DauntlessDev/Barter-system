@@ -1,63 +1,72 @@
-# CodeIgniter 4 Application Starter
+# Barter system ⚡️
+Barter system using Code Igniter 4
 
-## What is CodeIgniter?
+<br>
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](http://codeigniter.com).
+## Installation ▶️
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+> open cmd/terminal and type the following:
 
-More information about the plans for version 4 can be found in [the announcement](http://forum.codeigniter.com/thread-62615.html) on the forums.
+`git clone https://github.com/Simperfy/Barter-system.git`
 
-The user guide corresponding to this version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+`cd Barter-system`
 
-## Installation & updates
+`composer update`
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+> Copy `env` to `.env` and tailor for your app, specifically the `CI_ENVIRONMENT` and any `database` settings.
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+```diff
+-# CI_ENVIRONMENT = production
+...
+-# database.default.hostname = localhost
+-# database.default.database = ci4
+-# database.default.username = root
+-# database.default.password = root
+-# database.default.DBDriver = MySQLi
++CI_ENVIRONMENT = development
+...
++database.default.hostname = localhost
++database.default.database = barter_system
++database.default.username = root
++database.default.password = ''
++database.default.DBDriver = MySQLi
+```
 
-## Setup
+> start server (using cmd/terminal)
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+`php spark serve`
 
-## Important Change with index.php
+You should see output like this:
+![php spark serve output](docs/img/serve.png)
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+Goto http://localhost:8080 to browse the website.
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+<br>
 
-**Please** read the user guide for a better explanation of how CI4 works!
+## Server Requirements ⚙️
 
-## Repository Management
+- [Composer](https://getcomposer.org/)
 
-We use Github issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+- PHP version 7.3 or higher is required
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+<br>
 
-## Server Requirements
+## Authors 🏅
 
-PHP version 7.3 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php)
-- xml (enabled by default - don't turn it off)
+<table>
+  <tr>
+      <td align="center">
+          <a href="https://github.com/Simperfy">
+              <img src="https://github.com/Simperfy.png?size=100" width="100px;" alt=""/>
+              <br/>
+              <sub>
+                  <b>Simperfy</b>
+              </sub>
+          </a>
+          <br/>
+          <a href="#" title="Frontend">🖼️</a>
+          <a href="#" title="Backend">🕹</a>
+          <a href="#" title="Documentation">📖</a>
+      </td>
+  </tr>
+</table>
