@@ -31,3 +31,23 @@ textarea {
   outline: none;
   border: none;
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+  height: 95vh;
+}
+
+.form__container, .form__container form, .form__group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__container form {
+  gap: 1rem;
+}
+
+.form__container {
+  gap: 3rem;
+  width: 50vw;
+}

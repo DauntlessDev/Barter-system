@@ -15,6 +15,5 @@
 <body>
 
 <nav class="nav rgb">
-    <a href="index.php">Home</a>
-    <a href="portfolio/">Go to Portfolio</a>
+    <a href="#">Home</a>
 </nav>
