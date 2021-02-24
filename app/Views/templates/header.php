@@ -7,8 +7,8 @@
   <title>Barter System</title>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/nav.css">
-  <link rel="stylesheet" href="/assets/css/index.css">
+  <link rel="stylesheet" href="<?= base_url('css/nav.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('css/index.css') ?>">
 </head>
 
 <body>
