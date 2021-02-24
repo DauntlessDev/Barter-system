@@ -1,0 +1,57 @@
+html {
+  --nav-font-size: 2vh;
+  --nav-height: 5vh;
+  --nav-padding: 1.25vh;
+  --nav-max-height: 3vh;
+  --nav-min-height: 1.25vh;
+}
+
+.nav {
+  overflow: hidden;
+  background-color: #222;
+  height: 5vh;
+  font-family: "Roboto", sans-serif;
+  min-height: calc(var(--nav-font-size) + var(--nav-min-height) + var(--nav-padding));
+  max-height: var(--nav-max-height);
+}
+
+.rgb, .rgb a {
+  background: linear-gradient(267deg, #ff5100, #18ff00, #00d0ff);
+  background-size: 600% 600%;
+
+  -webkit-animation: AnimationName 60s ease infinite;
+  -moz-animation: AnimationName 60s ease infinite;
+  animation: AnimationName 60s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0%{background-position:0% 83%}
+  50%{background-position:100% 18%}
+  100%{background-position:0% 83%}
+}
+@-moz-keyframes AnimationName {
+  0%{background-position:0% 83%}
+  50%{background-position:100% 18%}
+  100%{background-position:0% 83%}
+}
+@keyframes AnimationName {
+  0%{background-position:0% 83%}
+  50%{background-position:100% 18%}
+  100%{background-position:0% 83%}
+}
+
+.nav a {
+  float: left;
+  color: #f2f2f2;
+  background-color: #222;
+  text-align: center;
+  padding: var(--nav-padding);
+  text-decoration: none;
+  font-size: var(--nav-font-size);
+  transition: 0.3s;
+}
+
+.nav a:hover {
+  color: rgb(82, 51, 51);
+  transform: scale(1.1);
+}
