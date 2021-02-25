@@ -89,7 +89,7 @@ your `users` table should look like this:
 
 open `C:\xampp\php\php.ini` using any text editor
 
-delete "`;`" in "`;extension = int1`"
+delete "`;`" in "`;extension = intl`"
 ```diff
 -;extension=intl
 +extension=intl
