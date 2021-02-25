@@ -4,15 +4,16 @@
 
 <?php // Document Title ?>
 <?= $this->section('title') // located in Views/layouts/main.php "renderSection" ?>
-    Homepage
+    Sign up
 <?= $this->endSection() ?>
 
-<?php // OPTIONAL CSS ?>
-<?= $this->section('css') ?>
-    <link rel="stylesheet" href="<?= base_url('css/homepage.css') // located in public/css/homepage.css ?>">
-<?= $this->endSection() ?>
+<?php // OPTIONAL CSS (you can also omit this completely) ?>
+<?php // $this->section('css') ?>
+
+<?php // $this->endSection() ?>
 
 <?php // Main Content ?>
 <?= $this->section('content') // located in Views/layouts/main.php "renderSection" ?>
-    <h1>Home Page 🔥</h1>
+    <h1>Sign up Page 🌊</h1>
+    <p style="color: red"><?= $msg ?></p> <?php // coming from $data variable in app/Controllers/Auth::signup ?>
 <?= $this->endSection() ?>

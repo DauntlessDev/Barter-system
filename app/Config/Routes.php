@@ -22,7 +22,7 @@ $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(true);
+$routes->setAutoRoute(false);
 
 /*
  * --------------------------------------------------------------------
@@ -32,7 +32,18 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+
+// https://www.codeigniter.com/user_guide/incoming/routing.html
+//     method  path  controller   alias
+$routes->get('/', 'Home::index', ['as' => 'home']);
+
+$routes->add('/signup', 'Auth\Auth::signup', ['as' => 'signup']);
+
+$routes->add('/login', 'Auth\Auth::login', ['as' => 'login']);
+
+$routes->get('/logout', 'Auth\Auth::logout', ['as' => 'logout']);
+
+$routes->get('/dashboard', 'Auth\Dashboard::index', ['as' => 'dashboard', 'filter' => 'auth']);
 
 /*
  * --------------------------------------------------------------------

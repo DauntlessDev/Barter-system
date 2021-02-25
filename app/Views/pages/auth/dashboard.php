@@ -4,15 +4,16 @@
 
 <?php // Document Title ?>
 <?= $this->section('title') // located in Views/layouts/main.php "renderSection" ?>
-    Homepage
+    Dashboard
 <?= $this->endSection() ?>
 
 <?php // OPTIONAL CSS ?>
 <?= $this->section('css') ?>
-    <link rel="stylesheet" href="<?= base_url('css/homepage.css') // located in public/css/homepage.css ?>">
+    <link rel="stylesheet" href="<?= base_url('css/dashboard.css') // located in public/css/homepage.css ?>">
 <?= $this->endSection() ?>
 
 <?php // Main Content ?>
 <?= $this->section('content') // located in Views/layouts/main.php "renderSection" ?>
-    <h1>Home Page 🔥</h1>
+    <h1>Dashboard 🔐</h1>
+    <p>Welcome <?= session()->get('user')['username'] ?? '' ?></p>
 <?= $this->endSection() ?>
