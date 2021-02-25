@@ -49,9 +49,42 @@ Goto http://localhost:8080 to browse the website.
 
 <br>
 
+## Installation part 2 (Database) ⏩
+> Start xampp's apache & mysql
+
+![xampp output](docs/img/xampp.png)
+
+> Create database called `barter_system`
+
+Goto http://localhost/phpmyadmin
+
+click "new" *(located in left most panel)*
+
+type "barter_system" *(without quotes)*
+
+then click "create"
+
+`barter_system` should now appear in the list of of your databases:
+
+![phpmyadmin output](docs/img/phpmyadmin.png)
+
+> migrate database
+
+`php spark migrate`
+
+`php spark db:seed BaseSeeder`
+
+> check results
+
+your `users` table should look like this:
+![users table output](docs/img/users_table.png)
+
+<br>
+
 ## Troubleshooting ❗️
 
-In case you got an error like below:
+> In case you got an error like below:
+
 ![composer install error](docs/img/composer-error.png)
 
 open `C:\xampp\php\php.ini` using any text editor
@@ -64,11 +97,32 @@ delete "`;`" in "`;extension = int1`"
 
 <br>
 
-['php' is not recognized as an internal or external command](https://stackoverflow.com/questions/31291317/php-is-not-recognized-as-an-internal-or-external-command-in-command-prompt/31291404)
+> ['php' is not recognized as an internal or external command](https://stackoverflow.com/questions/31291317/php-is-not-recognized-as-an-internal-or-external-command-in-command-prompt/31291404)
+
+<br>
+
+> In case of spam reloads due to `live server`:
+
+Goto File > preference > settings
+
+search for `@ext:ritwickdey.liveserver Ignore Files`
+
+click `Edit in settings.json`
+
+add the following lines, and restart the live server.
+```diff
+"liveServer.settings.ignoreFiles":[
+    ...
++    "vendor/**",
++    "writable/**",
+]
+```
+
+<br>
 
 ## Server Requirements ⚙️
 
-- [Composer](https://getcomposer.org/)
+- [Composer](https://getcomposer.org/Composer-Setup.exe)
 
 - PHP version 7.3 or higher is required
 

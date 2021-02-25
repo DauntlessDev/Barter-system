@@ -4,10 +4,11 @@ namespace App\Controllers;
 
 class Home extends BaseController
 {
+	/**
+	 * METHOD: GET
+	*/
 	public function index()
 	{
-		echo view('templates/header');
-		echo view('pages/homepage');
-		echo view('templates/footer');
+		return view('pages/homepage');
 	}
 }
