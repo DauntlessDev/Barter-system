@@ -130,6 +130,10 @@ add the following lines, and restart the live server.
 
 ## Authors 🏅
 
+Contributions Badge based on [allcontributors.org](https://allcontributors.org/docs/en/emoji-key)
+
+> Will update badges in the future accordingly
+
 <table>
   <tr>
       <td align="center">
@@ -141,9 +145,8 @@ add the following lines, and restart the live server.
               </sub>
           </a>
           <br/>
-          <a href="#" title="Frontend">🖼️</a>
-          <a href="#" title="Backend">🕹</a>
-          <a href="#" title="Documentation">📖</a>
+          <a href="#" title="Bug Reports">🐛</a>
+          <a href="#" title="Design">🎨</a>
       </td>
       <td align="center">
           <a href="https://github.com/DauntlessDev">
@@ -154,9 +157,10 @@ add the following lines, and restart the live server.
               </sub>
           </a>
           <br/>
-          <a href="#" title="Frontend">🖼️</a>
-          <a href="#" title="Backend">🕹</a>
-          <a href="#" title="Documentation">📖</a>
+          <a href="#" title="Business">💼</a>
+          <a href="#" title="Database Design">🔣</a>
+          <a href="#" title="Event Organizing">📋</a>
+          <a href="#" title="Ideas/Planning">🤔</a>
       </td>
       <td align="center">
           <a href="https://github.com/Hezzz">
@@ -167,9 +171,8 @@ add the following lines, and restart the live server.
               </sub>
           </a>
           <br/>
-          <a href="#" title="Frontend">🖼️</a>
-          <a href="#" title="Backend">🕹</a>
-          <a href="#" title="Documentation">📖</a>
+          <a href="#" title="Business">💼</a>
+          <a href="#" title="Database Design">🔣</a>
       </td>
       <td align="center">
           <a href="https://github.com/Simperfy">
@@ -180,9 +183,12 @@ add the following lines, and restart the live server.
               </sub>
           </a>
           <br/>
-          <a href="#" title="Frontend">🖼️</a>
           <a href="#" title="Backend">🕹</a>
+          <a href="#" title="Design">🎨</a>
           <a href="#" title="Documentation">📖</a>
+          <a href="#" title="Frontend">🖼️</a>
+          <a href="#" title="Infrastructure">🚇</a>
+          <a href="#" title="Tutorial">✅</a>
       </td>
       <td align="center">
           <a href="https://github.com/stormy26">
@@ -193,9 +199,9 @@ add the following lines, and restart the live server.
               </sub>
           </a>
           <br/>
-          <a href="#" title="Frontend">🖼️</a>
-          <a href="#" title="Backend">🕹</a>
-          <a href="#" title="Documentation">📖</a>
+          <a href="#" title="Business">💼</a>
+          <a href="#" title="Design">🎨</a>
+          <a href="#" title="Project Management">📆</a>
       </td>
   </tr>
 </table>
