@@ -13,11 +13,9 @@
   <!-- Page specific css renders here -->
   <?= $this->renderSection('css') ?>
 </head>
-
-<!-- Include Navbar -->
-<?= $this->include('partials/navbar') // located in View/partials/navbar.php ?>
-
 <body>
+  <!-- Include Navbar -->
+  <?= $this->include('partials/navbar') // located in View/partials/navbar.php ?>
   <main class="container">
     <!-- Renders Main Content -->
     <?= $this->renderSection('content') ?>
