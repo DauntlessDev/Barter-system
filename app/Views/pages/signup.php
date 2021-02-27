@@ -15,5 +15,19 @@
 <?php // Main Content ?>
 <?= $this->section('content') // located in Views/layouts/main.php "renderSection" ?>
     <h1>Sign up Page 🌊</h1>
-    <p style="color: red"><?= $msg ?></p> <?php // coming from $data variable in app/Controllers/Auth::signup ?>
+    <!-- <p style="color: red"><?= $msg ?></p> <?php // coming from $data variable in app/Controllers/Auth::signup ?> -->
+    <div>
+        <form action="<?= route_to('signup') ?>" method="POST" id="signup-form">
+            <div>
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" value="user0" autocomplete="off">
+            </div>
+
+            <div>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" value="password" autocomplete="new-password">
+            </div>
+            <button type="submit" form="signup-form" value="submit">Submit</button>
+        </form>
+    </div>
 <?= $this->endSection() ?>
