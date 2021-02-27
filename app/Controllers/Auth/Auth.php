@@ -31,10 +31,10 @@ class Auth extends BaseController
 
 			if ($this->validate($rules)) {
 				$user = $userModel
-						->where('username', $_POST['username'])
+						->where('username', esc($_POST['username']))
 						->first();
 
-				$isCorrectPassword = password_verify($_POST['password'], $user['password']);
+				$isCorrectPassword = password_verify(esc($_POST['password']), $user['password']);
 
 				if ($isCorrectPassword) {
 					$this->setSession($user);
