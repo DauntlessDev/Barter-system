@@ -1,0 +1,6 @@
+:root {
+    --button-shadow: 2px 2px 2px 0px #888888;
+    --primary-color: rgb(0, 140, 255);
+    --radius-button: 0.2rem;
+    --radius-input: 0.2rem;
+}

@@ -5,6 +5,7 @@ namespace App\Controllers\Auth;
 use App\Controllers\BaseController;
 use App\Models\UserModel;
 use \CodeIgniter\Config\Services;
+use Exception;
 
 class Auth extends BaseController
 {
@@ -18,33 +19,22 @@ class Auth extends BaseController
 	 * https://www.codeigniter.com/user_guide/libraries/validation.html
 	*/
 	public function login() {
-		// deprecated param https://www.codeigniter.com/user_guide/incoming/request.html?highlight=request#getMethod
 		if ($this->request->getMethod() === 'get') return view('pages/login');
 
 		if ($this->request->getMethod() === 'post') {
 			// rules https://www.codeigniter.com/user_guide/libraries/validation.html?highlight=validate#available-rules
+			$rules = $this->validation->getRuleGroup('login');  // rule located in app/Config/Validation.php
 
-			// check if username & password exists in database through MODELS
+			if (!$this->validate($rules)) return view('pages/login', ['validation' => $this->validator]);
+
+			// check if username & password exists in database through UserModel.php
 			$userModel = new UserModel();
+			$user = $userModel
+					->where('username', $_POST['username'])
+					->first();
 
-			$rules = $userModel->validationRules;
-
-			if ($this->validate($rules)) {
-				$user = $userModel
-						->where('username', $_POST['username'])
-						->first();
-
-				$isCorrectPassword = password_verify($_POST['password'], $user['password']);
-
-				if ($isCorrectPassword) {
-					$this->setSession($user);
-					return redirect()->route('dashboard');
-				}
-			}
-
-			return view('pages/login', [
-				'error' => 'Invalid username or password'
-			]);
+			$this->setSession($user);
+			return redirect()->route('dashboard');
 		}
 	}
 
@@ -52,26 +42,30 @@ class Auth extends BaseController
 	 * METHOD: GET/POST
 	*/
     public function signup() {
-		$data = [
-			'msg' => 'Please code me'
-		];
-
-		if ($this->request->getMethod() === 'get') return view('pages/signup', $data);
+		if ($this->request->getMethod() === 'get') return view('pages/signup');
 
 		if ($this->request->getMethod() === 'post') {
+			// rules https://www.codeigniter.com/user_guide/libraries/validation.html?highlight=validate#available-rules
 			$rules = $this->validation->getRuleGroup('signup'); // rule located in app/Config/Validation.php
 
-			if ($this->validate($rules)) {
-				// TODO: Store user to database through models
-				// TODO: Check if there's error in models
-				return redirect()->route('login');
-			}
+			// validate all fields
+			if (!$this->validate($rules)) return view('pages/signup', ['validation' => $this->validator]);
+
+			$userModel = new UserModel();
+			if ($userModel->insert($_POST) === false) throw new Exception('Error while inserting to database');
+
+			return redirect()->route('login')->with('msg', 'Registration Successful, you may now login');
 		}
 	}
 
+	/**
+	 * METHOD: GET
+	*/
 	public function logout(){
-		session()->destroy();
-		return redirect()->route('home');
+		if ($this->request->getMethod() === 'get') {
+			session()->destroy();
+			return redirect()->route('home');
+		}
 	}
 
 
