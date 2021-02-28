@@ -7,29 +7,37 @@
     Login
 <?= $this->endSection() ?>
 
-<?php // OPTIONAL CSS ?>
+<?php // CSS ?>
 <?= $this->section('css') ?>
-    <link rel="stylesheet" href="<?= base_url('css/login.css') // located in public/css/login.css ?>">
+    <link rel="stylesheet" href="<?= base_url('css/login.css') // located in public/css ?>">
 <?= $this->endSection() ?>
 
 <?php // Main Content ?>
 <?= $this->section('content') // located in Views/layouts/main.php "renderSection" ?>
     <h1>Login Page ⚡️</h1>
 
+    <?php // more on flashdata https://codeigniter.com/user_guide/libraries/sessions.html#flashdata?>
+    <?php if (session()->getFlashdata('msg') !== null): ?>
     <div>
-        <?php // validation https://www.codeigniter.com/user_guide/libraries/validation.html?highlight=validate#getting-all-errors ?>
-        <?= $error ?? '' ?>
-        <form action="<?= route_to('login') ?>" method="POST" id="login-form">
-            <div>
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username" value="user0" autocomplete="off">
+        <p style='color: green'><?= session()->getFlashdata('msg') ?></p>
+    </div>
+    <?php endif; ?>
+
+    <?php // validation https://www.codeigniter.com/user_guide/libraries/validation.html?highlight=validate#customizing-error-display ?>
+    <?= isset($validation) ? $validation->listErrors('user_errors') : '' ?>
+
+    <div>
+        <form class="form" action="<?= route_to('login') // located in app/Config/Routes.php ?>" method="POST" id="login-form">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" value="user0" autocomplete="off" required>
             </div>
 
-            <div>
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" value="password" autocomplete="new-password">
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" value="password" autocomplete="new-password" required>
             </div>
-            <button type="submit" form="login-form" value="submit">Submit</button>
+            <button class="btn btn-primary" type="submit" form="login-form" value="submit">Login</button>
         </form>
     </div>
 <?= $this->endSection() ?>

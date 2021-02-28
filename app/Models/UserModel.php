@@ -7,11 +7,6 @@ use CodeIgniter\Model;
 // https://www.codeigniter.com/user_guide/models/model.html
 class UserModel extends Model
 {
-    protected $validationRules = [
-        'username' => 'required|min_length[3]|max_length[30]|alpha_numeric',
-		'password' => 'required|min_length[8]|max_length[255]'
-    ];
-
     protected $table      = 'user';
     protected $primaryKey = 'id';
 
@@ -20,14 +15,17 @@ class UserModel extends Model
     // protected $returnType     = 'array';
     // protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['username', 'password'];
+    protected $allowedFields = ['username', 'password', 'first_name', 'last_name'];
 
     // protected $useTimestamps = false;
     // protected $createdField  = 'created_at';
     // protected $updatedField  = 'updated_at';
     // protected $deletedField  = 'deleted_at';
 
-    // protected $validationRules    = [];
+    /**
+     * Validation rules for sign up
+     */
+    protected $validationRules = 'signup';
     // protected $validationMessages = [];
     // protected $skipValidation     = false;
 

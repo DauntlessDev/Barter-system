@@ -18,15 +18,24 @@ class User extends Migration
 			],
 			'username'       	 	 => [
 				'type'       	 => 'VARCHAR',
-				'constraint' 	 => '255',
+				'constraint' 	 => '250',
 			],
 			'password'      	 	 => [
 				'type'       	 => 'VARCHAR',
 				'constraint' 	 => '255',
 			],
+			'first_name'       	 	 => [
+				'type'       	 => 'VARCHAR',
+				'constraint' 	 => '250',
+			],
+			'last_name'       	 	 => [
+				'type'       	 => 'VARCHAR',
+				'constraint' 	 => '250',
+			],
 		]);
 
 		$this->forge->addPrimaryKey('id');
+		$this->forge->addUniqueKey('username');
 
 		$this->forge->createTable('user');
 	}
