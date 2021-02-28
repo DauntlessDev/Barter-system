@@ -27,7 +27,9 @@ class Auth extends BaseController
 
 			if (!$this->validate($rules)) return view('pages/login', ['validation' => $this->validator]);
 
-			// check if username & password exists in database through UserModel.php
+			// at this point username and password was already validated
+			// so there's no need to verify password again
+			// see app/Validation/LoginRules.php & app/Config/Validation::ruleSets
 			$userModel = new UserModel();
 			$user = $userModel
 					->where('username', $_POST['username'])
