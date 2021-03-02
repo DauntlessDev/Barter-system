@@ -1,0 +1,15 @@
+@import "variables.css";
+
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: var(--radius-button);
+    box-shadow: var(--button-shadow);
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background-color:var(--primary-color);
+}

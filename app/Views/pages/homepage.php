@@ -7,7 +7,7 @@
     Homepage
 <?= $this->endSection() ?>
 
-<?php // OPTIONAL CSS ?>
+<?php // CSS ?>
 <?= $this->section('css') ?>
     <link rel="stylesheet" href="<?= base_url('css/homepage.css') // located in public/css/homepage.css ?>">
 <?= $this->endSection() ?>

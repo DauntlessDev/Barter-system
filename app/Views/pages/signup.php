@@ -7,27 +7,21 @@
     Sign up
 <?= $this->endSection() ?>
 
-<?php // OPTIONAL CSS (you can also omit this completely) ?>
-<?php // $this->section('css') ?>
-
-<?php // $this->endSection() ?>
+<?php $this->section('css') ?>
+    <link rel="stylesheet" href="<?= base_url('css/signup.css') // located in public/css ?>">
+<?php $this->endSection() ?>
 
 <?php // Main Content ?>
 <?= $this->section('content') // located in Views/layouts/main.php "renderSection" ?>
     <h1>Sign up Page 🌊</h1>
-    <!-- <p style="color: red"><?= $msg ?></p> <?php // coming from $data variable in app/Controllers/Auth::signup ?> -->
-    <div>
-        <form action="<?= route_to('signup') ?>" method="POST" id="signup-form">
-            <div>
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username" value="user0" autocomplete="off">
-            </div>
 
-            <div>
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" value="password" autocomplete="new-password">
-            </div>
-            <button type="submit" form="signup-form" value="submit">Submit</button>
+    <?php // validation https://www.codeigniter.com/user_guide/libraries/validation.html?highlight=validate#customizing-error-display ?>
+    <?= isset($validation) ? $validation->listErrors('user_errors') : '' ?>
+
+    <div>
+        <form class="form" action="<?= route_to('signup') // located in app/Config/Routes.php ?>" method="POST" id="signup-form">
+            <?= $this->include('partials/_userFields') ?>
+            <button class="btn btn-primary" type="submit" form="signup-form" value="submit">Sign up</button>
         </form>
     </div>
 <?= $this->endSection() ?>

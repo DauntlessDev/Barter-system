@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 0.3rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+body {
+  background: #d5ddeb;
+  background: -webkit-linear-gradient(to bottom, #d5ddeb, #adbfe0);
+  background: linear-gradient(to bottom, #d5ddeb, #adbfe0);
+  background-repeat: no-repeat;
+}
+
+button, input {
+  outline: none;
+}
+
+button:focus, input:focus {
+  box-shadow: 0 0 0 1px grey;
+}
+
+.container {
+  height: 95vh;
+}

@@ -9,13 +9,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <!-- Add global css here -->
   <link rel="stylesheet" href="<?= base_url('css/nav.css') ?>">
-  <link rel="stylesheet" href="<?= base_url('css/index.css') ?>">
   <!-- Page specific css renders here -->
   <?= $this->renderSection('css') ?>
 </head>
 <body>
   <!-- Include Navbar -->
-  <?= $this->include('partials/navbar') // located in View/partials/navbar.php ?>
+  <?= $this->include('partials/_navbar') // located in View/partials/navbar.php ?>
   <main class="container">
     <!-- Renders Main Content -->
     <?= $this->renderSection('content') ?>

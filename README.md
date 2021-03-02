@@ -79,6 +79,15 @@ then click "create"
 your `users` table should look like this:
 ![users table output](docs/img/users_table.png)
 
+> If you need to drop all tables
+
+`php spark migrate:rollback`
+
+> If you need to quickly drop && create tables + populate with fake data
+
+`php spark migrate:refresh && php spark db:seed BaseSeeder`
+
+
 <br>
 
 ## Troubleshooting ❗️
