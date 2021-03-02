@@ -10,43 +10,6 @@ body{
     font-family: "Roboto", sans-serif;
 }
 
-.header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 110px;
-    background-color: white;
-
-}
-
-.logo {
-    height: 30px;
-    width: auto;
-}
-
-.search-input{
-    width: 500px;
-    height: 30px;
-}
-
-.search-button{
-    width: 50px;
-    height: 35px;
-    border-radius: 5px;
-    border: none;
-    color: white;
-    background-color: rgb(32, 171, 76);
-}
-
-.sell-button{
-    margin-left: 40px;
-    width: 100px;
-    height: 35px;
-    background-color: rgb(240, 66, 66);
-    color: white;
-    border-radius: 5px;
-    border:none;
-}
 .wrapper{
     padding: 0px 80px;
 }
