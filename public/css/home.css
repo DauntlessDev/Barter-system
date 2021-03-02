@@ -1,0 +1,153 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-size: 15px;
+    background-color: rgb(238, 238, 238);
+        
+    font-family: "Roboto", sans-serif;
+}
+
+.wrapper{
+    padding: 0px 80px;
+}
+.feature {
+    display: flex;
+    padding: 20px 0px;
+}
+.feature img {
+    float: left;
+    width: 80%;
+    border-radius: 5px;
+}
+
+.explore {
+    padding: 25px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.explore-header{
+    display: block;
+    font-size: 21px;
+}
+
+.category-container{
+    display: flex;
+    border-radius: 5px;
+    justify-content: space-around;
+}
+.category{
+    align-items: center;
+    padding: 20px;
+    width: 90px;
+    display: inline;
+    
+}
+.category img{
+    width: 100%;
+}
+
+.category p{
+    text-align: center;
+}
+
+
+.fresh-finds {
+    padding: 25px;
+    background-color: white;
+    margin: 20px 0px;
+    border-radius: 5px;
+}
+
+.fresh-finds-header{
+    display: block;
+    font-size: 21px;
+}
+
+.product-list{
+    border-radius: 5px;
+    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.product{
+    width: 250px;
+    display: inline;
+    align-items: center;
+    /* background-color: rgb(225, 233, 218); */
+    padding: 20px;
+}
+.product-header{
+    display: flex;
+
+}
+.product-header img{
+    width: 50px;
+    height: 50px;
+    display:inline;
+    border-radius: 5px;
+}
+
+.product-header-sub{
+    display: inline;
+    float: right;
+    /* background: lightblue; */
+    width: 100%;
+    padding: 10px;
+}
+
+.product-header-sub h6,.product-header-sub p {
+    display:block;
+}
+.main-img{
+    margin: 10px 0px;
+
+}
+.product-img{
+    width:100%;
+    height: 220px;
+}
+
+.product-details p{
+    padding: 3px;
+}
+
+.product-name{
+    font-weight: bold;
+}
+
+.new-tag{
+    background: rgb(255, 153, 0);
+    padding: 5px;
+    font-size: 10px;
+    color:white;
+    border-radius: 5px;
+    width:min-content;
+    margin-top: 10px;
+}
+
+.bottom-end{
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    display: flex;
+    background: white;
+    padding-bottom: 20px;
+}
+
+.bottom-end button{
+    margin: 0 auto;
+    width: 110px;
+    height: 38px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid black;
+    background: white;
+
+}
