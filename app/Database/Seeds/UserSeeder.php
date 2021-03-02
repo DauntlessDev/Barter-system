@@ -22,10 +22,13 @@ class UserSeeder extends Seeder
 				'password' => '12345678',
 				'first_name' => "john $randomLowerCaseLetters",
 				'last_name' => "doe $randomLowerCaseLetters",
+				'address' => "PH",
+				'contact_details' => "09999999999",
+				'photo_url' => "#",
 			];
 
 			// check for validation error
-			if ($userModel->insert($data) === false) {
+			if ($userModel->createUser($data) === false) {
 				throw new Exception('Error while inserting using UserModel|'.implode('|', $userModel->errors()));
 			}
 		}
