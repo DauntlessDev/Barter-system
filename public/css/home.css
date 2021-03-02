@@ -71,6 +71,7 @@ footer{
 .explore {
     padding: 25px;
     background-color: white;
+    border-radius: 5px;
 }
 
 .explore-header{
@@ -102,7 +103,8 @@ footer{
 .fresh-finds {
     padding: 25px;
     background-color: white;
-    margin-top: 20px;
+    margin: 20px 0px;
+    border-radius: 5px;
 }
 
 .fresh-finds-header{
@@ -182,7 +184,6 @@ footer{
     display: flex;
     background: white;
     padding-bottom: 20px;
-    margin-bottom: 20px;
 }
 
 .bottom-end button{

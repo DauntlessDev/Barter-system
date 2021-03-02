@@ -32,9 +32,9 @@
                 <?= $this->include('components/home/product') ?>
             <?php endfor ?>
         </div>
-    </div>
-    <div class="bottom-end">
-        <button>View more</button>
+        <div class="bottom-end">
+            <button>View more</button>
+        </div>
     </div>
 
 </div>
