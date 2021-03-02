@@ -7,6 +7,7 @@
   <title><?= $this->renderSection('title') ?></title>
   <!-- Add global css here -->
   <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/footer.css">
   <!-- Page specific css renders here -->
   <?= $this->renderSection('css') ?>
 </head>
