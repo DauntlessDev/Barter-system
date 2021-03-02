@@ -33,6 +33,8 @@
             <?php endfor ?>
         </div>
     </div>
+    <div class="bottom-end">
+        <button>View more</button>
+    </div>
 
-    <div class="bottom-end"></div>
 </div>

@@ -174,3 +174,24 @@ footer{
     width:min-content;
     margin-top: 10px;
 }
+
+.bottom-end{
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    display: flex;
+    background: white;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.bottom-end button{
+    margin: 0 auto;
+    width: 110px;
+    height: 38px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid black;
+    background: white;
+
+}
