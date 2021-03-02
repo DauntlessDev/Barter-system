@@ -11,7 +11,7 @@ class UserModel extends Model
     /* Setup of model */
 
     protected $table      = 'user';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id'; /* change to user_id for initial implementation */
 
     protected $useAutoIncrement = true;
 
@@ -52,7 +52,6 @@ class UserModel extends Model
     protected function passwordHash(array $data){
         if(isset($data['data']['password']))
         $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
-        unset($data['data']['password']);
         return $data;
     }
 

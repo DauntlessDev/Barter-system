@@ -26,8 +26,10 @@ class Auth extends BaseController
 	 * if successful.
 	 * 
 	 * 
-	 * LINKS: https://www.codeigniter.com/user_guide/libraries/validation.html
+	 * LINKS: https://www.codeigniter.com/user_guide/libraries/validation.html,
 	 * 		  https://www.codeigniter.com/user_guide/libraries/validation.html?highlight=validate#available-rules
+	 * 
+	 * SEE ALSO: `app/Config/Validation/Validation.php` for RuleGroups
 	 */
 	public function login() {
 		if ($this->request->getMethod() === 'get') return view('pages/login');
@@ -35,16 +37,6 @@ class Auth extends BaseController
 			$rules = $this->validation->getRuleGroup('login');  // rule located in app/Config/Validation.php
 
 			if (!$this->validate($rules)) return view('pages/login', ['validation' => $this->validator]);
-
-			/* at this point username and password was already validated
-			   so there's no need to verify password again
-			   see app/Validation/LoginRules.php & app/Config/Validation::ruleSets */
-			
-			/* Initial implementation */
-			// $userModel = new UserModel();
-			// $user = $userModel
-			// 		->where('username', $_POST['username'])
-			// 		->first();
 
 			$user = $this->userModel->getUser($_POST['username']);
 			$this->setSession($user);
@@ -63,18 +55,16 @@ class Auth extends BaseController
 	 * @throws Exception if unsuccessful creation of user account. 
 	 * 
 	 * LINKS: https://www.codeigniter.com/user_guide/libraries/validation.html?highlight=validate#available-rules
+	 * 
+	 * SEE ALSO: `app/Config/Validation/Validation.php` for RuleGroups
 	 */
     public function signup() {
 		if ($this->request->getMethod() === 'get') return view('pages/signup');
 		if ($this->request->getMethod() === 'post') {
-			$rules = $this->validation->getRuleGroup('signup'); // rule located in app/Config/Validation.php
+			$rules = $this->validation->getRuleGroup('signup');
 
 			// validate all fields
 			if (!$this->validate($rules)) return view('pages/signup', ['validation' => $this->validator]);
-
-			/* Initial implementation */
-			// $userModel = new UserModel();
-			// if ($userModel->insert($_POST) === false) throw new Exception('Error while inserting to database');
 			
 			if ($this->userModel->createUser($_POST) === false)
 				throw new Exception('Error while inserting to database');
