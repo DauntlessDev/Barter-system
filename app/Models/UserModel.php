@@ -11,7 +11,7 @@ class UserModel extends Model
     /* Setup of model */
 
     protected $table      = 'user';
-    protected $primaryKey = 'id'; /* change to user_id for initial implementation */
+    protected $primaryKey = 'user_id';
 
     protected $useAutoIncrement = true;
 
@@ -23,21 +23,16 @@ class UserModel extends Model
         'password', 
         'first_name', 
         'last_name',
-
-        /* Uncomment for initial implementation */
-
-        // 'address',
-        // 'contact_details',
-        // 'photo_url',
-        // 'item_post_count',
-        // 'rating'
+        'address',
+        'contact_details',
+        'photo_url',
+        'item_post_count',
+        'rating',
     ];
 
-    /* Uncomment for initial implementation */
-
-    // protected $useTimestamps = true;
-    // protected $createdField  = 'user_created_at';
-    // protected $updatedField  = 'user_updated_at';
+    protected $useTimestamps = true;
+    protected $createdField  = 'user_created_at';
+    protected $updatedField  = 'user_updated_at';
 
     /**
      * Validation rules for sign up
