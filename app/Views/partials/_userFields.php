@@ -15,5 +15,5 @@
 
 <div class="form-group">
     <label for="password">Password:</label>
-    <input type="password" name="password" id="password" value="123456 doe" autocomplete="new-password" required>
+    <input type="password" name="password" id="password" value="12345678" autocomplete="new-password" required>
 </div>

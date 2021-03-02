@@ -30,12 +30,12 @@
         <form class="form" action="<?= route_to('login') // located in app/Config/Routes.php ?>" method="POST" id="login-form">
             <div class="form-group">
                 <label for="username">Username:</label>
-                <input type="text" name="username" id="username" value="user0" autocomplete="off" required>
+                <input type="text" name="username" id="username" value="janedoe" autocomplete="off" required>
             </div>
 
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" name="password" id="password" value="password" autocomplete="new-password" required>
+                <input type="password" name="password" id="password" value="12345678" autocomplete="new-password" required>
             </div>
             <button class="btn btn-primary" type="submit" form="login-form" value="submit">Login</button>
         </form>

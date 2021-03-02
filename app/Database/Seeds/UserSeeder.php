@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
 
 			$data = [
 				'username' => "user$i",
-				'password' => 'password',
+				'password' => '12345678',
 				'first_name' => "john $randomLowerCaseLetters",
 				'last_name' => "doe $randomLowerCaseLetters",
 			];

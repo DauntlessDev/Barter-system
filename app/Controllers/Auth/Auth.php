@@ -34,7 +34,7 @@ class Auth extends BaseController
 	public function login() {
 		if ($this->request->getMethod() === 'get') return view('pages/login');
 		if ($this->request->getMethod() === 'post') {
-			$rules = $this->validation->getRuleGroup('login');  // rule located in app/Config/Validation.php
+			$rules = $this->validation->getRuleGroup('login');
 
 			if (!$this->validate($rules)) return view('pages/login', ['validation' => $this->validator]);
 
