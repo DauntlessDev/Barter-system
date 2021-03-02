@@ -71,6 +71,7 @@ class UserModel extends Model
                     ->first();
      }
 
+
      /**
       * getUser
       *
@@ -95,7 +96,7 @@ class UserModel extends Model
        * 
        */
       public function updateUser($data){
-          return $this->where('user_id', $_SESSION['user']['user_id'])
+          return $this->where('user_id', $_SESSION['user']['id']) /* change to user_id for initial implementation */
                     ->update($data);
       }
 
