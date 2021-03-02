@@ -17,23 +17,6 @@ footer{
     text-align: center;
 }
 
-nav{
-    background-color: #262222;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 13px 200px
-}
-
-nav li, .nav li, nav div{
-  display: inline;
-}
-
-.login{
-    padding-left: 20px;
-}
-
 
 .header{
     display: flex;
