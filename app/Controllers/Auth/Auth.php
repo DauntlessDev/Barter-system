@@ -40,7 +40,7 @@ class Auth extends BaseController
 
 			$user = $this->userModel->getUser($_POST['username']);
 			$this->setSession($user);
-			return redirect()->route('dashboard');
+			return redirect()->route('userProfile');
 		}
 	}
 

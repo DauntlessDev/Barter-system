@@ -2,8 +2,10 @@
     <div>
         <li><a href="<?= route_to('home') ?>">Home</a></li>
     </div>
-    <div class="inline">
+    <div>
         <?php if (session()->get('isLoggedIn') === true) : ?>
+            <li><a href="<?= route_to('message') ?>"><?= session()->get('user')['username'] ?? '' ?></a></li>
+            <li><a href="<?= route_to('message') ?>">Messages</a></li>
             <li><a href="<?= route_to('logout') ?>">Logout</a></li>
         <?php else : ?>
             <li><a href="<?= route_to('signup') ?>">Register</a></li>
