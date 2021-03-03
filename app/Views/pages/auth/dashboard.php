@@ -9,7 +9,7 @@
 
 <?php // OPTIONAL CSS ?>
 <?= $this->section('css') ?>
-    <link rel="stylesheet" href="<?= base_url('css/dashboard.css') // located in public/css/homepage.css ?>">
+    <link rel="stylesheet" href="<?= base_url('css/dashboard.css') // located in public/css/dashboard.css ?>">
 <?= $this->endSection() ?>
 
 <?php // Main Content ?>
