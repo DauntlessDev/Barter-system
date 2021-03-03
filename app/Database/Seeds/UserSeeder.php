@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
 			];
 
 			// check for validation error
-			if ($userModel->createUser($data) === false) {
+			if ($userModel->create($data) === false) {
 				throw new Exception('Error while inserting using UserModel|'.implode('|', $userModel->errors()));
 			}
 		}

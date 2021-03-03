@@ -66,7 +66,7 @@ class Auth extends BaseController
 			// validate all fields
 			if (!$this->validate($rules)) return view('pages/signup', ['validation' => $this->validator]);
 			
-			if ($this->userModel->createUser($_POST) === false)
+			if ($this->userModel->create($_POST) === false)
 				throw new Exception('Error while inserting to database');
 
 			return redirect()->route('login')->with('msg', 'Registration Successful, you may now login');
