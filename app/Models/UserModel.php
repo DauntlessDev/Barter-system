@@ -31,8 +31,8 @@ class UserModel extends Model
     ];
 
     protected $useTimestamps = true;
-    protected $createdField  = 'user_created_at';
-    protected $updatedField  = 'user_updated_at';
+    protected $createdField  = 'created_at';
+    protected $updatedField  = 'updated_at';
 
     /**
      * Validation rules for sign up
