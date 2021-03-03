@@ -32,7 +32,7 @@ class RoutingTest extends FeatureTestCase
     }
 
     public function test_should_redirect_to_login_when_not_loggedIn() {
-        $result = $this->call('get', '/dashboard');
+        $result = $this->call('get', '/profile');
         $result->assertRedirect();
 
         $url = $result->getRedirectUrl();
@@ -44,7 +44,7 @@ class RoutingTest extends FeatureTestCase
             'isLoggedIn' => true
         ];
 
-        $result = $this->withSession($sessions)->call('get', '/dashboard');
+        $result = $this->withSession($sessions)->call('get', '/profile');
         $result->assertSee('logout');
     }
 
