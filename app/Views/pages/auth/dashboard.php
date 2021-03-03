@@ -14,6 +14,8 @@
 
 <?php // Main Content ?>
 <?= $this->section('content') // located in Views/layouts/main.php "renderSection" ?>
-    <h1>Dashboard 🔐</h1>
-    <p>Welcome <?= session()->get('user')['username'] ?? '' ?></p>
+    <div class="container">
+        <h1>Dashboard 🔐</h1>
+        <p>Welcome <?= session()->get('user')['username'] ?? '' ?></p>
+    </div>
 <?= $this->endSection() ?>
