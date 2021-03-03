@@ -87,6 +87,9 @@ your `users` table should look like this:
 
 `php spark migrate:refresh && php spark db:seed BaseSeeder`
 
+or
+
+`composer refresh-db`
 
 <br>
 
