@@ -8,6 +8,9 @@ class Offers extends Migration
 {
 	public function up()
 	{
+
+        $this->db->disableForeignKeyChecks();
+
 		$this->forge->addField([
             'item_id'               => [
                 'type'              => 'INT',
@@ -50,6 +53,8 @@ class Offers extends Migration
 		$this->forge->addPrimaryKey('customer_uid');
 
         $this->forge->createTable('offers');
+
+        $this->db->enableForeignKeyChecks();
 	}
 
 	public function down()

@@ -8,6 +8,9 @@ class Reviews extends Migration
 {
 	public function up()
 	{
+
+        $this->db->disableForeignKeyChecks();
+
 		$this->forge->addField([
             'reviewer_uid'          => [
                 'type'              => 'INT',
@@ -44,6 +47,8 @@ class Reviews extends Migration
 		$this->forge->addPrimaryKey('reviewee_uid');
 
         $this->forge->createTable('reviews');
+
+        $this->db->enableForeignKeyChecks();
 	}
 
 	public function down()
