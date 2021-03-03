@@ -1,0 +1,12 @@
+.msgTextArea_container {
+    display: flex;
+}
+
+.msgTextArea {
+    width: 100%;
+}
+
+.send-btn {
+    color:blue;
+    border: none;
+}

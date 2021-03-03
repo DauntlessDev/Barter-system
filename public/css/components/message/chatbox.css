@@ -1,0 +1,55 @@
+.chatBox_container {
+    display: flex;
+    width: 100%;
+    padding: 1rem;
+}
+
+.chatBox_container.sender {
+    justify-content: flex-end;
+}
+
+.chatBox_container.receiver {
+    justify-content: flex-start;
+}
+
+.chatBox {
+    padding: 0.5rem;
+    max-width: 45%;
+    border-radius: 1rem;
+}
+
+.sender > .chatBox {
+    background-color: rgb(18, 171, 209);
+    text-align: right;
+}
+
+.receiver > .chatBox {
+    background-color: rgb(197, 181, 173);
+}
+
+.msg_container {
+    display: flex;
+    height: 70%;
+    width: 70%;
+    border-radius: 0.3rem;
+    overflow: hidden;
+}
+
+.content {
+    width: 100%;
+    /* height: 95%; */
+    background-color: rgb(245, 245, 245);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.recipient_container {
+    width: 100%;
+    padding: 0.3rem 0;
+    background-color: bisque;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.1rem;
+}
