@@ -8,6 +8,9 @@ class Chatroom extends Migration
 {
 	public function up()
 	{
+
+		$this->db->disableForeignKeyChecks();
+
 		$this->forge->addField([
             'chatroom_id'          	=> [
                 'type'              => 'INT',
@@ -46,7 +49,9 @@ class Chatroom extends Migration
 		$this->forge->addPrimaryKey('user1_uid');
 		$this->forge->addPrimaryKey('user2_uid');
 
-        $this->forge->createTable('chat_room');
+		$this->forge->createTable('chat_room');
+		
+		$this->db->enableForeignKeyChecks();
 	}
 
 	public function down()

@@ -8,6 +8,9 @@ class Itemlisting extends Migration
 {
 	public function up()
 	{
+
+		$this->db->disableForeignKeyChecks();
+
 		$this->forge->addField([
 			'item_id'           	=> [
                 'type'              => 'INT',
@@ -32,7 +35,9 @@ class Itemlisting extends Migration
 		$this->forge->addPrimaryKey('item_id');
 		$this->forge->addPrimaryKey('category_id');
 
-        $this->forge->createTable('item_listing');
+		$this->forge->createTable('item_listing');
+		
+		$this->db->enableForeignKeyChecks();
 	}
 
 	public function down()

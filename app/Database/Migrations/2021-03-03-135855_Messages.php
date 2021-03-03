@@ -8,6 +8,8 @@ class Messages extends Migration
 {
 	public function up()
 	{
+		$this->db->disableForeignKeyChecks();
+
 		$this->forge->addField([
             'msg_id'          		=> [
                 'type'              => 'INT',
@@ -43,7 +45,9 @@ class Messages extends Migration
 		$this->forge->addPrimaryKey('chatroom_id');
 		$this->forge->addPrimaryKey('sender_uid');
 
-        $this->forge->createTable('messages');
+		$this->forge->createTable('messages');
+		
+		$this->db->enableForeignKeyChecks();
 	}
 
 	public function down()
