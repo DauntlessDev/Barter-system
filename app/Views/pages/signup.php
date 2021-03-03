@@ -20,7 +20,7 @@
 
     <div>
         <form class="form" action="<?= route_to('signup') // located in app/Config/Routes.php ?>" method="POST" id="signup-form">
-            <?= $this->include('partials/_userFields') ?>
+            <?= $this->include('components/partials/_userFields') ?>
             <button class="btn btn-primary" type="submit" form="signup-form" value="submit">Sign up</button>
         </form>
     </div>

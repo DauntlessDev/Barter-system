@@ -1,13 +1,13 @@
 <div class="product">
     <div class="product-header">
-        <img src="assets/home/profile-pic-sample.jpg" alt="profile-pic" class="profile-pic">
+        <img src="<?= base_url('assets/home/profile-pic-sample.jpg') ?>" alt="profile-pic" class="profile-pic">
         <div class="product-header-sub">
             <p>hannahlou888</p>
             <h6>1 minute ago</h6>
         </div>
     </div>
     <div class="main-img">
-        <img src="assets/home/product-img-sample.jpg" alt="" class="product-img">
+        <img src="<?= base_url('assets/home/product-img-sample.jpg') ?>" alt="" class="product-img">
     </div>
     <div class="product-details">
         <p class="product-name">Carrot Headband</p>

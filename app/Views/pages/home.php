@@ -1,5 +1,4 @@
-
-<?= $this->extend('layouts/home') ?>
+<?= $this->extend('layouts/main') ?>
 
 <?php // Document Title ?>
 <?= $this->section('title') ?>
@@ -8,10 +7,10 @@
 
 <?php // CSS ?>
 <?= $this->section('css') ?>
-    <link rel="stylesheet" href='css/home.css'>
+    <link rel="stylesheet" href="<?= base_url('css/home.css') ?>">
 <?= $this->endSection() ?>
 
 <?php // Main Content ?>
-<?= $this->section('content')  ?>   
-    <?= $this->include('partials/home_content') ?>
+<?= $this->section('content') ?>
+    <?= $this->include('components/home/index') ?>
 <?= $this->endSection() ?>

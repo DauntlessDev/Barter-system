@@ -1,8 +1,6 @@
-
-
 <div class="wrapper">
     <div class="feature">
-        <img src="assets/home/feature-sample.jpg"  alt="feature" class="feature-img">
+        <img src="<?= base_url('assets/home/feature-sample.jpg') ?>"  alt="feature" class="feature-img">
     </div>
 
     <div class="explore">
@@ -29,5 +27,4 @@
             <button>View more</button>
         </div>
     </div>
-
 </div>
