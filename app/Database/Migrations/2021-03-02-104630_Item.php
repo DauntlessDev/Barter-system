@@ -49,6 +49,12 @@ class Item extends Migration
                 'constraint'        => '2,2',
                 'default'           => '0.0',
             ],
+            'created_at'       => [
+                'type'              => 'TIMESTAMP',
+			],
+			'updated_at'       => [
+                'type'              => 'TIMESTAMP',
+			],
         ]);
 
         $this->forge->addPrimaryKey('item_id');

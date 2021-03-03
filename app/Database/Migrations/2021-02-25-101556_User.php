@@ -57,7 +57,13 @@ class User extends Migration
                 'type'              => 'DECIMAL',
                 'constraint'        => '2,2',
                 'default'           => '0.0',
-            ],
+			],
+			'user_created_at'       => [
+                'type'              => 'TIMESTAMP',
+			],
+			'user_updated_at'       => [
+                'type'              => 'TIMESTAMP',
+			],
 		]);
 
 		$this->forge->addPrimaryKey('user_id');
