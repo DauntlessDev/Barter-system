@@ -56,6 +56,8 @@ class Chatroom extends Migration
 
 	public function down()
 	{
-		$this->forge->dropTable('chat_room');
+		$this->db->disableForeignKeyChecks();
+        $this->forge->dropTable('chat_room');
+        $this->db->enableForeignKeyChecks();
 	}
 }

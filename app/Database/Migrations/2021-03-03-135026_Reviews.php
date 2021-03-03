@@ -53,6 +53,8 @@ class Reviews extends Migration
 
 	public function down()
 	{
-		$this->forge->dropTable('reviews');
+		$this->db->disableForeignKeyChecks();
+        $this->forge->dropTable('reviews');
+        $this->db->enableForeignKeyChecks();
 	}
 }

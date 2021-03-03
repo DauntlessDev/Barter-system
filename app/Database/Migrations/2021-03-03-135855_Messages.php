@@ -52,6 +52,8 @@ class Messages extends Migration
 
 	public function down()
 	{
-		$this->forge->dropTable('messages');
+		$this->db->disableForeignKeyChecks();
+        $this->forge->dropTable('messages');
+        $this->db->enableForeignKeyChecks();
 	}
 }

@@ -59,6 +59,8 @@ class Offers extends Migration
 
 	public function down()
 	{
-		$this->forge->dropTable('offers');
+		$this->db->disableForeignKeyChecks();
+        $this->forge->dropTable('offers');
+        $this->db->enableForeignKeyChecks();
 	}
 }

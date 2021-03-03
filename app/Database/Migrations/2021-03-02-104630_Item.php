@@ -64,6 +64,8 @@ class Item extends Migration
 
     public function down()
     {
+        $this->db->disableForeignKeyChecks();
         $this->forge->dropTable('item');
+        $this->db->enableForeignKeyChecks();
     }
 }

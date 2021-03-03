@@ -42,6 +42,8 @@ class Itemlisting extends Migration
 
 	public function down()
 	{
-		$this->forge->dropTable('item_listing');
+		$this->db->disableForeignKeyChecks();
+        $this->forge->dropTable('item_listing');
+        $this->db->enableForeignKeyChecks();
 	}
 }
