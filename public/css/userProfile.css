@@ -7,7 +7,6 @@
     justify-content: start;
     align-items: center;
     flex-direction: column;
-    gap: 1rem;
     background: #d5ddeb;
     background: -webkit-linear-gradient(to bottom, #d5ddeb, #adbfe0);
     background: linear-gradient(to bottom, #d5ddeb, #adbfe0);
@@ -15,5 +14,5 @@
 }
 
 h1 {
-    color: rgb(67, 179, 39);
+    color: rgb(145, 123, 1);
 }

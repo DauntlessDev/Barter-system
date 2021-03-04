@@ -4,15 +4,18 @@
 
 <?php // Document Title ?>
 <?= $this->section('title') // located in Views/layouts/main.php "renderSection" ?>
-    Homepage
+    User Profile
 <?= $this->endSection() ?>
 
-<?php // CSS ?>
+<?php // OPTIONAL CSS ?>
 <?= $this->section('css') ?>
-    <link rel="stylesheet" href="<?= base_url('css/homepage.css') // located in public/css/homepage.css ?>">
+    <link rel="stylesheet" href="<?= base_url('css/userProfile.css') // located in public/css/userProfile.css ?>">
 <?= $this->endSection() ?>
 
 <?php // Main Content ?>
 <?= $this->section('content') // located in Views/layouts/main.php "renderSection" ?>
-    <h1>Home Page 🔥</h1>
+    <div class="container">
+        <h1>User Profile 🔐</h1>
+        <p>Welcome <?= session()->get('user')['username'] ?? '' ?></p>
+    </div>
 <?= $this->endSection() ?>

@@ -19,16 +19,16 @@ class Auth extends BaseController
 
 	/**
 	 * METHOD: `GET`/`POST`
-	 * 
+	 *
 	 * Controls the authentication page for login.
 	 * If form is submitted through `GET`, redirects back to login page.
 	 * Otherwise `POST`, validates user credentials and sets a session
 	 * if successful.
-	 * 
-	 * 
+	 *
+	 *
 	 * LINKS: https://www.codeigniter.com/user_guide/libraries/validation.html,
 	 * 		  https://www.codeigniter.com/user_guide/libraries/validation.html?highlight=validate#available-rules
-	 * 
+	 *
 	 * SEE ALSO: `app/Config/Validation/Validation.php` for RuleGroups
 	 */
 	public function login() {
@@ -40,22 +40,22 @@ class Auth extends BaseController
 
 			$user = $this->userModel->getUser($_POST['username']);
 			$this->setSession($user);
-			return redirect()->route('dashboard');
+			return redirect()->route('userProfile');
 		}
 	}
 
 	/**
 	 * METHOD: `GET`/`POST`
-	 * 
+	 *
 	 * Controls the authentication page for signup.
 	 * If form is submitted through `GET`, redirects back to signup page.
 	 * Otherwise `POST`, validates all form details and creates a user.
 	 * Redirects to login page if successful.
-	 * 
-	 * @throws Exception if unsuccessful creation of user account. 
-	 * 
+	 *
+	 * @throws Exception if unsuccessful creation of user account.
+	 *
 	 * LINKS: https://www.codeigniter.com/user_guide/libraries/validation.html?highlight=validate#available-rules
-	 * 
+	 *
 	 * SEE ALSO: `app/Config/Validation/Validation.php` for RuleGroups
 	 */
     public function signup() {
@@ -65,7 +65,7 @@ class Auth extends BaseController
 
 			// validate all fields
 			if (!$this->validate($rules)) return view('pages/signup', ['validation' => $this->validator]);
-			
+
 			if ($this->userModel->createUser($_POST) === false)
 				throw new Exception('Error while inserting to database');
 
@@ -75,7 +75,7 @@ class Auth extends BaseController
 
 	/**
 	 * METHOD: `GET`
-	 * 
+	 *
 	 * Logs out the current user and destroys the session.
 	 * Redirects to home page in anonymous browsing.
 	 */
