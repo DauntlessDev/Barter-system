@@ -13,7 +13,7 @@ class Messages extends Migration
 		$this->forge->addField([
             'msg_id'          		=> [
                 'type'              => 'INT',
-                'constraint'        => 20,
+                'constraint'        => 10,
 				'unsigned'          => true,
 				'auto_increment'    => true,
             ],
@@ -43,7 +43,6 @@ class Messages extends Migration
 		// set as primary keys
 		$this->forge->addPrimaryKey('msg_id');
 		$this->forge->addPrimaryKey('chatroom_id');
-		$this->forge->addPrimaryKey('sender_uid');
 
 		$this->forge->createTable('messages');
 		

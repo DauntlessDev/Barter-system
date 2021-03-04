@@ -25,7 +25,6 @@ class Item extends Migration
             'item_name'             => [
                 'type'              => 'VARCHAR',
                 'constraint'        => '255',
-                'default'           => 'Unknown item',
             ],
             'photo_url'             => [
                 'type'              => 'VARCHAR',
@@ -40,7 +39,6 @@ class Item extends Migration
             'desc_title'            => [
                 'type'              => 'VARCHAR',
                 'constraint'        => '255',
-                'default'           => 'Add a description title',
             ],
             'desc_content'          => [
                 'type'              => 'TEXT',

@@ -30,7 +30,6 @@ class Offers extends Migration
             'offer_msg_title'       => [
                 'type'              => 'VARCHAR',
                 'constraint'        => '255',
-                'default'           => 'Add Offer Title',
             ],
             'offer_msg_content'     => [
                 'type'              => 'TEXT',

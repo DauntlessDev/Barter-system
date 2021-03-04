@@ -19,7 +19,6 @@ class User extends Migration
 			'username'       	 	=> [
 				'type'       	 	=> 'VARCHAR',
 				'constraint' 	 	=> '250',
-				'default'			=> 'johndoe',
 			],
 			'password'      	 	=> [
 				'type'       	 	=> 'VARCHAR',
@@ -36,7 +35,6 @@ class User extends Migration
 			'address'       	 	=> [
 				'type'       	 	=> 'VARCHAR',
 				'constraint' 	 	=> '255',
-				'default'			=> 'Manila, Philippines',
 			],
 			'contact_details'       => [
 				'type'       	 	=> 'VARCHAR',
