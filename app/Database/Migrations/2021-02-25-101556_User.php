@@ -48,7 +48,7 @@ class User extends Migration
 			],
 			'item_post_count'       => [
                 'type'              => 'INT',
-                'constraint'        => '150',
+                'constraint'        => '5',
                 'default'           => '0',
 			],
 			'rating'                => [
