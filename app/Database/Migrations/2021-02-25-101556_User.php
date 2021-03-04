@@ -9,9 +9,6 @@ class User extends Migration
 {
 	public function up()
 	{
-
-		$this->db->disableForeignKeyChecks();
-
 		$this->forge->addField([
 			'user_id'				=> [
 				'type'           	=> 'INT',
@@ -66,14 +63,10 @@ class User extends Migration
 		$this->forge->addPrimaryKey('user_id');
 		$this->forge->addUniqueKey('username');
 		$this->forge->createTable('user');
-
-		$this->db->enableForeignKeyChecks();
 	}
 
 	public function down()
 	{
-		$this->db->disableForeignKeyChecks();
 		$this->forge->dropTable('user');
-		$this->db->enableForeignKeyChecks();
 	}
 }

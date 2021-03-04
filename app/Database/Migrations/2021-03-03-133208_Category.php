@@ -8,8 +8,6 @@ class Category extends Migration
 {
 	public function up()
 	{
-        $this->db->disableForeignKeyChecks();
-
 		$this->forge->addField([
             'category_id'           => [
                 'type'              => 'INT',
@@ -26,14 +24,10 @@ class Category extends Migration
 
         $this->forge->addPrimaryKey('category_id');
         $this->forge->createTable('category');
-
-        $this->db->enableForeignKeyChecks();
 	}
 
 	public function down()
 	{
-        $this->db->disableForeignKeyChecks();
         $this->forge->dropTable('category');
-        $this->db->enableForeignKeyChecks();
 	}
 }
