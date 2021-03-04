@@ -17,12 +17,12 @@ class Messages extends Migration
 				'unsigned'          => true,
 				'auto_increment'    => true,
             ],
-            'chatroom_id'          	=> [
+			'sender_uid'          	=> [
                 'type'              => 'INT',
                 'constraint'        => 10,
                 'unsigned'          => true,
 			],
-			'sender_uid'          	=> [
+			'recipient_uid'         => [
                 'type'              => 'INT',
                 'constraint'        => 10,
                 'unsigned'          => true,
@@ -37,8 +37,8 @@ class Messages extends Migration
 		/* Creation of Composite PKs */
 
 		// set as foreign keys
-		$this->forge->addForeignKey('chatroom_id', 'chat_room', 'chatroom_id', 'CASCADE', 'CASCADE');
 		$this->forge->addForeignKey('sender_uid', 'user', 'user_id', 'CASCADE', 'CASCADE');
+		$this->forge->addForeignKey('recipient_uid', 'user', 'user_id', 'CASCADE', 'CASCADE');
 		
 		// set as primary keys
 		$this->forge->addPrimaryKey('msg_id');
