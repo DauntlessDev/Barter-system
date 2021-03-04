@@ -4,12 +4,12 @@ namespace App\Controllers\Auth;
 
 use App\Controllers\BaseController;
 
-class Dashboard extends BaseController
+class UserProfile extends BaseController
 {
     /**
 	 * METHOD: GET
 	*/
     public function index() {
-        return view('pages/auth/dashboard');
+        return view('pages/auth/userProfile');
     }
 }
