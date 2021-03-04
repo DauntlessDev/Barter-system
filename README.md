@@ -5,6 +5,14 @@ Barter system using Code Igniter 4
 
 ## Installation ▶️
 
+### Prerequisite
+
+- [Composer](https://getcomposer.org/Composer-Setup.exe)
+
+- PHP version 7.3 or higher is required
+
+<br>
+
 > open cmd/terminal and type the following:
 
 `git clone https://github.com/Simperfy/Barter-system.git`
@@ -132,14 +140,6 @@ add the following lines, and restart the live server.
 
 <br>
 
-## Server Requirements ⚙️
-
-- [Composer](https://getcomposer.org/Composer-Setup.exe)
-
-- PHP version 7.3 or higher is required
-
-<br>
-
 ## Authors 🏅
 
 Contributions Badge based on [allcontributors.org](https://allcontributors.org/docs/en/emoji-key)
@@ -171,6 +171,7 @@ Contributions Badge based on [allcontributors.org](https://allcontributors.org/d
           <br/>
           <a href="#" title="Business">💼</a>
           <a href="#" title="Database Design">🔣</a>
+          <a href="#" title="Frontend">🖼️</a>
           <a href="#" title="Event Organizing">📋</a>
           <a href="#" title="Ideas/Planning">🤔</a>
       </td>
@@ -183,8 +184,10 @@ Contributions Badge based on [allcontributors.org](https://allcontributors.org/d
               </sub>
           </a>
           <br/>
+          <a href="#" title="Backend">🕹</a>
           <a href="#" title="Business">💼</a>
           <a href="#" title="Database Design">🔣</a>
+          <a href="#" title="Documentation">📖</a>
       </td>
       <td align="center">
           <a href="https://github.com/Simperfy">
@@ -212,8 +215,6 @@ Contributions Badge based on [allcontributors.org](https://allcontributors.org/d
           </a>
           <br/>
           <a href="#" title="Business">💼</a>
-          <a href="#" title="Design">🎨</a>
-          <a href="#" title="Project Management">📆</a>
       </td>
   </tr>
 </table>
