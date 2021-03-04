@@ -42,7 +42,6 @@ class Messages extends Migration
 		
 		// set as primary keys
 		$this->forge->addPrimaryKey('msg_id');
-		$this->forge->addPrimaryKey('chatroom_id');
 
 		$this->forge->createTable('messages');
 		
