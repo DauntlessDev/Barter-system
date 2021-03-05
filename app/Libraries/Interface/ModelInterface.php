@@ -6,27 +6,6 @@ interface ModelInterface
 {
 
     /**
-     * Implement in queries for retrieving a data from a table.
-     * 
-     * @param array $search_values unique value(s) needed for a query, 
-     * used when using `where()` query.
-     * 
-     * 
-     * _Example implementation (`AnyModel.php`):_
-     * ```
-     * 
-     * public function get($search_values){
-     * 
-     *      // $search_values = ['username' => 'johndoe', ...]
-     *      return $this->where($search_values)->first();
-     * }
-     * 
-     * ```
-     */
-    public function get($search_values);
-
-
-    /**
      * Implement in queries to get records from a table
      * with certain conditions.
      * 
@@ -35,7 +14,7 @@ interface ModelInterface
      * @param int $limit the number of rows to find
      * @param int $offset the number of rows to skip during the search
      */
-    public function getAll($search_values, $limit, $offset);
+    public function get($search_values, $limit, $offset);
 
 
     /**
