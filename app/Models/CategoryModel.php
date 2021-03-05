@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
-use App\Models\Interface\ModelInterface;
+use App\Libraries\Interface\ModelInterface;
 
 class CategoryModel extends Model implements ModelInterface 
 {
