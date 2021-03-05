@@ -12,12 +12,7 @@ class UserModel extends Model implements ModelInterface
 
     protected $table      = 'user';
     protected $primaryKey = 'user_id';
-
     protected $useAutoIncrement = true;
-
-    // protected $returnType     = 'array';
-    // protected $useSoftDeletes = true;
-
     protected $allowedFields = [
         'username', 
         'password', 
@@ -34,12 +29,8 @@ class UserModel extends Model implements ModelInterface
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
 
-    /**
-     * Validation rules for sign up
-     */
+    /* Validation rules for sign up */
     protected $validationRules = 'signup';
-    // protected $validationMessages = [];
-    // protected $skipValidation     = false;
 
     protected $beforeInsert = ['passwordHash'];
     protected $beforeUpdate = ['passwordHash'];
@@ -66,28 +57,30 @@ class UserModel extends Model implements ModelInterface
 
 
     /**
-     * Returns all rows from the `user` table given
-     * certain search conditions, otherwise returns all.
+     * Returns rows from the `users` table as an array, given
+     * certain search conditions and limit, otherwise returns all.
      * 
-     * @param array $search_values
-     * Default value is `null`
+     * @param array $search_values values needed to query
+     * @param int $limit the number of rows to find
+     * @param int $offset the number of rows to skip during the search
      * 
      * `$search_values = ['first_name' => 'john', ...]`
      * 
      */
-    public function getAll($search_values = null){
+    public function getAll($search_values = null, $limit = 0, $offset = 0){
         if($search_values){
             return $this->where($search_values)
-                        ->findAll();
+                        ->findAll($limit, $offset);
         }
-        return $this->findAll();
+        return $this->findAll($limit, $offset);
     }
+
 
     /**
       * Creates a new user into the database.
       *
       * @param array $data data of the user to be inserted.
-      * @return true if successfully inserted, otherwise returns `false`.
+      * @return bool `true` if successfully inserted, otherwise returns `false`.
       *
       */
     public function create($data){
@@ -99,12 +92,15 @@ class UserModel extends Model implements ModelInterface
      * Updates the details and credentials of the 
      * currently logged user.
      * 
+     * @param mixed $id `user_id` of the user to be updated. Default value
+     * is the current session's user.
      * @param array $data data entered from a form submitted by the user.
+     * @return bool `true` if successful update, otherwise `false`.
      *
      */
-    public function updateUser($data){
-        return $this->where('user_id', $_SESSION['user']['user_id']) /* change to user_id for initial implementation */
-                    ->update($data);
+    public function update($id = null, $data = null) : bool{
+        if(!$id) $id = $_SESSION['user']['user_id'];
+        return parent::update($id, $data);
     }
 
 }
