@@ -29,41 +29,11 @@ class ItemModel extends Model implements ModelInterface
     /* Query calls */
     /* Functions to be used on controllers */
 
-    /**
-     * Returns the first row from the `items` table given
-     * certain search conditions.
-     * 
-     * @param array $search_values
-     * Example: `$search_values = ['item_id' => '001', 'poster_uid' => '000', ...]`
-     * 
-     */
-    public function get($search_values){
-        return $this->where($search_values)
-                    ->first();
-    }
+    
+    /* Create Methods */
 
 
-    /**
-     * Returns rows from the `items` table as an array, given
-     * certain search conditions and limit, otherwise returns all.
-     * 
-     * @param array $search_values values needed to query
-     * @param int $limit the number of rows to find
-     * @param int $offset the number of rows to skip during the search
-     * 
-     * Example: `$search_values = ['poster_uid' => '000', ...]`
-     * 
-     */
-    public function getAll($search_values = null, $limit = 0, $offset = 0){
-        if($search_values){
-            return $this->where($search_values)
-                        ->findAll($limit, $offset);
-        }
-        return $this->findAll($limit, $offset);
-    }
-
-
-    /**
+     /**
      * Creates new item into the database.
      * 
      *  @param array $data data of the item to be inserted.
@@ -73,6 +43,41 @@ class ItemModel extends Model implements ModelInterface
     public function create($data){
         return $this->insert($data);
     }
+
+
+    /* Retrieve Methods */
+
+    /**
+     * Returns rows from the `items` table as an array, given
+     * certain search conditions and limit, otherwise returns all.
+     * 
+     * @param array $search_values values needed to query
+     * @param int $limit the number of rows to find
+     * @param int $offset the number of rows to skip during the search
+     * 
+     * Example: `$search_values = ['item_id' => [001, 002, 003,...]]`
+     *          OR `$search_values = ['poster_uid' => '000', ...]`
+     * 
+     */
+    public function get($search_values = null, $limit = 0, $offset = 0){
+        if(count($search_values) == 1){
+            $col = array_key_first($search_values);
+            $value = array_values($search_values);
+            
+            return $this->whereIn($col, $value)
+                        ->findAll($limit, $offset);
+        }
+        elseif(count($search_values) > 1){
+            return $this->where($search_values)
+                        ->findAll($limit, $offset);
+        }
+        else{
+            return $this->findAll($limit, $offset);
+        }
+    }
+
+
+    /* Update Methods */
 
 
     /**
