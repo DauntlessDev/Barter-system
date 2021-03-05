@@ -27,14 +27,15 @@ interface ModelInterface
 
 
     /**
-     * Implement in queries to get all records from a table
+     * Implement in queries to get records from a table
      * with certain conditions.
      * 
      * @param array $search_values unique value(s) needed for a query, 
      * used when using `where()` query.
-     * 
+     * @param int $limit the number of rows to find
+     * @param int $offset the number of rows to skip during the search
      */
-    public function getAll($search_values);
+    public function getAll($search_values, $limit, $offset);
 
 
     /**
