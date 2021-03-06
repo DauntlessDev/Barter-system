@@ -54,26 +54,29 @@ class ItemModel extends Model implements ModelInterface
      * @param array $search_values values needed to query
      * @param int $limit the number of rows to find
      * @param int $offset the number of rows to skip during the search
+     * @param string $order defines what column used for sorting **[MUST MATCH WITH THE TABLE COLUMN NAMES]**
+     * @param string $sortOrder direction of sorting.
      * 
      * Example: `$search_values = ['item_id' => [001, 002, 003,...]]`
      *          OR `$search_values = ['poster_uid' => '000', ...]`
      * 
+     * Recommended values for `$order`: `'item_name'` | `'rating'` | `'created_at'` 
+     * 
      */
-    public function get($search_values = null, $limit = 0, $offset = 0){
+    public function get($search_values = null, $limit = 0, $offset = 0, 
+                        $order = 'created_at', $sortOrder = 'asc'){
+        $builder = $this->builder();
         if(count($search_values) == 1){
             $col = array_key_first($search_values);
             $value = array_values($search_values);
-            
-            return $this->whereIn($col, $value)
-                        ->findAll($limit, $offset);
+            $builder ->whereIn($col, $value);
         }
-        elseif(count($search_values) > 1){
-            return $this->where($search_values)
-                        ->findAll($limit, $offset);
+        if(count($search_values) > 1){
+            $builder->where($search_values);
         }
-        else{
-            return $this->findAll($limit, $offset);
-        }
+        return $builder->orderBy($order, $sortOrder)
+                        ->get($limit, $offset)
+                        ->getResultArray();
     }
 
 

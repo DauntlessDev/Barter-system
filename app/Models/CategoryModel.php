@@ -42,38 +42,24 @@ class CategoryModel extends Model implements ModelInterface
 
 	/**
      * Returns rows from the `category` table as an array, given
-     * a certain limit, otherwise returns all.
+     * a certain limit. If a list of `category_id`s is given, 
+	 * returns an indexed `array` of `category_names`, otherwise,
+	 * returns all rows with column properties.
 	 * 
-     */
-    public function get($search_values = null, $limit = 0, $offset = 0){
-        return $this->findAll($limit, $offset);
-    }
-
-
-	/**
-	 * Gets the all the category names given a list of `category_id`s,
-	 * otherwise returns all category names from the table;
-	 * (Useful after getting the `category_id`s of an item,
-	 * after interaction with the `item_listing` table).
-	 * 
-	 * @param array $category_ids list of `category_id`s.
+	 * @param array $category_ids list of `category_id`s
 	 * @param string $order alphabetical order of category names.
 	 * 
-	 */
-	public function getCategoryNames($category_ids = null, $order = 'asc'){
+     */
+    public function get($category_ids = null, $limit = 0, $offset = 0, $sortOrder = 'asc'){
+		$builder = $this->builder();
 		if($category_ids){
-			$builder = $this->builder();
-			return $builder->select('category_name')
-					->whereIn('category_id', $category_ids)
-					->orderBy($order)
-					->get()
-					->getResultArray();
+			$builder->select('category_name')
+					->whereIn('category_id', $category_ids);
 		}
-		else {
-			return $this->orderBy('category_name', $order)
-						->findColumn('category_name');				
-		}
-	}
+        return $builder->orderBy('category_name', $sortOrder)
+						->get($limit, $offset)
+						->getResultArray();
+    }
 
 
 	/* Update Methods */

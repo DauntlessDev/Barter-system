@@ -72,24 +72,22 @@ class UserModel extends Model implements ModelInterface
      * @param int $limit the number of rows to find
      * @param int $offset the number of rows to skip during the search
      * 
-     * `$search_values = ['username' => 'johndoe', ...]`
+     * Example: `$search_values = ['username' => 'johndoe', ...]` OR
+     *          `$search_values = ['first_name' => 'john', 'lastt_name' => 'john', ...]`
      * 
      */
     public function get($search_values = null, $limit = 0, $offset = 0){
+        $builder = $this->builder();
         if(count($search_values) == 1){
             $col = array_key_first($search_values);
             $value = array_values($search_values);
-            
-            return $this->whereIn($col, $value)
-                        ->findAll($limit, $offset);
+            $builder->whereIn($col, $value);
         }
-        elseif(count($search_values) > 1){
-            return $this->where($search_values)
-                        ->findAll($limit, $offset);
+        if(count($search_values) > 1){
+            $builder->where($search_values);
         }
-        else{
-            return $this->findAll($limit, $offset);
-        }
+        return $builder->get($limit, $offset)
+                        ->getResultArray();
     }
 
 
