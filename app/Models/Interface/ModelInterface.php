@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Libraries\Interface;
+namespace App\Models\Interface;
 
 interface ModelInterface
 {
