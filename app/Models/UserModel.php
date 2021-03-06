@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
-use App\Libraries\Interface\ModelInterface;
+use App\Models\Interface\ModelInterface;
 
 class UserModel extends Model implements ModelInterface
 {
@@ -73,7 +73,7 @@ class UserModel extends Model implements ModelInterface
      * @param int $offset the number of rows to skip during the search
      * 
      * Example: `$search_values = ['username' => 'johndoe', ...]` OR
-     *          `$search_values = ['first_name' => 'john', 'lastt_name' => 'john', ...]`
+     *          `$search_values = ['first_name' => 'john', 'last_name' => 'john', ...]`
      * 
      */
     public function get($search_values = null, $limit = 0, $offset = 0){
@@ -99,13 +99,12 @@ class UserModel extends Model implements ModelInterface
      * currently logged user.
      * 
      * @param mixed $id `user_id` of the user to be updated. Default value
-     * is the current session's user.
+     * should be the current session's user.
      * @param array $data data entered from a form submitted by the user.
      * @return bool `true` if successful update, otherwise `false`.
      *
      */
     public function update($id = null, $data = null) : bool{
-        if(!$id) $id = $_SESSION['user']['user_id'];
         return parent::update($id, $data);
     }
 
