@@ -23,6 +23,7 @@ class Category extends Migration
         ]);
 
         $this->forge->addPrimaryKey('category_id');
+        $this->forge->addUniqueKey('category_name');
         $this->forge->createTable('category');
 	}
 
