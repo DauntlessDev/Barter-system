@@ -34,22 +34,27 @@ class ItemModel extends Model implements ModelInterface
 
 
      /**
-     * Creates new item into the database.
+     * Creates new item into the database, together with its categories.
      * 
-     *  @param array $data data of the item to be inserted.
-     *  @return bool `true` if successfully inserted, otherwise returns `false`.
+     * @param array $data data of the item to be inserted
+     * @param array $category_ids `id`s of categories associated with the item
+     * @return integer|false `item_id` of the current item, `false` on failure
      * 
      */
-    public function create($data){
-        return $this->insert($data);
+    public function create($data, $category_ids = null){
+        $item_id = $this->insert($data);
+        if($item_id && $category_ids){
+            $this->addCategory($item_id, $category_ids);
+        }
+        return $item_id;
     }
 
 
     /**
      * Adds a set of category to the identified item as a batch.
      * 
-     * @param mixed $item_id `item_id` of the item to be categorized.
-     * @param array $category_ids list of all categories.
+     * @param mixed $item_id `item_id` of the item to be categorized
+     * @param array $category_ids list of all categories
      * 
      */
     public function addCategory($item_id, $category_ids){
@@ -61,7 +66,7 @@ class ItemModel extends Model implements ModelInterface
                 ['item_id' => $item_id, 'category_id' => $category_id],
             );
         }
-        $builder = $this->db->table('item_listing');
+        $builder = $db->table('item_listing');
         return $builder->ignore()->insertBatch($data);
     }
 
@@ -78,7 +83,7 @@ class ItemModel extends Model implements ModelInterface
      * @param int $limit the number of rows to find
      * @param int $offset the number of rows to skip during the search
      * @param string $order defines what column used for sorting **[MUST MATCH WITH THE TABLE COLUMN NAMES]**
-     * @param string $sortOrder direction of sorting.
+     * @param string $sortOrder direction of sorting
      * 
      * Example: `$search_values = ['item_id' => [001, 002, 003,...]]`
      *          OR `$search_values = ['poster_uid' => '000', ...]`
@@ -109,7 +114,7 @@ class ItemModel extends Model implements ModelInterface
         $itemResults = $builder->orderBy($order, $sortOrder)
                         ->get($limit, $offset)
                         ->getResultArray();
-        return $this->getCategoriesFromItem($itemResults);
+        return $this->getItemWithCategories($itemResults);
     }
 
 
@@ -118,14 +123,17 @@ class ItemModel extends Model implements ModelInterface
 
     /**
      * Updates the details of the current selected item.
+     * Deletes associated old categories from that item, if so.
      * 
-     * @param mixed $id `item_id` of the item to be updated.
-     * @param array $data updated details of the item.
-     * @return bool `true` if successful update, otherwise `false`.
+     * @param mixed $item_id `item_id` of the item to be updated
+     * @param array $data updated details of the item
+     * @param array $category_ids `category_id`s of the item to be updated
+     * @return bool `true` if successful update, otherwise `false`
      *
      */
-    public function update($id = null, $data = null) : bool{
-        return parent::update($id, $data);
+    public function update($item_id = null, $data = null, $category_ids = null) : bool{
+        $this->deleteCategoriesFromItem($item_id, $category_ids);
+        return parent::update($item_id, $data);
     }
 
 
@@ -135,10 +143,10 @@ class ItemModel extends Model implements ModelInterface
      * Returns an array of item with its corresponding categories,
      * given a list of items to be binded.
      * 
-     * @param array $itemList rows of items from a query.
+     * @param array $itemList rows of items from a query
      * 
      */
-    protected function getCategoriesFromItem($itemList){
+    protected function getItemWithCategories($itemList){
         $items = [];
         $db = db_connect();
         foreach($itemList as $item){
@@ -153,6 +161,24 @@ class ItemModel extends Model implements ModelInterface
             $items[$item] = $item_categories;
         }
         return $items;
+    }
+
+
+    /**
+     * Deletes corresponding categories from an item, given a new set of
+     * categories. Usually done when updating an item. Deletes them at the
+     * `item_listing` table.
+     * 
+     * @param mixed $item_id `item_id` of the item selected
+     * @param array $category_ids current `category_ids` of the item.
+     * 
+     */
+    protected function deleteCategoriesFromItem($item_id, $category_ids){
+        $db = db_connect();
+        $builder = $db->table('item_listing');
+        return $builder->where('item_id', $item_id)
+                       ->whereNotIn('category_id', $category_ids)
+                       ->delete();
     }
 
 }
