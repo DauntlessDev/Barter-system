@@ -12,5 +12,10 @@ class BaseSeeder extends Seeder
 		// Centralize Seeders by
 		// calling all of them here
 		$this->call('UserSeeder');
+		$this->call('MessageSeeder');
+		$this->call('ReviewSeeder');
+		$this->call('CategorySeeder');
+		$this->call('ItemSeeder');
+		$this->call('OfferSeeder');
 	}
 }
