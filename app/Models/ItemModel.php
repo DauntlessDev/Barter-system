@@ -101,7 +101,7 @@ class ItemModel extends Model implements ModelInterface
      *              ```
      */
     public function get($search_values = null, $limit = 0, $offset = 0, 
-                        $order = 'created_at', $sortOrder = 'asc'){
+                        $order = 'created_at', $sortOrder = 'desc'){
         $builder = $this->builder();
         if(count($search_values) == 1){
             $col = array_key_first($search_values);

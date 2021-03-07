@@ -43,7 +43,7 @@ class UserModel implements ModelInterface
      * 
      */
     public function get($item_id, $limit = 0, $offset = 0,
-                        $order = 'created_at', $sortOrder = 'asc'){
+                        $order = 'created_at', $sortOrder = 'desc'){
         $builder = $this->db->table('offers');
         return $builder->where('item_id', $item_id)
                         ->orderBy($order, $sortOrder)
