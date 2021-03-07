@@ -83,9 +83,8 @@ class CategoryModel extends Model implements ModelInterface
 	public function getCategoryWithItems($category_ids = null, $limit = 0, $offset = 0){
 		$categoryResults = $this->get($category_ids, $limit, $offset);
 		$categories = [];
-		$db = db_connect();
 		foreach($categoryResults as $category){
-			$builder = $db->table('item');
+			$builder = $this->builder('item');
 			$categoryItems = $builder->select()
 									 ->join('item_listing',
 									 		"item_listing.category_id = $category->category_id AND

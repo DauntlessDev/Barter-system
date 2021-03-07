@@ -59,14 +59,13 @@ class ItemModel extends Model implements ModelInterface
      */
     public function addCategory($item_id, $category_ids){
         $data = [];
-        $db = db_connect();
         foreach($category_ids as $category_id){
             array_push(
                 $data,
                 ['item_id' => $item_id, 'category_id' => $category_id],
             );
         }
-        $builder = $db->table('item_listing');
+        $builder = $this->builder('item_listing');
         return $builder->ignore()->insertBatch($data);
     }
 
@@ -148,9 +147,8 @@ class ItemModel extends Model implements ModelInterface
      */
     protected function getItemWithCategories($itemList){
         $items = [];
-        $db = db_connect();
         foreach($itemList as $item){
-            $builder = $db->table('category');
+            $builder = $this->builder('category');
             $item_categories = $builder->select()
                                        ->join('item_listing', 
                                                "item_listing.item_id = $item->item_id AND
@@ -174,8 +172,7 @@ class ItemModel extends Model implements ModelInterface
      * 
      */
     protected function deleteCategoriesFromItem($item_id, $category_ids){
-        $db = db_connect();
-        $builder = $db->table('item_listing');
+        $builder = $this->builder('item_listing');
         return $builder->where('item_id', $item_id)
                        ->whereIn('category_id', $category_ids)
                        ->delete();
