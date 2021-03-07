@@ -79,6 +79,7 @@ class MessageModel extends Model
 	 * 
 	 * More information about the query here:
 	 * http://sqlfiddle.com/#!15/1d80e/1
+	 * https://stackoverflow.com/questions/14978532/write-union-query-in-codeigniter-style
 	 * 
 	 * @param mixed $this_user_uid current user's `user_id`
 	 * @param mixed $limit number of conversations to be returned
