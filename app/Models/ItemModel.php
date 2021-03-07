@@ -165,8 +165,8 @@ class ItemModel extends Model implements ModelInterface
 
 
     /**
-     * Deletes corresponding categories from an item, given a new set of
-     * categories. Usually done when updating an item. Deletes them at the
+     * Deletes corresponding categories from an item. 
+     * Usually done when updating an item. Deletes them at the
      * `item_listing` table.
      * 
      * @param mixed $item_id `item_id` of the item selected
