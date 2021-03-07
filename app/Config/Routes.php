@@ -45,6 +45,8 @@ $routes->get('/logout', 'Auth\Auth::logout', ['as' => 'logout']);
 
 $routes->get('/profile', 'Auth\UserProfile::index', ['as' => 'userProfile', 'filter' => 'auth']);
 
+$routes->add('/profile/edit', 'Auth\UserProfile::edit', ['as' => 'userProfileEdit', 'filter' => 'auth']);
+
 $routes->get('/messages', 'Auth\Message::index', ['as' => 'message', 'filter' => 'auth']);
 
 /*

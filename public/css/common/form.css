@@ -11,7 +11,7 @@
     gap: 0.5rem;
 }
 
-.form input[type="text"], input[type="password"] {
+.form input[type="text"], .form input[type="password"] {
     padding: 0.5rem;
     outline: none;
     border: none;
