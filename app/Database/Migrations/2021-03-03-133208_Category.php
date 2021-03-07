@@ -20,6 +20,8 @@ class Category extends Migration
 				'constraint'        => ['hardware', 'fashion', 'unknown'], //To restrict only known categories 
 				'default'			=> 'unknown'
 			],
+            'created_at DATETIME DEFAULT CURRENT_TIMESTAMP',
+            'updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
         ]);
 
         $this->forge->addPrimaryKey('category_id');

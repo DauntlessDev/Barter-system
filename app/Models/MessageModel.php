@@ -7,17 +7,18 @@ use CodeIgniter\Model;
 class MessageModel extends Model
 {
 
-	protected $table                = 'messages';
-	protected $primaryKey           = 'msg_id';
-	protected $useAutoIncrement     = true;
-	protected $allowedFields        = [
+	protected $table            = 'messages';
+	protected $primaryKey       = 'msg_id';
+	protected $useAutoIncrement = true;
+	protected $allowedFields    = [
 		"sender_uid",
 		"recipient_uid",
 		"content",
 	];
 
-	protected $useTimestamps        = true;
-	protected $createdField         = 'created_at';
+	protected $useTimestamps    = true;
+	protected $createdField     = 'created_at';
+	protected $updatedField     = '';
 
 	// protected $validationRules      = [];
 	// protected $validationMessages   = [];
