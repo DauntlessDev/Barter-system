@@ -123,16 +123,16 @@ class ItemModel extends Model implements ModelInterface
 
     /**
      * Updates the details of the current selected item.
-     * Deletes associated old categories from that item, if so.
+     * Deletes 
      * 
      * @param mixed $item_id `item_id` of the item to be updated
      * @param array $data updated details of the item
-     * @param array $category_ids `category_id`s of the item to be updated
+     * @param array $category_ids `category_id`s to be deleted
      * @return bool `true` if successful update, otherwise `false`
      *
      */
     public function update($item_id = null, $data = null, $category_ids = null) : bool{
-        $this->deleteCategoriesFromItem($item_id, $category_ids);
+        if(!$category_ids) $this->deleteCategoriesFromItem($item_id, $category_ids);
         return parent::update($item_id, $data);
     }
 
@@ -170,14 +170,14 @@ class ItemModel extends Model implements ModelInterface
      * `item_listing` table.
      * 
      * @param mixed $item_id `item_id` of the item selected
-     * @param array $category_ids current `category_ids` of the item.
+     * @param array $category_ids `category_id`s to be deleted
      * 
      */
     protected function deleteCategoriesFromItem($item_id, $category_ids){
         $db = db_connect();
         $builder = $db->table('item_listing');
         return $builder->where('item_id', $item_id)
-                       ->whereNotIn('category_id', $category_ids)
+                       ->whereIn('category_id', $category_ids)
                        ->delete();
     }
 
