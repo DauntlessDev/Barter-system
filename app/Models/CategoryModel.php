@@ -59,6 +59,7 @@ class CategoryModel extends Model implements ModelInterface
 						->get($limit, $offset)
 						->getResultArray();
     }
+	
 
 	/**
 	 * Returns an array of categories with its associated items.
