@@ -36,12 +36,13 @@
 }
 
 .content {
-    width: 100%;
+    width: 48vw;
     /* height: 95%; */
     background-color: rgb(245, 245, 245);
     overflow-y: auto;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
+    word-wrap: break-word;
 }
 
 .recipient_container {

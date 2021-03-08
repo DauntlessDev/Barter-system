@@ -9,4 +9,11 @@
 .send-btn {
     color:blue;
     border: none;
+    cursor: pointer;
+    outline: none;
+    opacity: 0.85;
+}
+
+.send-btn:hover {
+    opacity: 1;
 }

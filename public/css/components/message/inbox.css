@@ -17,6 +17,12 @@
     width: 100%;
     background-color: rgb(130, 199, 130);
     padding: 0.5rem;
+    cursor: pointer;
+    opacity: 0.85;
+}
+
+.inbox_card:hover {
+    opacity: 1;
 }
 
 .inbox_card p {
