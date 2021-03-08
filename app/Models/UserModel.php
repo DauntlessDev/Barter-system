@@ -89,7 +89,8 @@ class UserModel extends Model implements ModelInterface
         $limit = $options['limit'] ?? 0;
         $offset = $options['offset'] ?? 0;
 
-        $builder = $this->builder();        if(count($where) == 1){
+        $builder = $this->builder();        
+        if(count($where) == 1){
             $col = array_key_first($where);
             $value = array_values($where);
             $builder->whereIn($col, $value);

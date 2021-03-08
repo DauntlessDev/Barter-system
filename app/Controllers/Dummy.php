@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\CategoryModel;
 use App\Models\ItemModel;
 
 class Dummy extends BaseController
@@ -13,6 +14,7 @@ class Dummy extends BaseController
 	{
         $data = [
             'itemModel' => new ItemModel(),
+			'categoryModel' => new CategoryModel(),
         ];
 
 		return view('pages/dummy', $data);
