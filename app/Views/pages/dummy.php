@@ -4,6 +4,15 @@
     <?php
         // print_r($itemModel->get());
         print_r($itemModel->get(['item_name' => ['item0']])); // get all items with categories
+
+        // $data = [
+        //     'item_name' => 'updated item',
+        //     'category_id' => 2,
+        //     'new_category_id' => 3,
+        // ];
+        // print_r($itemModel->update(1, $data)); // get all items with categories
+
+        // print_r($itemModel->delete(['item_name' => 'item1']));
     ?>
     </pre>
 </details>

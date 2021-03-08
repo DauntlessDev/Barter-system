@@ -32,11 +32,19 @@ class ItemModel extends Model
      * Create a new item with its categories.
      *
      * @param array $data Data of the item to be inserted.
-     *
-     * **Must have:** `['item_id' => 'item_id', 'poster_uid' => 'session_user']`.
-     *
      * @param array $category_ids `id`s Of categories associated with the item.
      * @return integer|false `item_id` Of the inserted item, `false` on failure.
+     *
+     * Example:
+     * $data = [
+	 *	'poster_uid'   => 1,
+	 *	'item_name'    => "item$i",
+	 *	'photo_url'    => 'https://via.placeholder.com/300',
+	 *	'avail_status' => 'available',
+	 *	'desc_title'   => $faker->word,
+	 *	'desc_content' => $faker->text,
+	 *	];
+     * $itemModel->create($data, [1, 2])
      *
      */
     public function create($data, $category_ids){
@@ -44,7 +52,7 @@ class ItemModel extends Model
 
         $item_id = $this->insert($data);
 
-        $this->addCategory($item_id, $category_ids);
+        $this->addToItemListing($item_id, $category_ids);
 
         return $item_id;
     }
@@ -59,14 +67,6 @@ class ItemModel extends Model
      * Binds each item row with its corresponding categories.
      *
      * @param array $where Values that identify that item.
-     *
-     * **Must have:**
-     * *one key-to-many values* `[count = 1]` OR
-     * *many one key-to-one value* `[count = 1 OR N]`
-     *
-     * Example: `$where = ['item_id' => [001, 002, 003,...]]` OR
-     *          `$where = ['poster_uid' => '000', ...]`
-     *
      * @param array $options Query options to be used.
      *
      * Example:
@@ -101,12 +101,24 @@ class ItemModel extends Model
      *
      * @param mixed $item_id `item_id` Of the item to be updated.
      * @param array $data Updated details of the item.
-     * @param array $category_ids `category_id`s To be deleted.
-     * @return true|false `true` If successful update otherwise, `false`.
-     *
+     * @return bool `true` If successful update otherwise, `false`.
+     * Example:
+     * $data = [
+     *     'item_name' => 'new item',
+     *     'category_id' => 2,
+     *     'new_category_id' => 3,
+     * ];
+     * $itemModel->update(1, $data);
      */
-    public function update($item_id = null, $data = null, $category_ids = null) : bool{
-        if (!$category_ids) $this->deleteCategoriesFromItem($item_id, $category_ids);
+    public function update($item_id = null, $data = null) : bool{
+        if ($data['category_id']) {
+            $builder = $this->builder('item_listing');
+            $builder->where('item_id', $item_id)
+                    ->where('category_id', $data['category_id'])
+                    ->set(['category_id' => $data['new_category_id']])
+                    ->update();
+        }
+
         return parent::update($item_id, $data);
     }
 
@@ -119,9 +131,17 @@ class ItemModel extends Model
      * **Must have:** `['item_id' => 'item_id', 'poster_uid' => 'session_user']`.
      *
      */
-    public function delete($where = null, bool $purge = false){
-        return $this->where($where)
-                    ->delete();
+    public function delete($where = [], bool $purge = false){
+        $items = $this->builder()
+                      ->where($where)
+                      ->get()
+                      ->getResultArray();
+
+        foreach($items as $item) {
+            $this->deleteItemListing($item['item_id']);
+        }
+
+        $this->builder()->where($where)->delete();
     }
 
 
@@ -134,7 +154,7 @@ class ItemModel extends Model
      * @param array $category_ids list Of all categories.
      *
      */
-    protected function addCategory($item_id, $category_ids){
+    protected function addToItemListing($item_id, $category_ids){
         $data = [];
 
         foreach($category_ids as $category_id){
@@ -158,7 +178,7 @@ class ItemModel extends Model
      * given a list of items to be binded.
      *
      * @param array $itemList Rows of items from a query.
-     * @return array Associative array of items with categories.
+     * @return array items with categories.
      *
      */
     protected function getItemWithCategories($itemList) {
@@ -188,10 +208,10 @@ class ItemModel extends Model
      * @param array $category_ids `category_id`s To be deleted.
      *
      */
-    protected function deleteCategoriesFromItem($item_id, $category_ids){
+    protected function deleteItemListing($item_id) {
         $builder = $this->builder('item_listing');
+
         return $builder->where('item_id', $item_id)
-                       ->whereIn('category_id', $category_ids)
                        ->delete();
     }
 

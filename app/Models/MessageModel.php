@@ -24,12 +24,7 @@ class MessageModel extends Model
 	// protected $validationMessages   = [];
 
 
-	/* Query calls */
-    /* Functions to be used on controllers */
-
-    
     /* Create Methods */
-
 
 	/**
 	 * Create a new message.
@@ -51,7 +46,6 @@ class MessageModel extends Model
 
 
 	/* Retrieve Methods */
-
 
 	/**
 	 * Gets the list of messages of the current user and another user,
@@ -114,7 +108,7 @@ class MessageModel extends Model
 		$sortOrder = $options['sortOrder'] ?? 'desc';
 
 		$builder = $this->builder();
-		
+
 		$query1 = $builder->select('msg_id, recipient_uid AS user_id, content, created_at')
 				->where('sender_uid', $this_user_uid)
 				->getCompiledSelect();
@@ -122,7 +116,7 @@ class MessageModel extends Model
 		$query2 = $builder->select('msg_id, sender_uid AS user_id, content, created_at')
 				->where('recipient_uid', $this_user_uid)
 				->getCompiledSelect();
-		
+
 		return $builder->select('DISTINCT ON (user_id) *', false)
 					   ->from($query1 . "UNION ALL" . $query2)
 					   ->orderBy($sortBy, $sortOrder)
