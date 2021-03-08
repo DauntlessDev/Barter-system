@@ -85,21 +85,20 @@ class UserModel extends Model implements ModelInterface
      * @return array `ResultArray` of users.
      * 
      */
-    public function get($where = null, $options = null){
+    public function get($where = [], $options = null){
         $limit = $options['limit'] ?? 0;
         $offset = $options['offset'] ?? 0;
+        $sortBy = $options['sortBy'] ?? 'user_id';
+        $sortOrder = $options['sortOrder'] ?? 'asc';
+        $builder = $this->builder();
 
-        $builder = $this->builder();        
-        if(count($where) == 1){
-            $col = array_key_first($where);
-            $value = array_values($where);
-            $builder->whereIn($col, $value);
-        }
-        if(count($where) > 1){
-            $builder->where($where);
-        }
-        return $builder->get($limit, $offset)
-                        ->getResultArray();
+        foreach($where as $key=>$arrayValues) {
+			$builder->whereIn($key, $arrayValues);
+		}
+
+        return $builder->orderBy($sortBy, $sortOrder)
+                       ->get($limit, $offset)
+                       ->getResultArray();
     }
 
 

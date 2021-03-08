@@ -24,12 +24,11 @@
 <hr>
 
 <details>
-    <summary>Category Model</summary>
+    <summary>User Model</summary>
     <pre>
     <?php
-        print_r($categoryModel->get()); // GET ALL category with items
-        // print_r($categoryModel->get([], ['limit' => 1, 'offset' => 0, 'sortOrder' => 'desc'])); // GET all category with filters
-        // print_r($categoryModel->get(['category_name' => ['fashion', 'hardware']])); // filter categories by name
+        // print_r($userModel->get()); // GET ALL users
+        print_r($userModel->get(['username' => ['user0']])); // filter user by username
     ?>
     </pre>
 </details>
