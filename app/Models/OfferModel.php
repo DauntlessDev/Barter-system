@@ -66,16 +66,20 @@ class OfferModel implements ModelInterface
      * $offerModel->get($where);
      *
      */
-    public function get($where, $options = null){
+    public function get($where = [], $options = null) {
+        if ($where !== []) {
+            if (empty($where['item_id'])) throw new Exception("item_id cannot be null");
+            if (empty($where['poster_uid'])) throw new Exception("poster_uid cannot be null");
+            if (empty($where['customer_uid']))throw new Exception("customer_uid cannot be null");
+        }
+
         $limit = $options['limit'] ?? 0;
         $offset = $options['offset'] ?? 0;
         $sortBy = $options['sortBy'] ?? 'created_at';
         $sortOrder = $options['sortOrder'] ?? 'desc';
 
         return $this->builder
-                    ->where('item_id', $where['item_id'])
-                    ->where('poster_uid', $where['poster_uid'])
-                    ->where('customer_uid', $where['customer_uid'])
+                    ->where($where)
                     ->orderBy($sortBy, $sortOrder)
                     ->get($limit, $offset)
                     ->getResultArray();

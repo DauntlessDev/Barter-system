@@ -48,11 +48,33 @@
     <summary>Offer Model</summary>
     <pre>
     <?php
-        print_r($offerModel->get([
-            'item_id' => 1,
-            'poster_uid' => 1,
-            'customer_uid' => 4,
-        ])); // get Offer
+    print_r($offerModel->get()); // get All Offer
+    // print_r($offerModel->get([
+    //     'item_id' => 1,
+    //     'poster_uid' => 1,
+    //     'customer_uid' => 4,
+    // ])); // get Single Offer
+    ?>
+    </pre>
+</details>
+
+<hr>
+
+<details>
+    <summary>Review Model</summary>
+    <pre>
+    <?php
+        print_r($reviewModel->get()); // All Review
+        // print_r($reviewModel->get([
+        //     'reviewer_uid' => 1,
+        // ])); // get all Reviewed
+        // print_r($reviewModel->get([
+        //     'reviewee_uid' => 2,
+        // ])); // get all Reviews
+        // print_r($reviewModel->get([
+        //     'reviewer_uid' => 1,
+        //     'reviewee_uid' => 2,
+        // ])); // get specific Reviews
     ?>
     </pre>
 </details>

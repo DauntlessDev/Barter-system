@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Config\Database;
 use App\Models\Interface\ModelInterface;
+use Exception;
 
 class ReviewModel implements ModelInterface
 {
@@ -28,13 +29,6 @@ class ReviewModel implements ModelInterface
      * Create a new review.
      * 
      * @param array $data Data to be inserted.
-     * 
-     * **Must have:**
-     * `[
-     *      'reviewer_uid' => 'session_user', 
-     *      'reviewee_uid' => 'that_user_id', 
-     * ]`
-     * 
      * @return mixed|false `false` On failure.
      * 
      */
@@ -48,28 +42,31 @@ class ReviewModel implements ModelInterface
 
     /**
      * Gets the reviews of a selected user.
-     * 
-     * @param mixed $reviewee_uid `user_id` Of the user selected.
+     *
+     * @param array $reviewee_uid `user_id` Of the user selected.
      * @param array $options Query options to be used.
-     * 
-     * Example: `limit` | `offset` | `sortBy` | `sortOrder`
-     *          `$options = ['limit' => '1', 'offset' => '1', ...]`
-     * 
-     * Recommended values for `sortBy`: `'customer_uid'` | `'created_at'`  
-     * 
      * @return array `ResultArray` of reviews.
-     * 
+     * $where = [
+     *      'reviewer_uid' => 1,
+     *      'reviewee_uid' => 2,
+     * ];
+     * $reviewModel->get($where);
      */
-    public function get($reviewee_uid, $options = null){
+    public function get($where = [], $options = null){
+        if ($where !== []) {
+            if (empty($where['reviewer_uid']) && empty($where['reviewee_uid'])) throw new Exception("Both reviewer_uid & reviewee_uid cannot be null");
+        }
+
         $limit = $options['limit'] ?? 0;
         $offset = $options['offset'] ?? 0;
         $sortBy = $options['sortBy'] ?? 'created_at';
         $sortOrder = $options['sortOrder'] ?? 'desc';
 
-        return $this->builder->where('reviewee_uid', $reviewee_uid)
-                       ->orderBy($sortBy, $sortOrder)
-                       ->get($limit, $offset)
-                       ->getResultArray();
+        return $this->builder
+                    ->where($where)
+                    ->orderBy($sortBy, $sortOrder)
+                    ->get($limit, $offset)
+                    ->getResultArray();
     }
 
 
