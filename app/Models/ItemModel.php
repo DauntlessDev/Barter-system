@@ -94,7 +94,7 @@ class ItemModel extends Model implements ModelInterface
         $sortOrder = $options['sortOrder'] ?? 'desc';
 
         $builder = $this->builder();
-        if(count($where) == 1){
+        if(count($where) === 1){
             $col = array_key_first($where);
             $value = array_values($where);
             $builder ->whereIn($col, $value);
