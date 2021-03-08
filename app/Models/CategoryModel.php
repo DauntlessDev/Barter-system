@@ -7,14 +7,14 @@ use App\Models\Interface\ModelInterface;
 
 class CategoryModel extends Model implements ModelInterface 
 {
-	protected $table                = 'category';
-	protected $primaryKey           = 'category_id';
-	protected $useAutoIncrement     = true;
-	protected $allowedFields        = ['category_name'];
+	protected $table 			= 'category';
+	protected $primaryKey       = 'category_id';
+	protected $useAutoIncrement	= true;
+	protected $allowedFields    = ['category_name'];
 
-	protected $useTimestamps        = true;
-	protected $createdField         = 'created_at';
-	protected $updatedField         = 'updated_at';
+	protected $useTimestamps    = true;
+	protected $createdField     = 'created_at';
+	protected $updatedField     = 'updated_at';
 
 	// protected $validationRules      = [];
 
@@ -27,10 +27,10 @@ class CategoryModel extends Model implements ModelInterface
 
 
 	/**
-     * Creates new category into the database.
+     * Create a new category.
      * 
-     *  @param array $data data of the category to be inserted.
-     *  @return bool `true` if successfully inserted, otherwise returns `false`.
+     *  @param array $data Data of the category to be inserted.
+     *  @return integer|false `category_id` Of the inserted category, `false` on failure.
      * 
      */
     public function create($data){
@@ -42,14 +42,23 @@ class CategoryModel extends Model implements ModelInterface
 
 
 	/**
-     * Returns rows from the `category` table as an array, given
-     * a certain limit.
+     * Returns rows from the `category` table as an array, 
+	 * given certain options.
 	 * 
-	 * @param array $category_ids list of `category_id`s
-	 * @param string $order alphabetical order of category names
+	 * @param array $category_ids List of `category_id`s.
+	 * @param array $options Query options to be used.
+	 * 
+     * Example: `limit` | `offset`
+	 * 			`$options = ['limit' => '1', 'offset' => '1', ...]`
+	 * 
+	 * @return array `ResultArray` of categories with its`category_id`.
 	 * 
      */
-    public function get($category_ids = null, $limit = 0, $offset = 0, $sortOrder = 'asc'){
+    public function get($category_ids = null, $options){
+		$limit = $options['limit'] ?? 0;
+        $offset = $options['offset'] ?? 0;
+        $sortOrder = $options['sortOrder'] ?? 'asc';
+
 		$builder = $this->builder();
 		if($category_ids){
 			$builder->select()
@@ -65,9 +74,11 @@ class CategoryModel extends Model implements ModelInterface
 	 * Returns an array of categories with its associated items.
 	 * Binds each category row with its matching items.
 	 * 
-	 * @param array $category_ids list of `category_ids` to be searched
-	 * @param int $limit the number of rows to find
-	 * @param int $offset the number of rows to skip during the search
+	 * @param array $category_ids List of `category_ids` to be searched.
+	 * @param array $options Query options to be used.
+	 * 
+     * Example: `limit` | `offset`
+	 * 			`$options = ['limit' => '1', 'offset' => '1', ...]`
 	 * 
 	 * @return array associative array with this format:
      *              ```
@@ -80,7 +91,10 @@ class CategoryModel extends Model implements ModelInterface
      *              ``` 
 	 * 
 	 */
-	public function getCategoryWithItems($category_ids = null, $limit = 0, $offset = 0){
+	public function getCategoryWithItems($category_ids = null, $options){
+		$limit = $options['limit'] ?? 0;
+        $offset = $options['offset'] ?? 0;
+
 		$categoryResults = $this->get($category_ids, $limit, $offset);
 		$categories = [];
 		foreach($categoryResults as $category){
@@ -102,15 +116,33 @@ class CategoryModel extends Model implements ModelInterface
 
 
 	/**
-     * Updates the details of a category.
+     * Update a category.
      * 
-     * @param mixed $id `category_id` of the category to be updated.
-     * @param array $data updated details of the category: `category_name`.
-     * @return bool `true` if successful update, otherwise `false`.
+     * @param mixed $id `category_id` Of the category to be updated.
+     * @param array $data Updated details of the category: `category_name`.
+     * @return true|false `true` If successful update otherwise, `false`.
      *
      */
     public function update($id = null, $data = null) : bool{
         return parent::update($id, $data);
+    }
+
+
+	/* Delete Methods */
+
+
+    /**
+     * Delete a category.
+     * 
+     * @param array $where Values that identify that category.
+     * Delete cascades to the `item_listing` table as well.
+	 * 
+     * **Must have:** `['category_id' => 'some_category_id, ...']`.
+     * 
+     */
+    public function delete($where = null, bool $purge = false){
+        return $this->where($where)
+                    ->delete();
     }
 
 }
