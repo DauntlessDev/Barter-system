@@ -38,7 +38,7 @@ class Auth extends BaseController
 
 			if (!$this->validate($rules)) return view('pages/login', ['validation' => $this->validator]);
 
-			$user = $this->userModel->getUser($_POST['username']);
+			$user = $this->userModel->get($_POST['username']);
 			$this->setSession($user);
 			return redirect()->route('userProfile');
 		}
