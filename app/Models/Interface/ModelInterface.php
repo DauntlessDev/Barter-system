@@ -6,24 +6,46 @@ interface ModelInterface
 {
 
     /**
-     * Implement in queries to get records from a table
-     * with certain conditions.
+     * Create records in tables.
      * 
-     * @param array $search_values unique value(s) needed for a query, 
-     * used when using `where()` query.
-     * @param int $limit the number of rows to find
-     * @param int $offset the number of rows to skip during the search
-     * 
-     */
-    public function get($search_values, $limit, $offset);
-
-
-    /**
-     * Implement to create a record in a table.
-     * 
-     * @param mixed $data an array that contains column data of a table.
+     * @param mixed $data An array that contains column data of a table.
      * Typically data will come from a FORM.
      * 
      */
     public function create($data);
+
+
+    /**
+     * Get records from tables.
+     * 
+     * @param array $where Values that identify that record, 
+     * values to be used in the `where()` query.
+     * @param array $options Query options to be used.
+     * Example: `limit` | `offset` | `sortBy` | `sortOrder`
+     * 
+     */
+    public function get($where, $options);
+
+
+    /**
+     * Update records in tables.
+     * 
+     * @param array $data New data to be updated.
+     * @param array $where Values that identify that record,
+     * values to be used in the `where()` query.
+     * 
+     */
+    public function update($data, $where);
+
+
+    /**
+     * Delete records from tables.
+     * 
+     * @param array $where Values that identify that record,
+     * values to be used in the `where()` query.
+     * @param bool $purge Ignored value, must be set to `false`.
+     * 
+     */
+    public function delete($where, $purge);
+
 }
