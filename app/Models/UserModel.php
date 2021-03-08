@@ -10,15 +10,10 @@ class UserModel extends Model implements ModelInterface
 
     /* Setup of model */
 
-    protected $table      = 'user';
-    protected $primaryKey = 'user_id';
-
+    protected $table            = 'user';
+    protected $primaryKey       = 'user_id';
     protected $useAutoIncrement = true;
-
-    // protected $returnType     = 'array';
-    // protected $useSoftDeletes = true;
-
-    protected $allowedFields = [
+    protected $allowedFields    = [
         'username', 
         'password', 
         'first_name', 
@@ -30,19 +25,15 @@ class UserModel extends Model implements ModelInterface
         'rating',
     ];
 
-    protected $useTimestamps = true;
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
+    protected $useTimestamps    = true;
+    protected $createdField     = 'created_at';
+    protected $updatedField     = 'updated_at';
 
-    /**
-     * Validation rules for sign up
-     */
-    protected $validationRules = 'signup';
-    // protected $validationMessages = [];
-    // protected $skipValidation     = false;
+    /* Validation rules for sign up */
+    protected $validationRules  = 'signup';
 
-    protected $beforeInsert = ['passwordHash'];
-    protected $beforeUpdate = ['passwordHash'];
+    protected $beforeInsert     = ['passwordHash'];
+    protected $beforeUpdate     = ['passwordHash'];
 
     protected function passwordHash(array $data){
         if(isset($data['data']['password']))
@@ -50,61 +41,104 @@ class UserModel extends Model implements ModelInterface
         return $data;
     }
 
+
     /* Query calls */
     /* Functions to be used on controllers */
 
-    /**
-     * Gets the row of the current user from a specified username.
-     * 
-     * @param string $username username of the user to be filtered.
-     * 
-     */
-    public function get($username){
-        return $this->where('username', $username)
-                    ->first();
-    }
+
+    /* Create Methods */
 
 
     /**
-     * Returns all rows from the `user` table given
-     * certain search conditions, otherwise returns all.
-     * 
-     * @param array $search_values
-     * Default value is `null`
-     * 
-     * `$search_values = ['first_name' => 'john', ...]`
-     * 
-     */
-    public function getAll($search_values = null){
-        if($search_values){
-            return $this->where($search_values)
-                        ->findAll();
-        }
-        return $this->findAll();
-    }
-
-    /**
-      * Creates a new user into the database.
+      * Create a new user.
       *
-      * @param array $data data of the user to be inserted.
-      * @return true if successfully inserted, otherwise returns `false`.
+      * @param array $data Data of the user to be created.
+      * @return integer|false `user_id` Of the inserted user, `false` on failure.
       *
       */
-    public function create($data){
+      public function create($data){
         return $this->insert($data);
     }
+
+
+    /* Retrieve Methods */
+
+
+    /**
+     * Returns rows from the `users` table as an array, given
+     * certain options, otherwise returns all.
+     * 
+     * @param array $where Values that identify that user. 
+     * 
+     * **Must have:**
+     * *one key-to-many values* `[count = 1]` OR 
+     * *many one key-to-one value* `[count = 1 OR N]`
+     * 
+     * Example: `$where = ['username' => 'johndoe', ...]` OR
+     *          `$where = ['first_name' => 'john', 'last_name' => 'doe', ...]`
+     * 
+     * @param array $options Query options to be used.
+     * 
+     * Example: `limit` | `offset`
+     *          `$options = ['limit' => '1', 'offset' => '1', ...]`
+     * 
+     * @return array `ResultArray` of users.
+     * 
+     */
+    public function get($where = null, $options = null){
+        $limit = $options['limit'] ?? 0;
+        $offset = $options['offset'] ?? 0;
+
+        $builder = $this->builder();
+        if(count($where) === 1){
+            $col = array_key_first($where);
+            $value = array_values($where);
+            $builder->whereIn($col, $value);
+        }
+        if(count($where) > 1){
+            $builder->where($where);
+        }
+        return $builder->get($limit, $offset)
+                        ->getResultArray();
+    }
+
+
+    /* Update Methods */
 
 
     /**
      * Updates the details and credentials of the 
      * currently logged user.
      * 
-     * @param array $data data entered from a form submitted by the user.
+     * @param array $data New data to be updated.
+     * @param array $where Values that identify that user.
+     * 
+     * **Must have:** `['user_id' => 'session_user']`. 
+     * 
+     * @return true|false `true` If successful update otherwise, `false`.
      *
      */
-    public function updateUser($data){
-        return $this->where('user_id', $_SESSION['user']['user_id']) /* change to user_id for initial implementation */
-                    ->update($data);
+    public function update($data = null, $where = null) : bool{
+        return $this->where($where)
+                    ->set($data)
+                    ->update();
+    }
+
+
+    /* Delete Methods */
+
+
+    /**
+     * Delete a user, usually the current logged in user.
+     * 
+     * @param array $where Values that identify that user.
+     * 
+     * **Must have:** `['user_id' => 'session_user']`.
+     * 
+     */
+    public function delete($where = null, bool $purge = false){
+        return $this->where($where)
+                    ->delete();
     }
 
 }

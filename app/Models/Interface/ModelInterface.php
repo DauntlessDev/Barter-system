@@ -6,43 +6,46 @@ interface ModelInterface
 {
 
     /**
-     * Implement in queries for retrieving a data from a table.
+     * Create records in tables.
      * 
-     * @param array $search_values unique value(s) needed for a query, 
-     * used when using `where()` query.
-     * 
-     * 
-     * _Example implementation (`AnyModel.php`):_
-     * ```
-     * 
-     * public function get($search_values){
-     * 
-     *      // $search_values = ['username' => 'johndoe', ...]
-     *      return $this->where($search_values)->first();
-     * }
-     * 
-     * ```
-     */
-    public function get($search_values);
-
-
-    /**
-     * Implement in queries to get all records from a table
-     * with certain conditions.
-     * 
-     * @param array $search_values unique value(s) needed for a query, 
-     * used when using `where()` query.
-     * 
-     */
-    public function getAll($search_values);
-
-
-    /**
-     * Implement to create a record in a table.
-     * 
-     * @param mixed $data an array that contains column data of a table.
+     * @param mixed $data An array that contains column data of a table.
      * Typically data will come from a FORM.
      * 
      */
     public function create($data);
+
+
+    /**
+     * Get records from tables.
+     * 
+     * @param array $where Values that identify that record, 
+     * values to be used in the `where()` query.
+     * @param array $options Query options to be used.
+     * Example: `limit` | `offset` | `sortBy` | `sortOrder`
+     * 
+     */
+    public function get($where, $options);
+
+
+    /**
+     * Update records in tables.
+     * 
+     * @param array $data New data to be updated.
+     * @param array $where Values that identify that record,
+     * values to be used in the `where()` query.
+     * 
+     */
+    public function update($data, $where);
+
+
+    /**
+     * Delete records from tables.
+     * 
+     * @param array $where Values that identify that record,
+     * values to be used in the `where()` query.
+     * @param bool $purge Ignored value, must be set to `false`.
+     * 
+     */
+    public function delete($where, bool $purge);
+
 }
