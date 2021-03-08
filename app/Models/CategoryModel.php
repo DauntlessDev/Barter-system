@@ -54,7 +54,7 @@ class CategoryModel extends Model implements ModelInterface
 	 * @return array `ResultArray` of categories with its`category_id`.
 	 * 
      */
-    public function get($category_ids = null, $options){
+    public function get($category_ids = null, $options = null){
 		$limit = $options['limit'] ?? 0;
         $offset = $options['offset'] ?? 0;
         $sortOrder = $options['sortOrder'] ?? 'asc';
@@ -91,7 +91,7 @@ class CategoryModel extends Model implements ModelInterface
      *              ``` 
 	 * 
 	 */
-	public function getCategoryWithItems($category_ids = null, $options){
+	public function getCategoryWithItems($category_ids = null, $options = null){
 		$limit = $options['limit'] ?? 0;
         $offset = $options['offset'] ?? 0;
 

@@ -60,7 +60,7 @@ class ReviewModel implements ModelInterface
      * @return array `ResultArray` of reviews.
      * 
      */
-    public function get($reviewee_uid, $options){
+    public function get($reviewee_uid, $options = null){
         $limit = $options['limit'] ?? 0;
         $offset = $options['offset'] ?? 0;
         $sortBy = $options['sortBy'] ?? 'created_at';

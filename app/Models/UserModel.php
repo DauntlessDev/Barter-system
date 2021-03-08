@@ -85,7 +85,7 @@ class UserModel extends Model implements ModelInterface
      * @return array `ResultArray` of users.
      * 
      */
-    public function get($where = null, $options){
+    public function get($where = null, $options = null){
         $limit = $options['limit'] ?? 0;
         $offset = $options['offset'] ?? 0;
 

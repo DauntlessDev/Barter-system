@@ -66,7 +66,7 @@ class MessageModel extends Model
 	 * @return array `ResultArray` of messages.
 	 * 
 	 */
-	public function getMessagesWith($this_user_uid, $that_user_uid, $options){
+	public function getMessagesWith($this_user_uid, $that_user_uid, $options = null){
 		$limit = $options['limit'] ?? 0;
 		$offset = $options['offset'] ?? 0;
 		$sortBy = $options['sortBy'] ?? 'created_at';

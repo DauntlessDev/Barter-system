@@ -87,7 +87,7 @@ class ItemModel extends Model implements ModelInterface
      *              ]
      *              ```
      */
-    public function get($where = null, $options){
+    public function get($where = null, $options = null){
         $limit = $options['limit'] ?? 0;
         $offset = $options['offset'] ?? 0;
         $sortBy = $options['sortBy'] ?? 'created_at';

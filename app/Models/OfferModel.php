@@ -63,7 +63,7 @@ class OfferModel implements ModelInterface
      * @return array `ResultArray` of offers.
      * 
      */
-    public function get($item_id, $options){
+    public function get($item_id, $options = null){
         $limit = $options['limit'] ?? 0;
         $offset = $options['offset'] ?? 0;
         $sortBy = $options['sortBy'] ?? 'created_at';
