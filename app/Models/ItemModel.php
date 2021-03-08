@@ -5,7 +5,7 @@ namespace App\Models;
 use CodeIgniter\Model;
 use App\Models\Interface\ModelInterface;
 
-class ItemModel extends Model implements ModelInterface
+class ItemModel extends Model
 {
     protected $table            = 'item';
     protected $primaryKey       = 'item_id';
@@ -44,11 +44,13 @@ class ItemModel extends Model implements ModelInterface
      * @return integer|false `item_id` Of the inserted item, `false` on failure.
      * 
      */
-    public function create($data, $category_ids = null){
+    public function create($data, $category_ids){
+        if (empty($category_ids)) return false;
+
         $item_id = $this->insert($data);
-        if($item_id && $category_ids){
-            $this->addCategory($item_id, $category_ids);
-        }
+
+        $this->addCategory($item_id, $category_ids);
+
         return $item_id;
     }
 
@@ -92,25 +94,24 @@ class ItemModel extends Model implements ModelInterface
         $offset = $options['offset'] ?? 0;
         $sortBy = $options['sortBy'] ?? 'created_at';
         $sortOrder = $options['sortOrder'] ?? 'desc';
-
         $builder = $this->builder();
-        if(count($where) === 1){
+
+        if (count($where) === 1){
             $col = array_key_first($where);
             $value = array_values($where);
             $builder ->whereIn($col, $value);
         }
-        if(count($where) > 1){
+
+        if (count($where) > 1){
             $builder->where($where);
         }
+
         $itemResults = $builder->orderBy($sortBy, $sortOrder)
                         ->get($limit, $offset)
                         ->getResultArray();
+
         return $this->getItemWithCategories($itemResults);
     }
-
-
-    /* Update Methods */
-
 
     /**
      * Updates the details of the currently selected item.
@@ -123,13 +124,9 @@ class ItemModel extends Model implements ModelInterface
      *
      */
     public function update($item_id = null, $data = null, $category_ids = null) : bool{
-        if(!$category_ids) $this->deleteCategoriesFromItem($item_id, $category_ids);
+        if (!$category_ids) $this->deleteCategoriesFromItem($item_id, $category_ids);
         return parent::update($item_id, $data);
     }
-
-
-    /* Delete Methods */
-
 
     /**
      * Delete an item.
@@ -158,13 +155,18 @@ class ItemModel extends Model implements ModelInterface
      */
     protected function addCategory($item_id, $category_ids){
         $data = [];
+
         foreach($category_ids as $category_id){
             array_push(
                 $data,
-                ['item_id' => $item_id, 'category_id' => $category_id],
+                [
+                    'item_id'     => $item_id,
+                    'category_id' => $category_id,
+                ],
             );
         }
         $builder = $this->builder('item_listing');
+
         return $builder->ignore()->insertBatch($data);
     }
 
@@ -177,20 +179,21 @@ class ItemModel extends Model implements ModelInterface
      * @return array Associative array of items with categories.
      * 
      */
-    protected function getItemWithCategories($itemList){
-        $items = [];
-        foreach($itemList as $item){
-            $builder = $this->builder('category');
-            $item_categories = $builder->select()
-                                       ->join('item_listing', 
-                                               "item_listing.item_id = $item->item_id AND
-                                                item_listing.category_id = category.category_id",
-                                                'left')
-                                       ->get()
-                                       ->getResultArray();
-            $items[$item] = $item_categories;
-        }
-        return $items;
+    protected function getItemWithCategories($itemList) {
+        return array_map(function ($item) {
+            $builder = $this->builder('item_listing');
+            $itemListings = $builder->where('item_id', $item['item_id'])->get()->getResultArray();
+
+            $item['categories'] = array_map(function ($itemListing) {
+                $categoryId = $itemListing['category_id'];
+
+                $category = $this->builder('category')->where('category_id', $categoryId)->get()->getResultArray()[0];
+
+                return $category;
+            }, $itemListings);
+
+            return $item;
+        }, $itemList);
     }
 
 

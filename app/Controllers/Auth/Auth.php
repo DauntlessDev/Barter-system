@@ -38,7 +38,7 @@ class Auth extends BaseController
 
 			if (!$this->validate($rules)) return view('pages/login', ['validation' => $this->validator]);
 
-			$user = $this->userModel->get($_POST['username'], ['limit' => 1]);
+			$user = $this->userModel->where([ 'username' => $_POST['username'] ])->first();
 			$this->setSession($user);
 			return redirect()->route('userProfile');
 		}
@@ -65,7 +65,7 @@ class Auth extends BaseController
 
 			// validate all fields
 			if (!$this->validate($rules)) return view('pages/signup', ['validation' => $this->validator]);
-			
+
 			if ($this->userModel->create($_POST) === false)
 				throw new Exception('Error while inserting to database');
 
