@@ -92,7 +92,7 @@ class ReviewModel implements ModelInterface
      * @return true|false `true` If successful update otherwise, `false`.
      * 
      */
-    public function update($data = null, $where){
+    public function update($data, $where){
         return $this->builder
                     ->where($where)
                     ->set($data)
