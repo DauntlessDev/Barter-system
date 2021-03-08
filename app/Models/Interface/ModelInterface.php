@@ -46,6 +46,6 @@ interface ModelInterface
      * @param bool $purge Ignored value, must be set to `false`.
      * 
      */
-    public function delete($where, $purge);
+    public function delete($where, bool $purge);
 
 }
