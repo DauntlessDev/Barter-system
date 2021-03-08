@@ -10,10 +10,10 @@ class UserModel extends Model implements ModelInterface
 
     /* Setup of model */
 
-    protected $table      = 'user';
-    protected $primaryKey = 'user_id';
+    protected $table            = 'user';
+    protected $primaryKey       = 'user_id';
     protected $useAutoIncrement = true;
-    protected $allowedFields = [
+    protected $allowedFields    = [
         'username', 
         'password', 
         'first_name', 
@@ -25,15 +25,15 @@ class UserModel extends Model implements ModelInterface
         'rating',
     ];
 
-    protected $useTimestamps = true;
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
+    protected $useTimestamps    = true;
+    protected $createdField     = 'created_at';
+    protected $updatedField     = 'updated_at';
 
     /* Validation rules for sign up */
-    protected $validationRules = 'signup';
+    protected $validationRules  = 'signup';
 
-    protected $beforeInsert = ['passwordHash'];
-    protected $beforeUpdate = ['passwordHash'];
+    protected $beforeInsert     = ['passwordHash'];
+    protected $beforeUpdate     = ['passwordHash'];
 
     protected function passwordHash(array $data){
         if(isset($data['data']['password']))
@@ -50,10 +50,10 @@ class UserModel extends Model implements ModelInterface
 
 
     /**
-      * Creates a new user into the database.
+      * Create a new user.
       *
-      * @param array $data data of the user to be inserted.
-      * @return bool `true` if successfully inserted, otherwise returns `false`.
+      * @param array $data Data of the user to be created.
+      * @return integer|false `user_id` Of the inserted user, `false` on failure.
       *
       */
       public function create($data){
@@ -66,25 +66,37 @@ class UserModel extends Model implements ModelInterface
 
     /**
      * Returns rows from the `users` table as an array, given
-     * certain search conditions and limit, otherwise returns all.
+     * certain options, otherwise returns all.
      * 
-     * @param array $search_values values needed to query
-     * @param int $limit the number of rows to find
-     * @param int $offset the number of rows to skip during the search
+     * @param array $where Values that identify that user. 
      * 
-     * Example: `$search_values = ['username' => 'johndoe', ...]` OR
-     *          `$search_values = ['first_name' => 'john', 'last_name' => 'john', ...]`
+     * **Must have:**
+     * *one key-to-many values* `[count = 1]` OR 
+     * *many one key-to-one value* `[count = 1 OR N]`
+     * 
+     * Example: `$where = ['username' => 'johndoe', ...]` OR
+     *          `$where = ['first_name' => 'john', 'last_name' => 'doe', ...]`
+     * 
+     * @param array $options Query options to be used.
+     * 
+     * Example: `limit` | `offset`
+     *          `$options = ['limit' => '1', 'offset' => '1', ...]`
+     * 
+     * @return array `ResultArray` of users.
      * 
      */
-    public function get($search_values = null, $limit = 0, $offset = 0){
+    public function get($where = null, $options = null){
+        $limit = $options['limit'] ?? 0;
+        $offset = $options['offset'] ?? 0;
+
         $builder = $this->builder();
-        if(count($search_values) == 1){
-            $col = array_key_first($search_values);
-            $value = array_values($search_values);
+        if(count($where) === 1){
+            $col = array_key_first($where);
+            $value = array_values($where);
             $builder->whereIn($col, $value);
         }
-        if(count($search_values) > 1){
-            $builder->where($search_values);
+        if(count($where) > 1){
+            $builder->where($where);
         }
         return $builder->get($limit, $offset)
                         ->getResultArray();
@@ -98,14 +110,35 @@ class UserModel extends Model implements ModelInterface
      * Updates the details and credentials of the 
      * currently logged user.
      * 
-     * @param mixed $id `user_id` of the user to be updated. Default value
-     * should be the current session's user.
-     * @param array $data data entered from a form submitted by the user.
-     * @return bool `true` if successful update, otherwise `false`.
+     * @param array $data New data to be updated.
+     * @param array $where Values that identify that user.
+     * 
+     * **Must have:** `['user_id' => 'session_user']`. 
+     * 
+     * @return true|false `true` If successful update otherwise, `false`.
      *
      */
-    public function update($id = null, $data = null) : bool{
-        return parent::update($id, $data);
+    public function update($data = null, $where = null) : bool{
+        return $this->where($where)
+                    ->set($data)
+                    ->update();
+    }
+
+
+    /* Delete Methods */
+
+
+    /**
+     * Delete a user, usually the current logged in user.
+     * 
+     * @param array $where Values that identify that user.
+     * 
+     * **Must have:** `['user_id' => 'session_user']`.
+     * 
+     */
+    public function delete($where = null, bool $purge = false){
+        return $this->where($where)
+                    ->delete();
     }
 
 }

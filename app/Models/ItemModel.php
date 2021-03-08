@@ -7,10 +7,10 @@ use App\Models\Interface\ModelInterface;
 
 class ItemModel extends Model implements ModelInterface
 {
-    protected $table      = 'item';
-    protected $primaryKey = 'item_id';
+    protected $table            = 'item';
+    protected $primaryKey       = 'item_id';
     protected $useAutoIncrement = true;
-    protected $allowedFields = [
+    protected $allowedFields    = [
         'poster_uid', 
         'item_name',
         'photo_url',
@@ -20,9 +20,9 @@ class ItemModel extends Model implements ModelInterface
         'rating',
     ];
 
-    protected $useTimestamps = true;
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
+    protected $useTimestamps    = true;
+    protected $createdField     = 'created_at';
+    protected $updatedField     = 'updated_at';
 
     // protected $validationRules    = [];
 
@@ -34,11 +34,14 @@ class ItemModel extends Model implements ModelInterface
 
 
      /**
-     * Creates new item into the database, together with its categories.
+     * Create a new item with its categories.
      * 
-     * @param array $data data of the item to be inserted
-     * @param array $category_ids `id`s of categories associated with the item
-     * @return integer|false `item_id` of the current item, `false` on failure
+     * @param array $data Data of the item to be inserted.
+     * 
+     * **Must have:** `['item_id' => 'item_id', 'poster_uid' => 'session_user']`.
+     * 
+     * @param array $category_ids `id`s Of categories associated with the item.
+     * @return integer|false `item_id` Of the inserted item, `false` on failure.
      * 
      */
     public function create($data, $category_ids = null){
@@ -50,14 +53,110 @@ class ItemModel extends Model implements ModelInterface
     }
 
 
+    /* Retrieve Methods */
+
+
+    /**
+     * Returns an array of item with its associated categories,
+     * given certain options, otherwise returns all.
+     * Binds each item row with its corresponding categories.
+     * 
+     * @param array $where Values that identify that item.
+     * 
+     * **Must have:**
+     * *one key-to-many values* `[count = 1]` OR 
+     * *many one key-to-one value* `[count = 1 OR N]`
+     * 
+     * Example: `$where = ['item_id' => [001, 002, 003,...]]` OR
+     *          `$where = ['poster_uid' => '000', ...]`
+     * 
+     * @param array $options Query options to be used.
+     * 
+     * Example: `limit` | `offset` | `sortBy` | `sortOrder`
+     *          `$options = ['limit' => '1', 'offset' => '1', ...]`
+     * 
+     * Recommended values for `sortBy`: `'item_name'` | `'rating'` | `'created_at'` 
+     * 
+     * @return array Associative array with this format:
+     *              ```
+     *              [
+     *                  [item1 <all columns>] => [category1 <category_id, category_name>,...],
+     *                  [item2 <all columns>] => [category1 <category_id, category_name>,...],
+     *                  [item3 <all columns>] => [category1 <category_id, category_name>,...],
+     *                  ...
+     *              ]
+     *              ```
+     */
+    public function get($where = null, $options = null){
+        $limit = $options['limit'] ?? 0;
+        $offset = $options['offset'] ?? 0;
+        $sortBy = $options['sortBy'] ?? 'created_at';
+        $sortOrder = $options['sortOrder'] ?? 'desc';
+
+        $builder = $this->builder();
+        if(count($where) === 1){
+            $col = array_key_first($where);
+            $value = array_values($where);
+            $builder ->whereIn($col, $value);
+        }
+        if(count($where) > 1){
+            $builder->where($where);
+        }
+        $itemResults = $builder->orderBy($sortBy, $sortOrder)
+                        ->get($limit, $offset)
+                        ->getResultArray();
+        return $this->getItemWithCategories($itemResults);
+    }
+
+
+    /* Update Methods */
+
+
+    /**
+     * Updates the details of the currently selected item.
+     * Deletes associated old categories.
+     * 
+     * @param mixed $item_id `item_id` Of the item to be updated.
+     * @param array $data Updated details of the item.
+     * @param array $category_ids `category_id`s To be deleted.
+     * @return true|false `true` If successful update otherwise, `false`.
+     *
+     */
+    public function update($item_id = null, $data = null, $category_ids = null) : bool{
+        if(!$category_ids) $this->deleteCategoriesFromItem($item_id, $category_ids);
+        return parent::update($item_id, $data);
+    }
+
+
+    /* Delete Methods */
+
+
+    /**
+     * Delete an item.
+     * 
+     * @param array $where Values that identify that item.
+     * Delete also cascades to the `item_listing` table.
+     * 
+     * **Must have:** `['item_id' => 'item_id', 'poster_uid' => 'session_user']`.
+     * 
+     */
+    public function delete($where = null, bool $purge = false){
+        return $this->where($where)
+                    ->delete();
+    }
+
+
+    /* Helper Methods */
+
+
     /**
      * Adds a set of category to the identified item as a batch.
      * 
-     * @param mixed $item_id `item_id` of the item to be categorized
-     * @param array $category_ids list of all categories
+     * @param mixed $item_id `item_id` Of the item to be categorized.
+     * @param array $category_ids list Of all categories.
      * 
      */
-    public function addCategory($item_id, $category_ids){
+    protected function addCategory($item_id, $category_ids){
         $data = [];
         foreach($category_ids as $category_id){
             array_push(
@@ -70,79 +169,12 @@ class ItemModel extends Model implements ModelInterface
     }
 
 
-    /* Retrieve Methods */
-
-
-    /**
-     * Returns an array of item with its associated categories,
-     * given certain search conditions and limit, otherwise returns all.
-     * Binds each item row with its corresponding categories.
-     * 
-     * @param array $search_values values needed to query
-     * @param int $limit the number of rows to find
-     * @param int $offset the number of rows to skip during the search
-     * @param string $order defines what column used for sorting **[MUST MATCH WITH THE TABLE COLUMN NAMES]**
-     * @param string $sortOrder direction of sorting
-     * 
-     * Example: `$search_values = ['item_id' => [001, 002, 003,...]]`
-     *          OR `$search_values = ['poster_uid' => '000', ...]`
-     * 
-     * Recommended values for `$order`: `'item_name'` | `'rating'` | `'created_at'` 
-     * 
-     * @return array associative array with this format:
-     *              ```
-     *              [
-     *                  [item1 <all columns>] => [category1 <category_id, category_name>,...],
-     *                  [item2 <all columns>] => [category1 <category_id, category_name>,...],
-     *                  [item3 <all columns>] => [category1 <category_id, category_name>,...],
-     *                  ...
-     *              ]
-     *              ```
-     */
-    public function get($search_values = null, $limit = 0, $offset = 0, 
-                        $order = 'created_at', $sortOrder = 'desc'){
-        $builder = $this->builder();
-        if(count($search_values) == 1){
-            $col = array_key_first($search_values);
-            $value = array_values($search_values);
-            $builder ->whereIn($col, $value);
-        }
-        if(count($search_values) > 1){
-            $builder->where($search_values);
-        }
-        $itemResults = $builder->orderBy($order, $sortOrder)
-                        ->get($limit, $offset)
-                        ->getResultArray();
-        return $this->getItemWithCategories($itemResults);
-    }
-
-
-    /* Update Methods */
-
-
-    /**
-     * Updates the details of the current selected item.
-     * Deletes 
-     * 
-     * @param mixed $item_id `item_id` of the item to be updated
-     * @param array $data updated details of the item
-     * @param array $category_ids `category_id`s to be deleted
-     * @return bool `true` if successful update, otherwise `false`
-     *
-     */
-    public function update($item_id = null, $data = null, $category_ids = null) : bool{
-        if(!$category_ids) $this->deleteCategoriesFromItem($item_id, $category_ids);
-        return parent::update($item_id, $data);
-    }
-
-
-    /* Helper Methods */
-
     /**
      * Returns an array of item with its corresponding categories,
      * given a list of items to be binded.
      * 
-     * @param array $itemList rows of items from a query
+     * @param array $itemList Rows of items from a query.
+     * @return array Associative array of items with categories.
      * 
      */
     protected function getItemWithCategories($itemList){
@@ -167,8 +199,8 @@ class ItemModel extends Model implements ModelInterface
      * Usually done when updating an item. Deletes them at the
      * `item_listing` table.
      * 
-     * @param mixed $item_id `item_id` of the item selected
-     * @param array $category_ids `category_id`s to be deleted
+     * @param mixed $item_id `item_id` of the item selected.
+     * @param array $category_ids `category_id`s To be deleted.
      * 
      */
     protected function deleteCategoriesFromItem($item_id, $category_ids){

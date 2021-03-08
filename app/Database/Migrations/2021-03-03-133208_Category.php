@@ -11,13 +11,13 @@ class Category extends Migration
 		$this->forge->addField([
             'category_id'           => [
                 'type'              => 'INT',
-                'constraint'        => 10,
+                'constraint'        => '10',
                 'unsigned'          => true,
                 'auto_increment'    => true,
             ],
             'category_name'         => [
-                'type'              => 'ENUM',
-				'constraint'        => ['hardware', 'fashion', 'unknown'], //To restrict only known categories 
+                'type'              => 'VARCHAR',
+				'constraint'        => '255',
 				'default'			=> 'unknown'
 			],
             'created_at DATETIME DEFAULT CURRENT_TIMESTAMP',

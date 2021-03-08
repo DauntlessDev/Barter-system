@@ -9,15 +9,15 @@ class MessageModel extends Model
 
 	protected $table            = 'messages';
 	protected $primaryKey       = 'msg_id';
-	protected $useAutoIncrement = true;
+	protected $useAutoIncrement	= true;
 	protected $allowedFields    = [
 		"sender_uid",
 		"recipient_uid",
 		"content",
 	];
 
-	protected $useTimestamps    = true;
-	protected $createdField     = 'created_at';
+	protected $useTimestamps	= true;
+	protected $createdField		= 'created_at';
 	protected $updatedField     = '';
 
 	// protected $validationRules      = [];
@@ -34,6 +34,16 @@ class MessageModel extends Model
 	/**
 	 * Create a new message.
 	 * 
+	 * @param array $data Message data.
+	 * 
+	 * **Must have:**
+     * `[
+     *      'sender_uid' => 'session_user', 
+     *      'recipient_uid' => 'that_user_id',
+     * ]`
+	 * 
+	 * @return integer|false `msg_id` Of the inserted message, `false` on failure.
+	 * 
 	 */
 	public function create($data){
 		return $this->insert($data);
@@ -43,18 +53,25 @@ class MessageModel extends Model
 	/* Retrieve Methods */
 
 
-
 	/**
 	 * Gets the list of messages of the current user and another user,
 	 * sorted by the most recent one on the top of the list.
 	 * 
-	 * @param mixed $this_user_uid `user_id`of the current user
-	 * @param mixed $that_user_uid `user_id`of another user
-	 * @param int $limit number of messages to be returned
+	 * @param mixed $this_user_uid `user_id` Of the current user.
+	 * @param mixed $that_user_uid `user_id` Of another user.
+	 * @param array $options Query options to be used.
+	 * 
+     * Example: `limit` | `offset` | `sortBy` | `sortOrder`
+	 * 
+	 * @return array `ResultArray` of messages.
 	 * 
 	 */
-	public function getMessagesWith($this_user_uid, $that_user_uid, $limit = 0,
-						$offset = 0, $order = 'created_at', $sortOrder = 'desc'){
+	public function getMessagesWith($this_user_uid, $that_user_uid, $options = null){
+		$limit = $options['limit'] ?? 0;
+		$offset = $options['offset'] ?? 0;
+		$sortBy = $options['sortBy'] ?? 'created_at';
+		$sortOrder = $options['sortOrder'] ?? 'desc';
+
 		$builder = $this->builder();
 		return $builder->select()
 					   ->groupStart()
@@ -67,7 +84,7 @@ class MessageModel extends Model
 								->where('recipient_uid', $this_user_uid)
 							->groupEnd()
 						->groupEnd()
-						->orderBy($order, $sortOrder)
+						->orderBy($sortBy, $sortOrder)
 						->get($limit, $offset)
 						->getResultArray();
 	}
@@ -82,12 +99,20 @@ class MessageModel extends Model
 	 * http://sqlfiddle.com/#!15/1d80e/1
 	 * https://stackoverflow.com/questions/14978532/write-union-query-in-codeigniter-style
 	 * 
-	 * @param mixed $this_user_uid current user's `user_id`
-	 * @param mixed $limit number of conversations to be returned
+	 * @param mixed $this_user_uid Current user's `user_id`
+	 * @param array $options Query options to be used.
+	 * 
+     * Example: `limit` | `offset` | `sortBy` | `sortOrder`
+	 * 
+	 * @return array `ResultArray` of conversations.
 	 * 
 	 */
-	public function getAllRecentConversations($this_user_uid, $limit = 0, $offset = 0,
-						$order = 'created_at', $sortOrder = 'desc'){
+	public function getAllRecentConversations($this_user_uid, $options){
+		$limit = $options['limit'] ?? 0;
+		$offset = $options['offset'] ?? 0;
+		$sortBy = $options['sortBy'] ?? 'created_at';
+		$sortOrder = $options['sortOrder'] ?? 'desc';
+
 		$builder = $this->builder();
 		
 		$query1 = $builder->select('msg_id, recipient_uid AS user_id, content, created_at')
@@ -100,7 +125,7 @@ class MessageModel extends Model
 		
 		return $builder->select('DISTINCT ON (user_id) *', false)
 					   ->from($query1 . "UNION ALL" . $query2)
-					   ->orderBy($order, $sortOrder)
+					   ->orderBy($sortBy, $sortOrder)
 					   ->get($limit, $offset)
 					   ->getResultArray();
 	}
