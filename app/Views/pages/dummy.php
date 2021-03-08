@@ -41,3 +41,18 @@
     ?>
     </pre>
 </details>
+
+<hr>
+
+<details>
+    <summary>Offer Model</summary>
+    <pre>
+    <?php
+        print_r($offerModel->get([
+            'item_id' => 1,
+            'poster_uid' => 1,
+            'customer_uid' => 4,
+        ])); // get Offer
+    ?>
+    </pre>
+</details>
