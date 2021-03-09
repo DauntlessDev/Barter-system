@@ -26,7 +26,7 @@ class ItemSeeder extends Seeder
 			];
 
 			// check for validation error
-			if ($itemModel->create($data) === false) {
+			if ($itemModel->create($data, [rand(1, 3), rand(1, 3)]) === false) {
 				throw new Exception('Error while inserting using ItemModel|'.implode('|', $itemModel->errors()));
 			}
 		}

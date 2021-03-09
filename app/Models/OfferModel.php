@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Config\Database;
 use App\Models\Interface\ModelInterface;
+use Exception;
 
 class OfferModel implements ModelInterface
 {
@@ -49,30 +50,39 @@ class OfferModel implements ModelInterface
 
 
     /**
-     * Gets the offers for the current item, 
+     * Gets the offers for the current item,
      * given its `item_id` and options.
-     * 
+     *
      * @param mixed $item_id `item_id` Of the currently viewed item
      * @param array $options Query options to be used.
-     * 
-     * Example: `limit` | `offset` | `sortBy` | `sortOrder`
-     *          `$options = ['limit' => '1', 'offset' => '1', ...]`
-     * 
-     * Recommended values for `sortBy`: `'customer_uid'` | `'created_at'` 
-     * 
      * @return array `ResultArray` of offers.
-     * 
+     * Example:
+     * $where = [
+     *      'item_id' => 1,
+     *      'poster_uid' => 1,
+     *      'customer_uid' => 2,
+     * ];
+     *
+     * $offerModel->get($where);
+     *
      */
-    public function get($item_id, $options = null){
+    public function get($where = [], $options = null) {
+        if ($where !== []) {
+            if (empty($where['item_id'])) throw new Exception("item_id cannot be null");
+            if (empty($where['poster_uid'])) throw new Exception("poster_uid cannot be null");
+            if (empty($where['customer_uid']))throw new Exception("customer_uid cannot be null");
+        }
+
         $limit = $options['limit'] ?? 0;
         $offset = $options['offset'] ?? 0;
         $sortBy = $options['sortBy'] ?? 'created_at';
         $sortOrder = $options['sortOrder'] ?? 'desc';
 
-        return $this->builder->where('item_id', $item_id)
-                        ->orderBy($sortBy, $sortOrder)
-                        ->get($limit, $offset)
-                        ->getResultArray();
+        return $this->builder
+                    ->where($where)
+                    ->orderBy($sortBy, $sortOrder)
+                    ->get($limit, $offset)
+                    ->getResultArray();
     }
 
 

@@ -6,6 +6,8 @@ use CodeIgniter\Database\Seeder;
 use App\Models\MessageModel;
 use Exception;
 use Faker\Factory;
+use DateInterval;
+use DateTime;
 
 class MessageSeeder extends Seeder
 {
@@ -13,23 +15,31 @@ class MessageSeeder extends Seeder
 	{
 		$faker = Factory::create();
 		$messageModel = new MessageModel();
+		$userConversation = [[1, 2], [2, 1], [1, 3], [3, 4]];
+		$counter = 0;
 
-		for ($i = 0; $i < 10; $i++) {
-			$data = [
-				'sender_uid' 	=> 1,
-				'recipient_uid' => 2,
-				'content' 		=> $faker->text,
-			];
+		foreach($userConversation as $user) {
+			for ($i = 0; $i < 3; $i++) {
+				$counter += 1;
+				$timeStamp = new DateTime();
+				$timeStamp->add(new DateInterval("PT${counter}S"));
 
-			$data = [
-				'sender_uid' 	=> 2,
-				'recipient_uid' => 1,
-				'content' 		=> $faker->text,
-			];
+				$randomInt = rand(1, 2);
 
-			// check for validation error
-			if ($messageModel->create($data) === false) {
-				throw new Exception('Error while inserting using MessageModel|'.implode('|', $messageModel->errors()));
+				$data = [
+					'sender_uid' 	=> $randomInt === 1 ? $user[0] : $user[1],
+					'recipient_uid' => $randomInt === 1 ? $user[1] : $user[0],
+					'content' 		=> $faker->text,
+					'created_at'	=> $timeStamp->format('Y-m-d H:i:s'),
+				];
+
+				$messageModel->protect(false);
+
+				if ($messageModel->create($data) === false) {
+					throw new Exception('Error while inserting using MessageModel|'.implode('|', $messageModel->errors()));
+				}
+
+				$messageModel->protect(true);
 			}
 		}
 	}
