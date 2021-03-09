@@ -6,8 +6,8 @@
             <h6>1 minute ago</h6>
         </div>
     </div>
-    <div class="main-img">
-        <img src="<?= base_url('assets/home/product-img-sample.jpg') ?>" alt="" class="product-img">
+    <div class="main-img" style="background-image:url(<?= base_url('assets/home/product-img-sample.jpg') ?>); ">
+      
     </div>
     <div class="product-details">
         <p class="product-name">Carrot Headband</p>
@@ -16,3 +16,4 @@
         <div class="new-tag">New</div>
     </div>
 </div>
+

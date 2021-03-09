@@ -107,11 +107,17 @@ body{
 }
 .main-img{
     margin: 10px 0px;
+    background-size: cover;
+    background-position:center center; 
+    background-repeat:no-repeat; 
+    width: 250px;
+    height: 220px;
 
 }
 .product-img{
-    width:100%;
+    width: 250px;
     height: 220px;
+    
 }
 
 .product-details p{
