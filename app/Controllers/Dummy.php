@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\CategoryModel;
 use App\Models\ItemModel;
+use App\Models\MessageModel;
 use App\Models\OfferModel;
 use App\Models\ReviewModel;
 use App\Models\UserModel;
@@ -21,6 +22,7 @@ class Dummy extends BaseController
 			'userModel' 	=> new UserModel(),
 			'offerModel' 	=> new OfferModel(),
 			'reviewModel' 	=> new ReviewModel(),
+			'messageModel' 	=> new MessageModel(),
         ];
 
 		return view('pages/dummy', $data);
