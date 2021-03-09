@@ -19,9 +19,10 @@
             <p>Fresh Finds</p>
         </div>
         <div class="product-list">
-            <?php for ($x = 1; $x <= 10; $x++) :?>
-                <?= $this->include('components/home/product') ?>
-            <?php endfor ?>
+            <?php for($i = 0; $i<count($latestItems); $i++): ?>
+                <?php $poster_info = $class->getPosterInfo($latestItems[$i]['poster_uid']);?>
+                <?= view_cell('\App\Libraries\Product::getItem', ['item' => $latestItems[$i], 'poster'=>$poster_info[0]]) ?>
+            <?php endfor; ?>
         </div>
         <div class="bottom-end">
             <button>View more</button>

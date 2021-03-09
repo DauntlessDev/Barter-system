@@ -1,18 +1,31 @@
 <div class="product">
     <div class="product-header">
-        <img src="<?= base_url('assets/home/profile-pic-sample.jpg') ?>" alt="profile-pic" class="profile-pic">
+        <!-- logic in base_url is temporary, waiting for changinge user data in database -->
+        <img src="
+            <?= base_url( 
+                ($poster['photo_url'] == '#')? 'assets/home/profile-pic-sample.jpg' :$poster['photo_url']);
+            ?>" 
+         alt="profile-pic" class="profile-pic">
         <div class="product-header-sub">
-            <p>hannahlou888</p>
-            <h6>1 minute ago</h6>
+            <p><?= $poster['username'] ?></p>
+            <h6><?= $item['created_at'] ?></h6>
         </div>
     </div>
-    <div class="main-img" style="background-image:url(<?= base_url('assets/home/product-img-sample.jpg') ?>); ">
+    <div class="main-img" style="background-image:url(<?= base_url($item['photo_url']) ?>); ">
       
     </div>
     <div class="product-details">
-        <p class="product-name">Carrot Headband</p>
-        <p>PHP 800</p>
-        <p>Swap isang carrot headband para sa isang apple headband...</p>
+        <p class="product-name"><?= $item['item_name'] ?></p>
+        <p>
+            <?php
+                $class->displayProductTitle($item['desc_title']);
+            ?>
+        </p>
+        <p>
+            <?php
+                $class->displayProductDescription($item['desc_content']);
+            ?>
+         </p>
         <div class="new-tag">New</div>
     </div>
 </div>
