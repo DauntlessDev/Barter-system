@@ -50,6 +50,9 @@ $routes->get('/profile', 'Auth\UserProfile::index', ['as' => 'userProfile', 'fil
 $routes->add('/profile/edit', 'Auth\UserProfile::edit', ['as' => 'userProfileEdit', 'filter' => 'auth']);
 
 $routes->get('/messages', 'Auth\Message::index', ['as' => 'message', 'filter' => 'auth']);
+$routes->get('/messages/send', 'Auth\Message::send', ['filter' => 'ajax']);
+$routes->get('/messages/inbox/(:num)', 'Auth\Message::inbox/$1');
+$routes->get('/messages/conversation/(:num)/(:num)', 'Auth\Message::conversation/$1/$2', ['filter' => 'ajax']);
 
 /*
  * --------------------------------------------------------------------

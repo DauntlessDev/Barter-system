@@ -8,6 +8,7 @@ use CodeIgniter\Filters\DebugToolbar;
 use CodeIgniter\Filters\Honeypot;
 
 use App\Filters\AuthFilter;
+use App\Filters\AjaxFilter;
 
 class Filters extends BaseConfig
 {
@@ -22,6 +23,7 @@ class Filters extends BaseConfig
 		'toolbar'  => DebugToolbar::class,
 		'honeypot' => Honeypot::class,
 		'auth'	   => AuthFilter::class,
+		'ajax'	   => AjaxFilter::class,
 	];
 
 	/**
