@@ -51,7 +51,7 @@ $routes->add('/profile/edit', 'Auth\UserProfile::edit', ['as' => 'userProfileEdi
 
 $routes->get('/messages', 'Auth\Message::index', ['as' => 'message', 'filter' => 'auth']);
 $routes->get('/messages/send', 'Auth\Message::send', ['filter' => 'ajax']);
-$routes->get('/messages/inbox/(:num)', 'Auth\Message::inbox/$1');
+$routes->get('/messages/inbox/(:num)', 'Auth\Message::inbox/$1', ['filter' => 'ajax']);
 $routes->get('/messages/conversation/(:num)/(:num)', 'Auth\Message::conversation/$1/$2', ['filter' => 'ajax']);
 
 /*
