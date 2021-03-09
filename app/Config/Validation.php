@@ -53,9 +53,11 @@ class Validation
 	];
 
 	public $signup = [
-		'first_name' => 'required|min_length[3]|max_length[30]|alpha_space',
-		'last_name'  => 'required|min_length[3]|max_length[30]|alpha_space',
-		'username'   => 'required|min_length[3]|max_length[30]|alpha_numeric|is_unique[user.username]',
-		'password'   => 'required|min_length[8]|max_length[255]'
+		'first_name' 	  => 'required|min_length[3]|max_length[30]|alpha_space',
+		'last_name'  	  => 'required|min_length[3]|max_length[30]|alpha_space',
+		'address'	 	  => 'required|max_length[30]|alpha_numeric_punct',
+		'contact_details' => 'required|min_length[3]|max_length[30]|numeric',
+		'username'   	  => 'required|min_length[3]|max_length[30]|alpha_numeric|is_unique[user.username]',
+		'password'   	  => 'required|min_length[8]|max_length[255]',
 	];
 }
