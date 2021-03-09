@@ -55,9 +55,16 @@ function APIManager() {
             const data = [];
             const username = window.username;
 
+            const randMessages = [
+                'lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor',
+                'dolor enet alrut dolor enet alrut dolor enet alrut',
+                'Sed in egestas leo. Maecenas non ultricies quam, ultrices dignissim elit.',
+                'Mauris purus purus, aliquet vel orci sed, blandit tempor neque.'
+            ];
+
             for (let i = 0; i < 20; i += 2) {
-                data.push({ username: username, content: 'lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor', timestamp: i });
-                data.push({ username: recipientUsername, content: 'dolor enet alrut dolor enet alrut dolor enet alrut', timestamp: i+1 });
+                data.push({ username: username, content: randMessages[Math.floor((Math.random() * 4))], timestamp: i });
+                data.push({ username: recipientUsername, content: randMessages[Math.floor((Math.random() * 4))], timestamp: i+1 });
             }
 
             return data;
@@ -67,8 +74,14 @@ function APIManager() {
 
 const apiManager = APIManager();
 
+function clearMessages() {
+    chatPanelContent.innerHTML = '';
+}
+
 function loadMessages(recipientUsername) {
     const messageHistory = apiManager.getMessageHistoryWith(recipientUsername);
+
+    clearMessages();
 
     for (const message of messageHistory) {
         if (message.username !== window.username) receiveChat(message.content)
