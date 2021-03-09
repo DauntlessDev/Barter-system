@@ -35,6 +35,8 @@ $routes->setAutoRoute(false);
 
 // https://www.codeigniter.com/user_guide/incoming/routing.html
 //     method  path  controller   alias
+$routes->get('/dummy', 'Dummy::index');
+
 $routes->get('/', 'Home::index', ['as' => 'home']);
 
 $routes->add('/signup', 'Auth\Auth::signup', ['as' => 'signup']);
