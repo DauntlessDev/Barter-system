@@ -1,0 +1,9 @@
+@import "common/shared.css";
+@import "components/message/container.css";
+@import "components/message/inbox.css";
+@import "components/message/chatbox.css";
+@import "components/message/msgTextArea.css";
+
+h1 {
+    color: rgb(51, 1, 145);
+}

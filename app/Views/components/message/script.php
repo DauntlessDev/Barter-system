@@ -1,0 +1,2 @@
+<script>window.username = "<?= session()->get('user')['username'] ?>"</script> <?php // this should be encrypted but I don't care about security for now ?>
+<script src="<?= base_url('js/messages.js') ?>"></script>

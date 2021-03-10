@@ -20,7 +20,7 @@
         <?= isset($validation) ? $validation->listErrors('user_errors') : '' ?>
 
         <div>
-            <form class="form" action="<?= route_to('signup') // located in app/Config/Routes.php ?>" method="POST" id="signup-form">
+            <form class="form" action="<?= route_to('signup') ?>" method="POST" id="signup-form" enctype="multipart/form-data">
                 <?= $this->include('components/partials/_userFields') ?>
                 <button class="btn btn-primary" type="submit" form="signup-form" value="submit">Sign up</button>
             </form>

@@ -25,7 +25,32 @@ class AuthFilter implements FilterInterface
 	 */
 	public function before(RequestInterface $request, $arguments = null)
 	{
-		if (!session()->get('isLoggedIn')) return redirect()->route('login');
+		// if already logged in, redirect from login and signup to user profile page
+		if (session()->get('isLoggedIn')) {
+			$redirectRouteList = ['login', 'signup'];
+
+			foreach ($redirectRouteList as $redirectRoute) {
+				if ($this->isMatchedUrl(route_to($redirectRoute), $request)) {
+					return redirect()->route('userProfile');
+				}
+			}
+		}
+
+		// ADD HERE all public routes
+		// public routes are pages which do not require login
+		// see app/Config/Routes.php
+		$publicRouteList = ['dummy', 'home', 'signup', 'login'];
+
+		if (!session()->get('isLoggedIn')) {
+			// don't redirect public routes to login page
+			foreach ($publicRouteList as $publicRoute) {
+				if ($this->isMatchedUrl(route_to($publicRoute), $request)) {
+					return $request;
+				}
+			}
+
+			return redirect()->route('login');
+		}
 	}
 
 	/**
@@ -43,5 +68,9 @@ class AuthFilter implements FilterInterface
 	public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
 	{
 		//
+	}
+
+	private function isMatchedUrl(string $route, RequestInterface $request) {
+		return site_url($route) === (string)$request->uri;
 	}
 }
