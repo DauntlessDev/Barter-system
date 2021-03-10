@@ -45,11 +45,33 @@ class Home extends BaseController
 		$data = [
 			'class' => $this,
 			'latestItems' => $this->getLatestItems([]),
-			'categories' => $categories,
+			'categories' => $this->getCategory(),
 		];
-		// print_r($data);
+		// print_r($data['categories']);
 		return view('pages/home',$data);
 	}
+
+	function getLatestItems($options){
+		$items = $this->itemModel->get($options);
+		return $items;
+
+	}
+	
+	function getCategory(){
+		$categories = $this->categoryModel->get();
+		return $categories;
+
+	}
+
+	
+
+	function gotoCategorizedItem($category_id){
+		$items = $this->categoryModel->get();
+		print("items search result: ");
+		var_dump($items);
+
+	}
+
 
 	
 	function searchItemsByName($itemModel, $name){
@@ -66,13 +88,6 @@ class Home extends BaseController
 		var_dump($items);
 	}
 
-	function getLatestItems($options){
-		$items = $this->itemModel->get($options);
-		// print("items: ");
-		// print_r($items);
-		return $items;
-
-	}
 
 	function getPosterInfo($uid){
 		$poster = $this->userModel->get(['user_id' => [$uid]]);
