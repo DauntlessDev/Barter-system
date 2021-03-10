@@ -34,8 +34,9 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 
 // https://www.codeigniter.com/user_guide/incoming/routing.html
+// add public routes at app/Filter/AuthFilter.php
 //     method  path  controller   alias
-$routes->get('/dummy', 'Dummy::index');
+$routes->get('/dummy', 'Dummy::index', ['as' => 'dummy']);
 
 $routes->get('/', 'Home::index', ['as' => 'home']);
 
@@ -45,11 +46,11 @@ $routes->add('/login', 'Auth\Auth::login', ['as' => 'login']);
 
 $routes->get('/logout', 'Auth\Auth::logout', ['as' => 'logout']);
 
-$routes->get('/profile', 'Auth\UserProfile::index', ['as' => 'userProfile', 'filter' => 'auth']);
+$routes->get('/profile', 'Auth\UserProfile::index', ['as' => 'userProfile']);
 
-$routes->add('/profile/edit', 'Auth\UserProfile::edit', ['as' => 'userProfileEdit', 'filter' => 'auth']);
+$routes->add('/profile/edit', 'Auth\UserProfile::edit', ['as' => 'userProfileEdit']);
 
-$routes->get('/messages', 'Auth\Message::index', ['as' => 'message', 'filter' => 'auth']);
+$routes->get('/messages', 'Auth\Message::index', ['as' => 'message']);
 
 /*
  * --------------------------------------------------------------------
