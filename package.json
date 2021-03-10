@@ -1,0 +1,29 @@
+{
+  "name": "Barter-system",
+  "version": "1.0.0",
+  "description": "Barter system using Code Igniter 4",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Simperfy/Barter-system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Simperfy/Barter-system/issues"
+  },
+  "homepage": "https://github.com/Simperfy/Barter-system#readme",
+  "devDependencies": {
+    "eslint": "^7.21.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
+  }
+}
