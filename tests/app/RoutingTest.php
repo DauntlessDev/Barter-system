@@ -17,29 +17,46 @@ class RoutingTest extends FeatureTestCase
     }
 
     public function test_should_see_homepage() {
-        $result = $this->call('get', '/');
+        $result = $this->call('get', route_to('home'));
         $result->assertOK();
     }
 
     public function test_should_see_signup() {
-        $result = $this->call('get', '/signup');
+        $result = $this->call('get', route_to('signup'));
         $result->assertOK();
     }
 
     public function test_should_see_login() {
-        $result = $this->call('get', '/login');
+        $result = $this->call('get', route_to('login'));
         $result->assertOK();
     }
 
-    public function test_should_redirect_to_login_when_not_loggedIn() {
-        $urls = ['/profile', '/profile/edit'];
+    public function test_should_redirect_to_userProfile_when_loggedIn() {
+        $urls = ['signup', 'login'];
+
+        $sessions = [
+            'isLoggedIn' => true
+        ];
 
         foreach($urls as $url) {
-            $result = $this->call('get', $url);
+            $result = $this->withSession($sessions)->call('get', route_to($url));
+
             $result->assertRedirect();
 
-            $url = $result->getRedirectUrl();
-            $this->assertEquals(site_url('/login'), $url);
+            $urlResult = $result->getRedirectUrl();
+            $this->assertEquals(site_url(route_to('userProfile')), $urlResult);
+        }
+    }
+
+    public function test_should_redirect_to_login_when_not_loggedIn() {
+        $urls = ['userProfile', 'userProfileEdit'];
+
+        foreach($urls as $url) {
+            $result = $this->call('get', route_to($url));
+            $result->assertRedirect();
+
+            $urlResult = $result->getRedirectUrl();
+            $this->assertEquals(site_url(route_to('login')), $urlResult);
         }
     }
 
@@ -48,7 +65,7 @@ class RoutingTest extends FeatureTestCase
             'isLoggedIn' => true
         ];
 
-        $result = $this->withSession($sessions)->call('get', '/profile');
+        $result = $this->withSession($sessions)->call('get', route_to('userProfile'));
         $result->assertSee('logout');
     }
 
