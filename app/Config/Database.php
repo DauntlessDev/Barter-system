@@ -3,7 +3,6 @@
 namespace Config;
 
 use CodeIgniter\Database\Config;
-
 /**
  * Database Configuration
  */
@@ -31,6 +30,31 @@ class Database extends Config
 	 * @var array
 	 */
 	public $default = [
+		'DSN'      => '',
+		'hostname' => 'localhost',
+		'username' => '',
+		'password' => '',
+		'database' => '',
+		'DBDriver' => 'MySQLi',
+		'DBPrefix' => '',
+		'pConnect' => false,
+		'DBDebug'  => (ENVIRONMENT !== 'production'),
+		'charset'  => 'utf8',
+		'DBCollat' => 'utf8_general_ci',
+		'swapPre'  => '',
+		'encrypt'  => false,
+		'compress' => false,
+		'strictOn' => false,
+		'failover' => [],
+		'port'     => 3306,
+	];
+
+	/**
+	 * The production database connection.
+	 *
+	 * @var array
+	 */
+	public $production = [
 		'DSN'      => '',
 		'hostname' => 'localhost',
 		'username' => '',
@@ -82,12 +106,18 @@ class Database extends Config
 	{
 		parent::__construct();
 
-		// Ensure that we always set the database group to 'tests' if
-		// we are currently running an automated test suite, so that
-		// we don't overwrite live data on accident.
-		if (ENVIRONMENT === 'testing')
-		{
+		if (ENVIRONMENT === 'testing') {
 			$this->defaultGroup = 'tests';
+		} else if (ENVIRONMENT === 'production') {
+			// format 'http://username:password@hostname:3306/database'
+			$url = parse_url(getenv("DB_URL"));
+
+			$this->production['hostname'] = $url["host"];
+			$this->production['username'] = $url["user"];
+			$this->production['password'] = $url["pass"];
+			$this->production['database'] = ltrim($url["path"], "/");
+
+			$this->defaultGroup = 'production';
 		}
 	}
 
