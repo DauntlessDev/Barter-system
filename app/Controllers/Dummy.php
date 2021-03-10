@@ -27,4 +27,8 @@ class Dummy extends BaseController
 
 		return view('pages/dummy', $data);
 	}
+
+	static public function foo() {
+		return 'bar';
+	}
 }
