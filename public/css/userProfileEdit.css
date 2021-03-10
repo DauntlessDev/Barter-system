@@ -171,16 +171,6 @@
     flex-flow: column nowrap;
 }
 
-.ep-container a, a:active, a:visited {
-    color: #0062c7;
-    text-decoration: none;
-}
-
-.ep-container a:hover {
-    color: #003b6a;
-    text-decoration: none;
-}
-
 .ep-box .user-box {
     position: relative;
 }
