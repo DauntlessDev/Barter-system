@@ -28,7 +28,7 @@
         <?= isset($validation) ? $validation->listErrors('user_errors') : '' ?>
 
         <div>
-            <form class="form" action="<?= route_to('login') // located in app/Config/Routes.php ?>" method="POST" id="login-form">
+            <form class="form" action="<?= route_to('login') ?>" method="POST" id="login-form">
                 <div class="form-group">
                     <label for="username">Username:</label>
                     <input type="text" name="username" id="username" value="janedoe" autocomplete="off" required>
