@@ -32,6 +32,8 @@
 	},
 	"scripts": {
 		"test": "phpunit",
+		"setup": "copy env .env /Y && php spark setup && echo database.default.database = barter_system >> .env",
+		"setup-linux": "cp env .env && php spark setup && echo database.default.database = barter_system >> .env",
 		"refresh-db": "php spark migrate:refresh && php spark db:seed BaseSeeder"
 	},
 	"support": {
