@@ -69,6 +69,7 @@ class MessageModel extends Model
 
 		return $builder->whereIn('sender_uid', [$where['sender_uid'], $where['recipient_uid']])
 		  			   ->whereIn('recipient_uid', [$where['recipient_uid'], $where['sender_uid']])
+				       ->where('msg_id >', $where['msg_id'] ?? 0)
 					   ->orderBy($sortBy, $sortOrder)
 				       ->get($limit, $offset)
 					   ->getResultArray();
