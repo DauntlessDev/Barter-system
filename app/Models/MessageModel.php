@@ -99,28 +99,34 @@ class MessageModel extends Model
 		// Credits to Hezzz
 		$this_user_uid = strval($where['recipient_uid']);
 
-		$query1 = $builder->select('msg_id, recipient_uid AS user_id, content, created_at')
-				->where('sender_uid', $this_user_uid)
-				->getCompiledSelect();
+		
+		$query1 = $builder->select("msg_id, recipient_uid AS user_id, content, created_at")
+						  ->where('sender_uid', $this_user_uid)
+						  ->getCompiledSelect();
 
 		$query2 = $builder->select('msg_id, sender_uid AS user_id, content, created_at')
 						->where('recipient_uid', $this_user_uid)
 						->getCompiledSelect();
+
+		$builder1 = $this->builder("($query1 UNION $query2) as msg");
 
 		$query3 = $builder->select('msg.user_id, MAX(msg.created_at) as created_at')
 						->from("($query1 UNION $query2) as msg")
 						->groupBy('msg.user_id')
 						->getCompiledSelect();
 
-		// create query builder from new table from UNION
-		$new_builder = $this->builder("($query1 UNION $query2) as msg");
-
-		return $new_builder->select()
+		$query4 = $builder1->select("msg.msg_id, msg.user_id, msg.content, msg.created_at")
 					 ->join("($query3) as sub", 
 					   		'msg.user_id = sub.user_id AND
 							 msg.created_at = sub.created_at')
 					 ->orderBy('msg.'.$sortBy, $sortOrder)
-					 ->get($limit, $offset)
-					 ->getResultArray();
+					 ->getCompiledSelect();
+
+		$lastBuilder = $this->builder("($query4) as msg");
+		return $lastBuilder->select("msg.msg_id, msg.user_id, u.username, msg.content, msg.created_at")
+						   ->from('user as u')
+						   ->where('msg.user_id = u.user_id')
+						   ->get()
+						   ->getResultArray();
 	}
 }
