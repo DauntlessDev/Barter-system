@@ -13,6 +13,7 @@
     "rules": {
         "max-len":  ["error", { "code": 150 }],
         "no-unused-vars": 0,
-        "no-use-before-define": 0
+        "no-use-before-define": 0,
+        "camelcase": 0
     }
 }

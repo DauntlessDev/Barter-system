@@ -60,9 +60,9 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
 });
 
 /* MESSAGES API */
-$routes->get('/messages/send', 'Auth\Message::send', ['as' => 'message.send', 'filter' => 'ajax']);
-$routes->get('/messages/inbox', 'Auth\Message::inbox', ['as' => 'message.inbox', 'filter' => 'ajax']);
-$routes->get('/messages/conversation', 'Auth\Message::conversation', ['as' => 'message.conversation', 'filter' => 'ajax']);
+$routes->post('/messages/send', 'Auth\Message::send', ['as' => 'message.send', 'filter' => 'ajax']);
+$routes->post('/messages/inbox', 'Auth\Message::inbox', ['as' => 'message.inbox', 'filter' => 'ajax']);
+$routes->post('/messages/conversation', 'Auth\Message::conversation', ['as' => 'message.conversation', 'filter' => 'ajax']);
 
 /*
  * --------------------------------------------------------------------

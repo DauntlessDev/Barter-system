@@ -67,9 +67,22 @@ class MessageModel extends Model
 		$sortOrder = $options['sortOrder'] ?? 'desc';
 		$builder = $this->builder();
 
-		return $builder->whereIn('sender_uid', [$where['sender_uid'], $where['recipient_uid']])
+		$select = [
+			'messages.msg_id',
+			'sender_uid',
+			's_user.username as sender_username',
+			'recipient_uid',
+			'r_user.username as recipient_username',
+			'content',
+			'messages.created_at',
+		];
+
+		return $builder->select($select)
+					   ->whereIn('sender_uid', [$where['sender_uid'], $where['recipient_uid']])
 		  			   ->whereIn('recipient_uid', [$where['recipient_uid'], $where['sender_uid']])
 				       ->where('msg_id >', $where['msg_id'] ?? 0)
+					   ->join('user s_user', 's_user.user_id = messages.sender_uid')
+					   ->join('user r_user', 'r_user.user_id = messages.recipient_uid')
 					   ->orderBy($sortBy, $sortOrder)
 				       ->get($limit, $offset)
 					   ->getResultArray();

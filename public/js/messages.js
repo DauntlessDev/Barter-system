@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 function APIManager() {
   function generateFakeMessage() {
     const randMessages = [
@@ -11,28 +12,40 @@ function APIManager() {
   }
 
   return {
-    fetchMessageHistoryWith(recipientUsername) {
-      if (recipientUsername === undefined) throw new Error('undefined recipientUsername');
+    async fetchMessageHistoryWith(recipientUserId, msgId = 0) {
+      if (recipientUserId === undefined) throw new Error('undefined recipientUsername');
       // call api to get message history & load them all here
-      const data = [];
-      const { username } = window; // might find a better approach later on
+      // const data = [];
+      const { user_id } = window; // might find a better approach later on
 
-      for (let i = 0; i < 20; i += 2) {
-        data.push({ username, content: generateFakeMessage(), timestamp: i });
-        data.push({ username: recipientUsername, content: generateFakeMessage(), timestamp: i + 1 });
-      }
+      const { data } = await axios.post(window.conversationEndpoint, {
+        sender_uid: user_id,
+        recipient_uid: parseInt(recipientUserId, 10),
+        msg_id: msgId,
+      }, {
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+        },
+      });
 
-      return data;
+      result = data.data.map((d) => ({ ...d, username: d.user_id }));
+      console.log('result');
+      console.log(result);
+      return result;
     },
 
-    fetchInbox() {
-      const data = [];
+    async fetchInbox() {
+      const { data } = await axios.post(window.inboxEndpoint, {
+        recipient_uid: window.user_id,
+      }, {
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+        },
+      });
 
-      for (let i = 0; i < 20; i += 1) {
-        data.push({ username: `user${i}`, content: generateFakeMessage(), timestamp: i + 1 });
-      }
+      result = data.data.map((d) => ({ ...d, username: `john doe${d.user_id}` }));
 
-      return data;
+      return result;
     },
   };
 }
@@ -93,8 +106,8 @@ function ChatManager(apiManager) {
   }
 
   return {
-    loadMessages(recipientUsername) {
-      const messageHistory = apiManager.fetchMessageHistoryWith(recipientUsername);
+    async loadMessages(recipientUserId, recipientUsername) {
+      const messageHistory = await apiManager.fetchMessageHistoryWith(recipientUserId);
 
       clearMessages();
 
@@ -113,17 +126,18 @@ function InboxManager(apiManager, chatManager) {
   function onInboxClick(e) {
     const inboxCard = e.target.closest('.inbox_card');
 
+    const recipientUserId = inboxCard.dataset.user_id;
     const recipientUsername = inboxCard.dataset.username;
 
-    chatManager.loadMessages(recipientUsername);
+    chatManager.loadMessages(recipientUserId, recipientUsername);
   }
 
-  function createInboxCard(recipientUsername, lastMsg) {
+  function createInboxCard(username, lastMsg) {
     const chatBoxContainerDiv = document.createElement('div');
     chatBoxContainerDiv.classList.add('inbox_card');
 
     const userEl = document.createElement('p');
-    userEl.textContent = recipientUsername;
+    userEl.textContent = username;
 
     const lastMsgEl = document.createElement('p');
     lastMsgEl.textContent = lastMsg;
@@ -135,14 +149,20 @@ function InboxManager(apiManager, chatManager) {
   }
 
   return {
-    load() {
+    async load() {
       const inboxContainer = document.querySelector('.inbox_container');
-      inboxList = apiManager.fetchInbox();
+      inboxList = await apiManager.fetchInbox();
 
-      inboxList.forEach(({ username, content, timestamp }) => {
+      console.log('inboxList');
+      console.log(inboxList);
+
+      inboxList.forEach(({
+        user_id, username, content, timestamp,
+      }) => {
         const inboxCard = createInboxCard(username, content);
 
         inboxCard.addEventListener('click', onInboxClick, false);
+        inboxCard.setAttribute('data-user_id', user_id);
         inboxCard.setAttribute('data-username', username);
 
         inboxContainer.appendChild(inboxCard);
@@ -153,8 +173,12 @@ function InboxManager(apiManager, chatManager) {
   };
 }
 
-const apiManager = APIManager();
-const chatManager = ChatManager(apiManager);
-const inbox = InboxManager(apiManager, chatManager);
-const firstInbox = inbox.load();
-chatManager.loadMessages(firstInbox.username);
+(
+  async () => {
+    const apiManager = APIManager();
+    const chatManager = ChatManager(apiManager);
+    const inbox = InboxManager(apiManager, chatManager);
+    const firstInbox = inbox.load();
+    // chatManager.loadMessages(firstInbox.username);
+  }
+)();
