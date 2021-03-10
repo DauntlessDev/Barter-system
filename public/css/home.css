@@ -38,7 +38,7 @@ body{
     display: flex;
     border-radius: 5px;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 }
 .category{
     /* align-items: center;
@@ -46,16 +46,18 @@ body{
     padding: 20px;
     width: 140px;
     display: inline;
+    justify-content: space-around;
     
 }
+
 .category img{
-    width: 80%;
+    width: 80px;
     margin: 0 auto;
 }
 
 .category p{
-    /* text-align: center; */
-    width: max-content;
+    text-align: center;
+    width: 80px;
 }
 
 
