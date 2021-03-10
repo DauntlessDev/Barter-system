@@ -13,7 +13,9 @@ Barter system using Code Igniter 4
 
 <br>
 
-> open cmd/terminal and type the following:
+> Start xampp's apache & mysql
+
+> open CMD and type the following:
 
 `git clone https://github.com/Simperfy/Barter-system.git`
 
@@ -21,30 +23,11 @@ Barter system using Code Igniter 4
 
 `composer install`
 
-> Copy `env` to `.env` and tailor for your app, specifically the `CI_ENVIRONMENT` and any `database` settings.
+`composer setup`
 
-Replace red line with green lines
+`composer refresh-db`
 
-```diff
--# CI_ENVIRONMENT = production
-...
--app.baseURL = ''
-...
--# database.default.hostname = localhost
--# database.default.database = ci4
--# database.default.username = root
--# database.default.password = root
--# database.default.DBDriver = MySQLi
-+CI_ENVIRONMENT = development
-...
-+app.baseURL = 'http://localhost:8080/'
-...
-+database.default.hostname = localhost
-+database.default.database = barter_system
-+database.default.username = root
-+database.default.password = ''
-+database.default.DBDriver = MySQLi
-```
+That's it your done!
 
 > start server (using cmd/terminal)
 
@@ -55,12 +38,49 @@ You should see output like this:
 
 Goto http://localhost:8080 to browse the website.
 
+<details>
+    <summary>More details</summary>
+
+> If you need to drop all tables
+
+`php spark migrate:rollback`
+
+> If you need to quickly drop && create tables + populate with fake data
+
+`php spark migrate:refresh && php spark db:seed BaseSeeder`
+
+or
+
+`composer refresh-db`
+
+</details>
+
 <br>
 
-## Installation part 2 (Database) ⏩
+## Manual Database Installation ⏩
+
+If the above instructions did not work you may try these steps below.
+
+<br>
+
+<details>
+    <summary>Installation (alternative way)</summary>
+
 > Start xampp's apache & mysql
 
 ![xampp output](docs/img/xampp.png)
+
+> create/replace `.env` file
+
+```
+CI_ENVIRONMENT = development
+app.baseURL = 'http://localhost:8080/'
+database.default.hostname = localhost
+database.default.database = barter_system
+database.default.username = root
+database.default.password = ''
+database.default.DBDriver = MySQLi
+```
 
 > Create database called `barter_system`
 
@@ -87,17 +107,7 @@ then click "create"
 your `users` table should look like this:
 ![users table output](docs/img/users_table.png)
 
-> If you need to drop all tables
-
-`php spark migrate:rollback`
-
-> If you need to quickly drop && create tables + populate with fake data
-
-`php spark migrate:refresh && php spark db:seed BaseSeeder`
-
-or
-
-`composer refresh-db`
+</details>
 
 <br>
 
@@ -157,7 +167,6 @@ Contributions Badge based on [allcontributors.org](https://allcontributors.org/d
               </sub>
           </a>
           <br/>
-          <a href="#" title="Bug Reports">🐛</a>
           <a href="#" title="Design">🎨</a>
       </td>
       <td align="center">
@@ -171,7 +180,7 @@ Contributions Badge based on [allcontributors.org](https://allcontributors.org/d
           <br/>
           <a href="#" title="Business">💼</a>
           <a href="#" title="Database Design">🔣</a>
-          <a href="#" title="Frontend">🖼️</a>
+          <a href="#" title="Main Frontend">🖼️</a>
           <a href="#" title="Event Organizing">📋</a>
           <a href="#" title="Ideas/Planning">🤔</a>
       </td>
@@ -184,7 +193,7 @@ Contributions Badge based on [allcontributors.org](https://allcontributors.org/d
               </sub>
           </a>
           <br/>
-          <a href="#" title="Backend">🕹</a>
+          <a href="#" title="Main Backend">🕹</a>
           <a href="#" title="Business">💼</a>
           <a href="#" title="Database Design">🔣</a>
           <a href="#" title="Documentation">📖</a>
@@ -199,10 +208,10 @@ Contributions Badge based on [allcontributors.org](https://allcontributors.org/d
           </a>
           <br/>
           <a href="#" title="Backend">🕹</a>
-          <a href="#" title="Design">🎨</a>
+          <a href="#" title="Design/Prototype">🎨</a>
           <a href="#" title="Documentation">📖</a>
           <a href="#" title="Frontend">🖼️</a>
-          <a href="#" title="Infrastructure">🚇</a>
+          <a href="#" title="Infrastructure/DevOps">🚇</a>
           <a href="#" title="Tutorial">✅</a>
       </td>
       <td align="center">
