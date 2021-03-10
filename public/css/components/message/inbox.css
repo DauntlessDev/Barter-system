@@ -1,0 +1,41 @@
+.inbox_container {
+    min-width: 30%;
+    width: 30%;
+    height: 100%;
+    background-color: rgb(201, 198, 160);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+.inbox_card {
+    min-height: 4rem;
+    height: 4rem;
+    width: 100%;
+    background-color: rgb(130, 199, 130);
+    padding: 0.5rem;
+    cursor: pointer;
+    opacity: 0.85;
+}
+
+.inbox_card:hover {
+    opacity: 1;
+}
+
+.inbox_card p {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.inbox_card p:first-child {
+    color:rgb(44, 44, 44);
+}
+
+.inbox_card p:nth-child(2) {
+    text-align: center;
+    color:rgb(83, 83, 83);
+}
