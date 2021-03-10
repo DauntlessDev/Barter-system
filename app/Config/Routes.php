@@ -39,6 +39,9 @@ $routes->setAutoRoute(false);
 $routes->get('/dummy', 'Dummy::index', ['as' => 'dummy']);
 
 $routes->get('/', 'Home::index', ['as' => 'home']);
+$routes->get('category/(:any)', 'Home::categoryPage/$1');
+
+// $routes->get('category', 'Home::categoryPage');
 
 $routes->add('/signup', 'Auth\Auth::signup', ['as' => 'signup']);
 
