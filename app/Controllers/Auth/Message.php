@@ -24,7 +24,7 @@ class Message extends BaseController
 	 * Send chat to user
 	 */
 	public function send() {
-		$data = json_decode($this->request->getBody());
+		$data = $this->request->getJSON();
 
 		$this->messageModel->insert($data);
 

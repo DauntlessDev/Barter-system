@@ -49,7 +49,7 @@ class RoutingTest extends FeatureTestCase
     }
 
     public function test_should_redirect_to_login_when_not_loggedIn() {
-        $urls = ['userProfile', 'userProfileEdit'];
+        $urls = ['userProfile', 'userProfileEdit', 'message', 'logout'];
 
         foreach($urls as $url) {
             $result = $this->call('get', route_to($url));
@@ -68,6 +68,22 @@ class RoutingTest extends FeatureTestCase
         $result = $this->withSession($sessions)->call('get', route_to('userProfile'));
         $result->assertSee('logout');
     }
+
+    // Can't test because there are no straight forward way to mock models inside controller
+    // public function test_should_see_okay_when_calling_messages_api() {
+    //     $headers = [
+    //         'X-Requested-With' => 'XMLHttpRequest'
+    //     ];
+
+    //     $data = [
+    //         'sender_uid' => 4,
+    //         'recipient_uid' => 1,
+    //         'content' => 'Hello World3'
+    //     ];
+
+    //     $result = $this->withBodyFormat('json')->withHeaders($headers)->get(route_to('message.send'), $data);
+    //     $result->assertOK();
+    // }
 
     // Can't test logout due to session_destroy() Error
     // public function test_should_redirect_after_logout() {

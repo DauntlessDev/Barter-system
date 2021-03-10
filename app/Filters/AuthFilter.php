@@ -26,25 +26,21 @@ class AuthFilter implements FilterInterface
 	public function before(RequestInterface $request, $arguments = null)
 	{
 		// if already logged in, redirect from login and signup to user profile page
-		if (session()->get('isLoggedIn')) {
-			$redirectRouteList = ['login', 'signup'];
+		$exceptionRouteList = ['login', 'signup'];
 
-			foreach ($redirectRouteList as $redirectRoute) {
-				if ($this->isMatchedUrl(route_to($redirectRoute), $request)) {
+		if (session()->get('isLoggedIn')) {
+			foreach ($exceptionRouteList as $exceptRoute) {
+				if ($this->isMatchedUrl(route_to($exceptRoute), $request)) {
 					return redirect()->route('userProfile');
 				}
 			}
 		}
 
-		// ADD HERE all public routes
-		// public routes are pages which do not require login
-		// see app/Config/Routes.php
-		$publicRouteList = ['dummy', 'home', 'signup', 'login'];
-
+		// check if user is not logged in
 		if (!session()->get('isLoggedIn')) {
-			// don't redirect public routes to login page
-			foreach ($publicRouteList as $publicRoute) {
-				if ($this->isMatchedUrl(route_to($publicRoute), $request)) {
+			// don't redirect user back to login/signup do avoid infinite loop
+			foreach ($exceptionRouteList as $exceptRoute) {
+				if ($this->isMatchedUrl(route_to($exceptRoute), $request)) {
 					return $request;
 				}
 			}
