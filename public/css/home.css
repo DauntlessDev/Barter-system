@@ -37,21 +37,25 @@ body{
 .category-container{
     display: flex;
     border-radius: 5px;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: center;
 }
 .category{
-    align-items: center;
+    /* align-items: center;
+    justify-content: center; */
     padding: 20px;
-    width: 90px;
+    width: 140px;
     display: inline;
     
 }
 .category img{
-    width: 100%;
+    width: 80%;
+    margin: 0 auto;
 }
 
 .category p{
-    text-align: center;
+    /* text-align: center; */
+    width: max-content;
 }
 
 

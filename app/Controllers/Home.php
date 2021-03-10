@@ -29,9 +29,23 @@ class Home extends BaseController
 
 	public function index()
 	{	
+		$categories = [
+			['category_name' => 'category1', 'category_id' => 1, 'icon' => 'assets/home/category-sample.png'],
+			['category_name' => 'category2', 'category_id' => 2, 'icon' => 'assets/home/category-sample.png'],
+			['category_name' => 'category3', 'category_id' => 3, 'icon' => 'assets/home/category-sample.png'],
+			['category_name' => 'category4', 'category_id' => 4, 'icon' => 'assets/home/category-sample.png'],
+			['category_name' => 'category5', 'category_id' => 5, 'icon' => 'assets/home/category-sample.png'],
+			['category_name' => 'category6', 'category_id' => 6, 'icon' => 'assets/home/category-sample.png'],
+			['category_name' => 'category7', 'category_id' => 7, 'icon' => 'assets/home/category-sample.png'],
+			['category_name' => 'category8', 'category_id' => 8, 'icon' => 'assets/home/category-sample.png'],
+			['category_name' => 'category9', 'category_id' => 9, 'icon' => 'assets/home/category-sample.png'],
+			['category_name' => 'category10', 'category_id' => 10, 'icon' => 'assets/home/category-sample.png'],
+		];
+
 		$data = [
 			'class' => $this,
 			'latestItems' => $this->getLatestItems([]),
+			'categories' => $categories,
 		];
 		// print_r($data);
 		return view('pages/home',$data);

@@ -8,9 +8,9 @@
             <p>Explore Items</p>
         </div>
         <div class="category-container">
-            <?php for ($x = 1; $x <= 10; $x++) :?>
-                <?= $this->include('components/home/category') ?>
-            <?php endfor ?>
+        <?php for($i = 0; $i<count($categories); $i++): ?>
+                <?= view_cell('\App\Libraries\Category::getCategory', ['category' => $categories[$i]]) ?>
+            <?php endfor; ?>
         </div>
     </div>
 
