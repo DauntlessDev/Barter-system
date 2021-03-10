@@ -17,7 +17,6 @@ class OfferSeeder extends Seeder
 		for ($i = 1; $i < 3; $i++) {
 			$data = [
 				'item_id' 			=> 1,
-				'poster_uid' 		=> $i,
 				'customer_uid' 		=> 4,
 				'offer_msg_title' 	=> $faker->word,
 				'offer_msg_content' => $faker->text,
@@ -30,7 +29,6 @@ class OfferSeeder extends Seeder
 
 			$data = [
 				'item_id' 			=> 1,
-				'poster_uid' 		=> $i+3,
 				'customer_uid' 		=> 2,
 				'offer_msg_title' 	=> $faker->word,
 				'offer_msg_content' => $faker->text,

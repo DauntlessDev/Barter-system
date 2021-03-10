@@ -17,11 +17,6 @@ class Offers extends Migration
                 'constraint'        => 10,
                 'unsigned'          => true,
             ],
-            'poster_uid'            => [
-                'type'              => 'INT',
-                'constraint'        => 10,
-                'unsigned'          => true,
-			],
 			'customer_uid'          => [
                 'type'              => 'INT',
                 'constraint'        => 10,
@@ -43,12 +38,10 @@ class Offers extends Migration
 
 		// set as foreign keys
 		$this->forge->addForeignKey('item_id', 'item', 'item_id', 'CASCADE', 'CASCADE');
-		$this->forge->addForeignKey('poster_uid', 'user', 'user_id', 'CASCADE', 'CASCADE');
 		$this->forge->addForeignKey('customer_uid', 'user', 'user_id', 'CASCADE', 'CASCADE');
 		
 		// set as primary keys
 		$this->forge->addPrimaryKey('item_id');
-		$this->forge->addPrimaryKey('poster_uid');
 		$this->forge->addPrimaryKey('customer_uid');
 
         $this->forge->createTable('offers');
