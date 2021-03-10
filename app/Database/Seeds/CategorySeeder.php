@@ -12,11 +12,13 @@ class CategorySeeder extends Seeder
 	{
 		$categoryModel = new CategoryModel();
 
-		$categories = ['hardware', 'fashion', 'unknown'];
+		$categories = ['hardware', 'fashion', 'home', 'toys', 'accessories',
+					   'school', 'office', 'kitchen', 'entertainment', 'sports'];
 
 		foreach ($categories as $category) {
 			$data = [
 				'category_name' => $category,
+				'icon' => 'assets/home/feature-sample.jpg'
 			];
 
 			// check for validation error
