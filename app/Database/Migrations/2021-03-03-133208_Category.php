@@ -20,6 +20,11 @@ class Category extends Migration
 				'constraint'        => '255',
 				'default'			=> 'unknown'
 			],
+            'icon'                  => [
+                'type'              => 'VARCHAR',
+                'constraint'        => '255',
+                'default'           => 'assets/home/feature-sample.jpg',     /* Please set default photo file */
+			],
             'created_at DATETIME DEFAULT CURRENT_TIMESTAMP',
             'updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
         ]);
