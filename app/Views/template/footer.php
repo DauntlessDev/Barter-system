@@ -1,1 +1,1 @@
-<footer>&copy; Developed by TEAMNAME 2021 </footer>
+<footer>&copy; Developed by LastHope 2021 </footer>
