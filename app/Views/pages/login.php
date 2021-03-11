@@ -17,7 +17,22 @@
 <div class="container">
     <div class="form-box">
         <h1>Login</h1>
+
         <form class="form" action="<?= route_to('login') ?>" method="POST" id="login-form">
+            <div class="validation-box">
+
+            <?php // more on flashdata https://codeigniter.com/user_guide/libraries/sessions.html#flashdata?>
+            <?php if (session()->getFlashdata('msg') !== null): ?>
+            <div>
+                <p style='color: green'><?= session()->getFlashdata('msg') ?></p>
+            </div>
+            <?php endif; ?>
+
+            <?php // validation https://www.codeigniter.com/user_guide/libraries/validation.html?highlight=validate#customizing-error-display ?>
+            <?= isset($validation) ? $validation->listErrors('user_errors') : '' ?>
+
+            </div>
+            
             <div class="user-box">
                 <input type="text" name="username" id="username" value="janedoe" autocomplete="off" required>
                 <label for="username">Username</label>
@@ -33,6 +48,7 @@
             <p align="center">Don't have an account? <a href="<?= route_to('signup') ?>">Sign up</a></p>
 
         </form>
+
 	</div>
 </div>
 <?= $this->endSection() ?>
