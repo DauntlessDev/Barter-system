@@ -52,7 +52,6 @@ class Message extends BaseController
 	public function conversation() {
 		$body = get_object_vars($this->request->getJSON());
 
-
 		$data = [
 			'data' => $this->messageModel->getMessagesWith([
 				'sender_uid' => $body['sender_uid'],

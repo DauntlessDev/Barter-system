@@ -104,19 +104,51 @@ function ChatManager(apiManager) {
     document.querySelector('.recipient_container').textContent = recipientUsername;
   }
 
+  function drawMessageHistory(messageHistory) {
+    Object.values(messageHistory).forEach((message) => {
+      if (message.sender_uid !== window.user_id) drawChat(message.content, false);
+      else drawChat(message.content);
+    });
+  }
+
+  let watcher = null;
+  let lastMsgId = 0;
+
+  // sends the next request only after the previous request was resolved
+  // this is more efficient than relying on time interval
+  function startWatchChat(recipientUserId) {
+    const time = 1000;
+    return () => fetchMessage(recipientUserId).then((_) => {
+      stopWatchChat();
+      watcher = setTimeout(startWatchChat(recipientUserId), time);
+    }).catch((e) => {
+      console.error(e.message);
+      stopWatchChat();
+      watcher = setTimeout(startWatchChat(recipientUserId), time);
+    });
+  }
+
+  function stopWatchChat() {
+    clearTimeout(watcher);
+  }
+
+  async function fetchMessage(recipientUserId) {
+    const messageHistory = await apiManager.fetchMessageHistoryWith(recipientUserId, lastMsgId);
+
+    lastMsgId = messageHistory[messageHistory.length - 1]?.msg_id || lastMsgId;
+    drawMessageHistory(messageHistory);
+  }
+
   return {
     async loadMessages(recipientUserId, recipientUsername) {
+      lastMsgId = 0;
       window.recipientUserId = recipientUserId;
-      const messageHistory = await apiManager.fetchMessageHistoryWith(recipientUserId);
-
       clearMessages();
 
       setRecipient(recipientUsername);
-      Object.values(messageHistory).forEach((message) => {
-        // console.log(message.sender_uid, window.user_id);
-        if (message.sender_uid !== window.user_id) drawChat(message.content, false);
-        else drawChat(message.content);
-      });
+
+      stopWatchChat();
+      startWatchChat(recipientUserId)();
     },
   };
 }
