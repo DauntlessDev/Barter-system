@@ -16,10 +16,10 @@ class RoutingTest extends FeatureTestCase
         parent::tearDown();
     }
 
-    public function test_should_see_homepage() {
-        $result = $this->call('get', route_to('home'));
-        $result->assertOK();
-    }
+    // public function test_should_see_homepage() {
+    //     $result = $this->call('get', route_to('home'));
+    //     $result->assertOK();
+    // }
 
     public function test_should_see_signup() {
         $result = $this->call('get', route_to('signup'));
