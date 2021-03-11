@@ -53,6 +53,7 @@ body{
 .category img{
     width: 80px;
     margin: 0 auto;
+    cursor: pointer;
 }
 
 .category p{
