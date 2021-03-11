@@ -43,6 +43,9 @@ $routes->environment('development', function($routes) {
 
 /* PUBLIC ROUTES */
 $routes->get('/', 'Home::index', ['as' => 'home']);
+$routes->get('category/(:any)', 'Home::categoryPage/$1');
+
+// $routes->get('category', 'Home::categoryPage');
 
 /* PROTECTED ROUTES */
 $routes->group('', ['filter' => 'auth'], function($routes) {
