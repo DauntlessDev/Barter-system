@@ -26,8 +26,6 @@
                 <input type="password" name="password" id="password" value="12345678" autocomplete="new-password" required>
                 <label for="password">Password</label>
             </div>
-            <p align="right"><a href="">Forgot Password?</a></p>
-
             <div class="user-box">
                 <button class="button" type="submit" form="login-form" value="submit">Login</button>
             </div>
