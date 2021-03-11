@@ -1,8 +1,4 @@
 <div class="wrapper">
-    <div class="feature">
-        <img src="<?= base_url('assets/home/feature-sample.jpg') ?>"  alt="feature" class="feature-img">
-    </div>
-
     <div class="explore">
         <div class="explore-header">
             <p>Explore Items</p>
