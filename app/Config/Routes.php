@@ -34,26 +34,38 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 
 // https://www.codeigniter.com/user_guide/incoming/routing.html
-// add public routes at app/Filter/AuthFilter.php
 //     method  path  controller   alias
-$routes->get('/dummy', 'Dummy::index', ['as' => 'dummy']);
 
+/* DEVELOPMENT ONLY ROUTES */
+$routes->environment('development', function($routes) {
+    $routes->get('/dummy', 'Dummy::index', ['as' => 'dummy']);
+});
+
+/* PUBLIC ROUTES */
 $routes->get('/', 'Home::index', ['as' => 'home']);
 $routes->get('category/(:any)', 'Home::categoryPage/$1');
 
 // $routes->get('category', 'Home::categoryPage');
 
-$routes->add('/signup', 'Auth\Auth::signup', ['as' => 'signup']);
+/* PROTECTED ROUTES */
+$routes->group('', ['filter' => 'auth'], function($routes) {
+    $routes->add('/signup', 'Auth\Auth::signup', ['as' => 'signup']);
 
-$routes->add('/login', 'Auth\Auth::login', ['as' => 'login']);
+	$routes->add('/login', 'Auth\Auth::login', ['as' => 'login']);
 
-$routes->get('/logout', 'Auth\Auth::logout', ['as' => 'logout']);
+	$routes->get('/logout', 'Auth\Auth::logout', ['as' => 'logout']);
 
-$routes->get('/profile', 'Auth\UserProfile::index', ['as' => 'userProfile']);
+	$routes->get('/profile', 'Auth\UserProfile::index', ['as' => 'userProfile']);
 
-$routes->add('/profile/edit', 'Auth\UserProfile::edit', ['as' => 'userProfileEdit']);
+	$routes->add('/profile/edit', 'Auth\UserProfile::edit', ['as' => 'userProfileEdit']);
 
-$routes->get('/messages', 'Auth\Message::index', ['as' => 'message']);
+	$routes->get('/messages', 'Auth\Message::index', ['as' => 'message']);
+});
+
+/* MESSAGES API */
+$routes->get('/messages/send', 'Auth\Message::send', ['as' => 'message.send', 'filter' => 'ajax']);
+$routes->get('/messages/inbox/(:num)', 'Auth\Message::inbox/$1', ['as' => 'message.inbox', 'filter' => 'ajax']);
+$routes->get('/messages/conversation/(:num)/(:num)', 'Auth\Message::conversation/$1/$2', ['as' => 'message.conversation', 'filter' => 'ajax']);
 
 /*
  * --------------------------------------------------------------------
