@@ -1,16 +1,5 @@
 /* eslint-disable no-undef */
 function APIManager() {
-  function generateFakeMessage() {
-    const randMessages = [
-      'lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor',
-      'dolor enet alrut dolor enet alrut dolor enet alrut',
-      'Sed in egestas leo. Maecenas non ultricies quam, ultrices dignissim elit.',
-      'Mauris purus purus, aliquet vel orci sed, blandit tempor neque.',
-    ];
-
-    return randMessages[Math.floor((Math.random() * 4))];
-  }
-
   return {
     async fetchMessageHistoryWith(recipientUserId, msgId = 0) {
       if (recipientUserId === undefined) throw new Error('undefined recipientUsername');
@@ -28,9 +17,9 @@ function APIManager() {
         },
       });
 
-      result = data.data.map((d) => ({ ...d, username: d.user_id }));
-      console.log('result');
-      console.log(result);
+      result = data.data;
+      // console.log('result');
+      // console.log(result);
       return result;
     },
 
@@ -43,8 +32,22 @@ function APIManager() {
         },
       });
 
-      result = data.data.map((d) => ({ ...d, username: `john doe${d.user_id}` }));
+      result = data.data;
+      return result;
+    },
 
+    async sendMessage(recipient_uid, content) {
+      const { data } = await axios.post(window.sendEndpoint, {
+        sender_uid: window.user_id,
+        recipient_uid,
+        content,
+      }, {
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+        },
+      });
+
+      result = data.data;
       return result;
     },
   };
@@ -75,14 +78,10 @@ function ChatManager(apiManager) {
     chatPanelContent.innerHTML = '';
   }
 
-  function receiveChat(msg) {
-    drawChat(msg, false);
-  }
-
   function sendChat(msg) {
     if (msg === '') return;
 
-    drawChat(msg);
+    apiManager.sendMessage(window.recipientUserId, msg);
   }
 
   function createChatBoxDiv(msg, isSender = true) {
@@ -107,14 +106,16 @@ function ChatManager(apiManager) {
 
   return {
     async loadMessages(recipientUserId, recipientUsername) {
+      window.recipientUserId = recipientUserId;
       const messageHistory = await apiManager.fetchMessageHistoryWith(recipientUserId);
 
       clearMessages();
 
       setRecipient(recipientUsername);
       Object.values(messageHistory).forEach((message) => {
-        if (message.username !== window.username) receiveChat(message.content);
-        else sendChat(message.content);
+        // console.log(message.sender_uid, window.user_id);
+        if (message.sender_uid !== window.user_id) drawChat(message.content, false);
+        else drawChat(message.content);
       });
     },
   };
@@ -153,11 +154,8 @@ function InboxManager(apiManager, chatManager) {
       const inboxContainer = document.querySelector('.inbox_container');
       inboxList = await apiManager.fetchInbox();
 
-      console.log('inboxList');
-      console.log(inboxList);
-
       inboxList.forEach(({
-        user_id, username, content, timestamp,
+        user_id, username, content, created_at,
       }) => {
         const inboxCard = createInboxCard(username, content);
 
@@ -178,7 +176,7 @@ function InboxManager(apiManager, chatManager) {
     const apiManager = APIManager();
     const chatManager = ChatManager(apiManager);
     const inbox = InboxManager(apiManager, chatManager);
-    const firstInbox = inbox.load();
-    // chatManager.loadMessages(firstInbox.username);
+    const firstInbox = await inbox.load();
+    chatManager.loadMessages(firstInbox.user_id, firstInbox.username);
   }
 )();

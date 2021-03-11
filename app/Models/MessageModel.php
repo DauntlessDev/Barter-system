@@ -140,6 +140,7 @@ class MessageModel extends Model
 		return $lastBuilder->select("msg.msg_id, msg.user_id, u.username, msg.content, msg.created_at")
 						   ->from('user as u')
 						   ->where('msg.user_id = u.user_id')
+						   ->orderBy('msg.'.$sortBy, $sortOrder)
 						   ->get()
 						   ->getResultArray();
 	}

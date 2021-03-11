@@ -57,7 +57,9 @@ class Message extends BaseController
 			'data' => $this->messageModel->getMessagesWith([
 				'sender_uid' => $body['sender_uid'],
 				'recipient_uid' => $body['recipient_uid'],
-				'msg_id' => $body['msg_id']
+				'msg_id' => $body['msg_id'],
+			], [
+				'sortOrder' => 'asc'
 			]),
 		];
 
