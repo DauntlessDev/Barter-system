@@ -58,6 +58,7 @@ body{
 .category p{
     text-align: center;
     width: 80px;
+    cursor: pointer;
 }
 
 
