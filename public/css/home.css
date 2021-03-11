@@ -15,7 +15,7 @@ body{
 }
 .feature {
     display: flex;
-    padding: 20px 0px;
+    margin: 20px 0px;
 }
 .feature img {
     float: left;
@@ -24,6 +24,7 @@ body{
 }
 
 .explore {
+    margin-top:20px;
     padding: 25px;
     background-color: white;
     border-radius: 5px;
