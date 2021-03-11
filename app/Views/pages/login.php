@@ -14,32 +14,27 @@
 
 <?php // Main Content ?>
 <?= $this->section('content') // located in Views/layouts/main.php "renderSection" ?>
-    <div class="container">
-        <h1>Login Page ⚡️</h1>
+<div class="container">
+    <div class="form-box">
+        <h1>Login</h1>
+        <form class="form" action="<?= route_to('login') ?>" method="POST" id="login-form">
+            <div class="user-box">
+                <input type="text" name="username" id="username" value="janedoe" autocomplete="off" required>
+                <label for="username">Username</label>
+            </div>
+            <div class="user-box">
+                <input type="password" name="password" id="password" value="12345678" autocomplete="new-password" required>
+                <label for="password">Password</label>
+            </div>
+            <p align="right"><a href="">Forgot Password?</a></p>
 
-        <?php // more on flashdata https://codeigniter.com/user_guide/libraries/sessions.html#flashdata?>
-        <?php if (session()->getFlashdata('msg') !== null): ?>
-        <div>
-            <p style='color: green'><?= session()->getFlashdata('msg') ?></p>
-        </div>
-        <?php endif; ?>
+            <div class="user-box">
+                <button class="button" type="submit" form="login-form" value="submit">Login</button>
+            </div>
 
-        <?php // validation https://www.codeigniter.com/user_guide/libraries/validation.html?highlight=validate#customizing-error-display ?>
-        <?= isset($validation) ? $validation->listErrors('user_errors') : '' ?>
+            <p align="center">Don't have an account? <a href="">Sign up</a></p>
 
-        <div>
-            <form class="form" action="<?= route_to('login') ?>" method="POST" id="login-form">
-                <div class="form-group">
-                    <label for="username">Username:</label>
-                    <input type="text" name="username" id="username" value="janedoe" autocomplete="off" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="password" name="password" id="password" value="12345678" autocomplete="new-password" required>
-                </div>
-                <button class="btn btn-primary" type="submit" form="login-form" value="submit">Login</button>
-            </form>
-        </div>
-    </div>
+        </form>
+	</div>
+</div>
 <?= $this->endSection() ?>
