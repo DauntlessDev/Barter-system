@@ -19,15 +19,11 @@
             <p>Category: <?= $category['category_name'] ?></p>
         </div>
         <div class="product-list">
-            <?php for($i = 0; $i<count($category['items']); $i++): ?>
-                <?php 
-                    $poster_id = $category['items'][$i]['poster_uid'];
-                    $poster_info = $class->getPosterInfo($poster_id);
-                    echo view_cell('\App\Libraries\Product::getItem', ['item' => $category['items'][$i], 'poster'=>$poster_info[0]]);
-                ?>
-               
-                
-            <?php endfor; ?>
+            <?php foreach($category['items'] as $item):
+            $poster_id = $item['poster_uid'];
+            $poster_info = $class->getPosterInfo($poster_id);
+            echo view_cell('\App\Libraries\Product::getItem', ['item' => $item, 'poster'=>$poster_info[0]]);
+        endforeach; ?>
         </div>
         <div class="bottom-end">
             <button>View more</button>
