@@ -2,7 +2,9 @@
     <div class="ep-sidebar">
         <div class="ep-sidebar-links">
             <a href="" class="ep-side-link-active">Edit Profile</a>
+	<!--
             <a href="" class="ep-side-link">Messages</a>
+	-->
         </div>
     </div>
 
