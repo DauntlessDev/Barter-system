@@ -19,10 +19,10 @@
             <p>Fresh Finds</p>
         </div>
         <div class="product-list">
-            <?php for($i = 0; $i<count($latestItems); $i++): ?>
-                <?php $poster_info = $class->getPosterInfo($latestItems[$i]['poster_uid']);?>
-                <?= view_cell('\App\Libraries\Product::getItem', ['item' => $latestItems[$i], 'poster'=>$poster_info[0]]) ?>
-            <?php endfor; ?>
+            <?php foreach($latestItems as $latestItem):
+                $poster_info = $class->getPosterInfo($latestItem['poster_uid']);
+                echo view_cell('\App\Libraries\Product::getItem', ['item' => $latestItem, 'poster'=> $poster_info[0]]);
+            endforeach; ?>
         </div>
         <div class="bottom-end">
             <button>View more</button>
