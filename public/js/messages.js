@@ -3,8 +3,7 @@ function APIManager() {
   return {
     async fetchMessageHistoryWith(recipientUserId, msgId = 0) {
       if (recipientUserId === undefined) throw new Error('undefined recipientUsername');
-      // call api to get message history & load them all here
-      // const data = [];
+
       const { user_id } = window; // might find a better approach later on
 
       const { data } = await axios.post(window.conversationEndpoint, {
@@ -18,8 +17,7 @@ function APIManager() {
       });
 
       result = data.data;
-      // console.log('result');
-      // console.log(result);
+
       return result;
     },
 
@@ -59,7 +57,11 @@ function ChatManager(apiManager) {
 
   const sendBtn = document.querySelector('.send-btn');
 
-  sendBtn.addEventListener('click', onSendBtnClick);
+  function sendChat(msg) {
+    if (msg === '') return;
+
+    apiManager.sendMessage(window.recipientUserId, msg);
+  }
 
   function onSendBtnClick(e) {
     const msgTextArea = document.querySelector('.msgTextArea');
@@ -68,21 +70,7 @@ function ChatManager(apiManager) {
     msgTextArea.value = '';
   }
 
-  function drawChat(msg, isSender = true) {
-    const chatBoxContainerDiv = createChatBoxDiv(msg, isSender);
-    chatPanelContent.appendChild(chatBoxContainerDiv);
-    chatPanelContent.scrollTop = chatPanelContent.scrollHeight;
-  }
-
-  function clearMessages() {
-    chatPanelContent.innerHTML = '';
-  }
-
-  function sendChat(msg) {
-    if (msg === '') return;
-
-    apiManager.sendMessage(window.recipientUserId, msg);
-  }
+  sendBtn.addEventListener('click', onSendBtnClick);
 
   function createChatBoxDiv(msg, isSender = true) {
     const chatBoxContainerDiv = document.createElement('div');
@@ -98,6 +86,16 @@ function ChatManager(apiManager) {
     chatBoxContainerDiv.appendChild(chatBoxDiv);
 
     return chatBoxContainerDiv;
+  }
+
+  function drawChat(msg, isSender = true) {
+    const chatBoxContainerDiv = createChatBoxDiv(msg, isSender);
+    chatPanelContent.appendChild(chatBoxContainerDiv);
+    chatPanelContent.scrollTop = chatPanelContent.scrollHeight;
+  }
+
+  function clearMessages() {
+    chatPanelContent.innerHTML = '';
   }
 
   function setRecipient(recipientUsername) {
@@ -116,27 +114,27 @@ function ChatManager(apiManager) {
 
   // sends the next request only after the previous request was resolved
   // this is more efficient than relying on time interval
-  function startWatchChat(recipientUserId) {
-    const time = 1000;
-    return () => fetchMessage(recipientUserId).then((_) => {
-      stopWatchChat();
-      watcher = setTimeout(startWatchChat(recipientUserId), time);
-    }).catch((e) => {
-      console.error(e.message);
-      stopWatchChat();
-      watcher = setTimeout(startWatchChat(recipientUserId), time);
-    });
-  }
-
-  function stopWatchChat() {
-    clearTimeout(watcher);
-  }
-
   async function fetchMessage(recipientUserId) {
     const messageHistory = await apiManager.fetchMessageHistoryWith(recipientUserId, lastMsgId);
 
     lastMsgId = messageHistory[messageHistory.length - 1]?.msg_id || lastMsgId;
     drawMessageHistory(messageHistory);
+  }
+
+  function stopWatchingChat() {
+    clearTimeout(watcher);
+  }
+
+  function startWatchingChat(recipientUserId) {
+    const time = 1000;
+    return () => fetchMessage(recipientUserId).then((_) => {
+      stopWatchingChat();
+      watcher = setTimeout(startWatchingChat(recipientUserId), time);
+    }).catch((e) => {
+      console.error(e.message);
+      stopWatchingChat();
+      watcher = setTimeout(startWatchingChat(recipientUserId), time);
+    });
   }
 
   return {
@@ -147,14 +145,14 @@ function ChatManager(apiManager) {
 
       setRecipient(recipientUsername);
 
-      stopWatchChat();
-      startWatchChat(recipientUserId)();
+      stopWatchingChat();
+      startWatchingChat(recipientUserId)();
     },
   };
 }
 
 function InboxManager(apiManager, chatManager) {
-  let inboxList = [];
+  const inboxContainer = document.querySelector('.inbox_container');
 
   function onInboxClick(e) {
     const inboxCard = e.target.closest('.inbox_card');
@@ -181,23 +179,55 @@ function InboxManager(apiManager, chatManager) {
     return chatBoxContainerDiv;
   }
 
+  function drawInboxCard({
+    user_id, username, content, created_at,
+  }) {
+    const inboxCard = createInboxCard(username, content);
+
+    inboxCard.addEventListener('click', onInboxClick, false);
+    inboxCard.setAttribute('data-user_id', user_id);
+    inboxCard.setAttribute('data-username', username);
+    inboxCard.setAttribute('data-created_at', created_at);
+
+    inboxContainer.appendChild(inboxCard);
+  }
+
+  function clearInbox() {
+    inboxContainer.innerHTML = '';
+  }
+
+  let watcher = null;
+
+  function fetchInbox() {
+    return apiManager.fetchInbox();
+  }
+
+  async function startWatchingInbox() {
+    const time = 3000;
+
+    watcher = setTimeout(async () => {
+      fetchInbox().then((inboxList) => {
+        clearInbox();
+        inboxList.forEach(drawInboxCard);
+        startWatchingInbox();
+      }).catch((e) => {
+        startWatchingInbox();
+      });
+    }, time);
+  }
+
+  // might be useful later
+  /* function stopWatchingInbox() {
+    clearTimeout(watcher);
+  } */
+
   return {
     async load() {
-      const inboxContainer = document.querySelector('.inbox_container');
-      inboxList = await apiManager.fetchInbox();
+      const inboxList = await fetchInbox();
 
-      inboxList.forEach(({
-        user_id, username, content, created_at,
-      }) => {
-        const inboxCard = createInboxCard(username, content);
+      inboxList.forEach(drawInboxCard);
 
-        inboxCard.addEventListener('click', onInboxClick, false);
-        inboxCard.setAttribute('data-user_id', user_id);
-        inboxCard.setAttribute('data-username', username);
-
-        inboxContainer.appendChild(inboxCard);
-      });
-
+      startWatchingInbox();
       return inboxList[0];
     },
   };
@@ -207,8 +237,9 @@ function InboxManager(apiManager, chatManager) {
   async () => {
     const apiManager = APIManager();
     const chatManager = ChatManager(apiManager);
-    const inbox = InboxManager(apiManager, chatManager);
-    const firstInbox = await inbox.load();
+    const inboxManager = InboxManager(apiManager, chatManager);
+
+    const firstInbox = await inboxManager.load();
     chatManager.loadMessages(firstInbox.user_id, firstInbox.username);
   }
 )();
