@@ -30,7 +30,7 @@
                 <button class="button" type="submit" form="login-form" value="submit">Login</button>
             </div>
 
-            <p align="center">Don't have an account? <a href="">Sign up</a></p>
+            <p align="center">Don't have an account? <a href="<?= route_to('signup') ?>">Sign up</a></p>
 
         </form>
 	</div>
