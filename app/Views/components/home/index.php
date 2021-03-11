@@ -1,6 +1,6 @@
 <div class="wrapper">
     <div class="feature">
-        <img src="<?= base_url('assets/home/feature-sample.jpg') ?>"  alt="feature" class="feature-img">
+        <img src="<?= base_url('assets/home/feature-sample-2.png') ?>"  alt="feature" class="feature-img">
     </div>
 
     <div class="explore">
