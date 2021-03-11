@@ -11,7 +11,7 @@ body {
 }
 
 .container {
-    height: 100vh;
+    height: 75.5vh;
     padding: 1rem;
     display: flex;
     justify-content: start;
@@ -48,7 +48,7 @@ body {
 
 .form-box {
     position: absolute;
-    top: 67%;
+    top: 50%;
     left: 50%;
     width: 500px;
     padding: 40px;
@@ -64,14 +64,6 @@ body {
     font-size: 20pt;
     margin-bottom: 20px;
     text-align: center;
-}
-
-.form-box h3 {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: 600;
-    color: #000;
-    font-size: 16pt;
-    margin-bottom: 30px;
 }
 
 .form-box .user-box {
@@ -132,8 +124,22 @@ body {
 .form-box .user-box input:valid ~ label {
     top: -15px;
     left: 5px;
-    color: #535353;
+    color: #bebebe;
     padding: 5px;
     background-color: #fff;;
     font-size: 12px;
+}
+
+.form-nav {
+    position: relative;
+    -webkit-box-orient: horizontal;
+    /* flex-flow: row nowrap; */
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    height: 64px;
+    padding: 4px 64px;
+    background: #fff;
+    box-shadow: inset 0 -1px 0 0 rgb(44 44 45 / 7%);
 }

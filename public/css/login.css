@@ -70,6 +70,10 @@ body {
     position: relative;
 }
 
+.form-box .validation-box {
+    margin-bottom: 10px;
+}
+
 .form-box .user-box input {
     width: 100%;
     padding: 10px;
