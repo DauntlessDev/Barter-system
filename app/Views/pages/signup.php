@@ -17,8 +17,10 @@
         <div class="form-box">
             <h1>Sign-up</h1>
 
-            <?php // validation https://www.codeigniter.com/user_guide/libraries/validation.html?highlight=validate#customizing-error-display ?>
-            <?= isset($validation) ? $validation->listErrors('user_errors') : '' ?>
+            <div class="validation-box">
+                <?php // validation https://www.codeigniter.com/user_guide/libraries/validation.html?highlight=validate#customizing-error-display ?>
+                <?= isset($validation) ? $validation->listErrors('user_errors') : '' ?>
+            </div>
 
             <div>
                 <form class="form" action="<?= route_to('signup') ?>" method="POST" id="signup-form" enctype="multipart/form-data">
