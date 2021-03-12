@@ -18,7 +18,7 @@
     <div class="form-box">
         <h1>Login</h1>
 
-        <form class="form" action="<?= route_to('login') ?>" method="POST" id="login-form">
+        <form class="form" method="POST" id="login-form">
             <div class="validation-box">
 
             <?php // more on flashdata https://codeigniter.com/user_guide/libraries/sessions.html#flashdata?>
@@ -32,7 +32,7 @@
             <?= isset($validation) ? $validation->listErrors('user_errors') : '' ?>
 
             </div>
-            
+
             <div class="user-box">
                 <input type="text" name="username" id="username" value="janedoe" autocomplete="off" required>
                 <label for="username">Username</label>
