@@ -75,34 +75,10 @@ class Home extends BaseController
         }
 
 	}
-	function searchItemsByCategory($category){
-		$items = $this->categoryModel->getItem(['category_name' => [$category]]);
-		print("items w/ category of " + $category + ": ");
-		var_dump($items);
-	}
-
 
 	function getPosterInfo($uid){
 		$poster = $this->userModel->get(['user_id' => [$uid]]);
 		return $poster;
 	}
-
-	function displayProductTitle($title){
-		if (strlen($title) < 20){
-			echo ($title);
-		}else{  
-			echo substr($title, 0, 17) . "...";
-		}
-
-	}
-	function displayProductDescription($content){
-		if (str_word_count($content) < 15){
-			echo ($content);
-		}else{  
-			echo substr($content, 0, 110) . "...";
-		}
-	}
-
-
 
 }

@@ -48,6 +48,7 @@ body{
     width: 140px;
     display: inline;
     justify-content: space-around;
+    text-overflow: ellipsis;
     
 }
 
@@ -86,6 +87,7 @@ body{
 }
 
 .product{
+    height: 500px;
     width: 250px;
     display: inline;
     align-items: center;
@@ -129,16 +131,39 @@ body{
     
 }
 
+.product-details h6{
+    padding: 3px;
+    height: 18px;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .product-details p{
     padding: 3px;
+    height: 55px;
+    font-size: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* increase limit lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .product-name{
+    padding: 3px;
     font-weight: bold;
+    height: 18px;
+    font-size: 15px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
+
 .new-tag{
-    background: rgb(255, 153, 0);
+    background: #0062c7;
     padding: 5px;
     font-size: 10px;
     color:white;

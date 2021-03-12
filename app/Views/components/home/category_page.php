@@ -19,7 +19,7 @@
             $poster_id = $item['poster_uid'];
             $poster_info = $class->getPosterInfo($poster_id);
             echo view_cell('\App\Libraries\Product::getItem', ['item' => $item, 'poster'=>$poster_info[0]]);
-        endforeach; ?>
+            endforeach; ?>
         </div>
         <div class="bottom-end">
             <button>View more</button>
