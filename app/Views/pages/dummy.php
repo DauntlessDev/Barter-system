@@ -85,8 +85,8 @@
     <summary>Message Model</summary>
     <pre>
     <?php
-        // print_r($messageModel->getMessagesWith(['sender_uid' => 1, 'recipient_uid' => 2])); // Get conversation between two user
-        print_r($messageModel->getAllRecentMessages(['recipient_uid' => 1])); // Get all recent messages (recipient_uid must be the current logged in user)
+        print_r($messageModel->getMessagesWith(['sender_uid' => 1, 'recipient_uid' => 2])); // Get conversation between two user
+        // print_r($messageModel->getAllRecentMessages(['recipient_uid' => 1])); // Get all recent messages (recipient_uid must be the current logged in user)
     ?>
     </pre>
 </details>

@@ -4,6 +4,7 @@ namespace App\Controllers\Auth;
 
 use App\Controllers\BaseController;
 use App\Models\MessageModel;
+use App\Models\UserModel;
 use CodeIgniter\API\ResponseTrait;
 
 class Message extends BaseController
@@ -17,26 +18,35 @@ class Message extends BaseController
 	}
 
 	public function index() {
-		if ($this->request->getMethod() === 'get') return view('pages/auth/message');
+		$data = [
+			'users' => (new UserModel())->findAll(),
+		];
+
+		if ($this->request->getMethod() === 'get') return view('pages/auth/message', $data);
 	}
 
 	/*
 	 * Send chat to user
 	 */
 	public function send() {
-		$data = $this->request->getJSON();
+		$body = get_object_vars($this->request->getJSON());
 
-		$this->messageModel->insert($data);
+		if (empty(trim($body['content']))) return $this->respond(['error' => 'Content must not be empty'], 400);
+		if ($body['sender_uid'] === $body['recipient_uid']) return $this->respond(['error' => 'Sender and recipient can\'t be the same'], 400);
 
-		return $this->respond($data);
+		$this->messageModel->insert($body);
+
+		return $this->respond($body);
 	}
 
 	/*
 	 * Retrieve all past conversation
 	 */
-	public function inbox(int $userId) {
+	public function inbox() {
+		$body = get_object_vars($this->request->getJSON());
+
 		$data = [
-			'data' => $this->messageModel->getAllRecentMessages(['recipient_uid' => $userId]),
+			'data' => $this->messageModel->getAllRecentMessages(['recipient_uid' => $body['recipient_uid']]),
 		];
 
 		return $this->respond($data);
@@ -45,14 +55,20 @@ class Message extends BaseController
 	/*
 	 * Retrieve all conversations between two users
 	 */
-	public function conversation(int $senderUid, int $recipientUid) {
+	public function conversation() {
+		$body = get_object_vars($this->request->getJSON());
+
 		$data = [
 			'data' => $this->messageModel->getMessagesWith([
-						'sender_uid' => $senderUid,
-						'recipient_uid' => $recipientUid
-					]),
+				'sender_uid' => $body['sender_uid'],
+				'recipient_uid' => $body['recipient_uid'],
+				'msg_id' => $body['msg_id'],
+			], [
+				'sortOrder' => 'asc'
+			]),
 		];
 
 		return $this->respond($data);
 	}
 }
+?>
