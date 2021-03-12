@@ -43,12 +43,12 @@ $routes->environment('development', function($routes) {
 
 /* PUBLIC ROUTES */
 $routes->get('/', 'Home::index', ['as' => 'home']);
-$routes->get('category/(:any)', 'Home::categoryPage/$1');
 
-// $routes->get('category', 'Home::categoryPage');
+$routes->add('/itemprofile', 'Item::index', ['as' => 'itemprofile']);
 
 /* PROTECTED ROUTES */
 $routes->group('', ['filter' => 'auth'], function($routes) {
+
     $routes->add('/signup', 'Auth\Auth::signup', ['as' => 'signup']);
 
 	$routes->add('/login', 'Auth\Auth::login', ['as' => 'login']);
@@ -60,6 +60,7 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
 	$routes->add('/profile/edit', 'Auth\UserProfile::edit', ['as' => 'userProfileEdit']);
 
 	$routes->get('/messages', 'Auth\Message::index', ['as' => 'message']);
+
 });
 
 /* MESSAGES API */
