@@ -45,7 +45,8 @@ class AuthFilter implements FilterInterface
 				}
 			}
 
-			return redirect()->route('login');
+			$get = 'redirect='.$request->uri->getPath();
+			return redirect()->to(route_to('login')."?$get");
 		}
 	}
 
@@ -67,6 +68,6 @@ class AuthFilter implements FilterInterface
 	}
 
 	private function isMatchedUrl(string $route, RequestInterface $request) {
-		return site_url($route) === (string)$request->uri;
+		return $route === '/'.$request->uri->getPath();
 	}
 }

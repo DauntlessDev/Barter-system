@@ -40,6 +40,12 @@ class Auth extends BaseController
 
 			$user = $this->userModel->where([ 'username' => $_POST['username'] ])->first();
 			$this->setSession($user);
+
+			if (isset($_GET['redirect'])) {
+				$redirectURI = '/'.$_GET['redirect'];
+				return redirect()->to($redirectURI);
+			}
+
 			return redirect()->route('userProfile');
 		}
 	}
