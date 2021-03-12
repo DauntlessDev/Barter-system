@@ -243,10 +243,10 @@ function SearchManager(chatManager) {
     contactListUserList.shift();
     const searchResult = contactListUserList.find((contact) => contact.value === searchQuery);
 
-    const recipientId = searchResult.dataset.user_id;
-    const recipientUsername = searchResult.value;
-
     if (searchResult) {
+      const recipientId = searchResult.dataset.user_id;
+      const recipientUsername = searchResult.value;
+
       chatManager.loadMessages(recipientId, recipientUsername);
     }
   }
