@@ -16,7 +16,8 @@ body {
     justify-content: start;
     align-items: center;
     flex-direction: column;
-    margin: 0px 24px 71px;
+    /* margin: 0px 24px 71px; */
+    height: 120vh;
     padding-bottom: 0px;
     padding-top: 50px;
 }
