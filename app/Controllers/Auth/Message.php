@@ -32,6 +32,7 @@ class Message extends BaseController
 		$body = get_object_vars($this->request->getJSON());
 
 		if (empty(trim($body['content']))) return $this->respond(['error' => 'Content must not be empty'], 400);
+		if ($body['sender_uid'] === $body['recipient_uid']) return $this->respond(['error' => 'Sender and recipient can\'t be the same'], 400);
 
 		$this->messageModel->insert($body);
 

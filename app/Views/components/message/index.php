@@ -9,7 +9,9 @@
                 <input class="searchUserField" list="contactListUser" placeholder="search user...">
                 <datalist id="contactListUser">
                     <?php foreach($users as $user): // this will hamper performance if there's a lot of users ?>
-                        <option data-user_id="<?= $user['user_id'] ?>" value="<?= $user['username'] ?>">
+                        <?php if ($user['user_id'] !== session()->get('user')['user_id']): ?>
+                            <option data-user_id="<?= $user['user_id'] ?>" value="<?= $user['username'] ?>">
+                        <?php endif; ?>
                     <?php endforeach; ?>
                 </datalist>
             </div>
