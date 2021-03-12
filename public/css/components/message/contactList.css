@@ -1,0 +1,12 @@
+.searchUserField {
+    border: none;
+    width: 100%;
+    outline: none;
+    padding: 0.4rem;
+    background-color: var(--msg-searchFieldBg);
+    color: var(--msg-searchFieldColor)
+}
+
+.searchUserField::placeholder {
+    color: var(--msg-searchFieldPlaceHolderColor);
+}
