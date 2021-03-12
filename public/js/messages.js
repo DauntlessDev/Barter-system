@@ -233,13 +233,39 @@ function InboxManager(apiManager, chatManager) {
   };
 }
 
+function SearchManager(chatManager) {
+  const searchUserField = document.querySelector('.searchUserField');
+  const contactListUser = document.querySelector('#contactListUser');
+
+  function onSearchFieldChange(e) {
+    const searchQuery = e.target.value;
+    const contactListUserList = Array.from(contactListUser.childNodes);
+    contactListUserList.shift();
+    const searchResult = contactListUserList.find((contact) => contact.value === searchQuery);
+
+    const recipientId = searchResult.dataset.user_id;
+    const recipientUsername = searchResult.value;
+
+    if (searchResult) {
+      chatManager.loadMessages(recipientId, recipientUsername);
+    }
+  }
+
+  searchUserField.addEventListener('change', onSearchFieldChange);
+}
+
 (
   async () => {
     const apiManager = APIManager();
     const chatManager = ChatManager(apiManager);
+    const searchManager = SearchManager(chatManager);
     const inboxManager = InboxManager(apiManager, chatManager);
 
     const firstInbox = await inboxManager.load();
-    chatManager.loadMessages(firstInbox.user_id, firstInbox.username);
+
+    // check if user have at least one item in inbox
+    if (firstInbox) {
+      chatManager.loadMessages(firstInbox.user_id, firstInbox.username);
+    }
   }
 )();

@@ -4,6 +4,7 @@ namespace App\Controllers\Auth;
 
 use App\Controllers\BaseController;
 use App\Models\MessageModel;
+use App\Models\UserModel;
 use CodeIgniter\API\ResponseTrait;
 
 class Message extends BaseController
@@ -17,7 +18,11 @@ class Message extends BaseController
 	}
 
 	public function index() {
-		if ($this->request->getMethod() === 'get') return view('pages/auth/message');
+		$data = [
+			'users' => (new UserModel())->findAll(),
+		];
+
+		if ($this->request->getMethod() === 'get') return view('pages/auth/message', $data);
 	}
 
 	/*
