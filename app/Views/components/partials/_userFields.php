@@ -24,7 +24,7 @@
 
 <div class="user-box">
     <input type="text" name="contact_details" id="contact_details" value="<?= session()->get('user')['contact_details'] ?? '09123456789' ?>" autocomplete="off" required>
-    <label for="contact_details">Contact Details</label>
+    <label for="contact_details">Phone</label>
 </div>
 
 <?php if (session()->get('isLoggedIn') === true) : ?>
