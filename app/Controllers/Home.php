@@ -50,6 +50,28 @@ class Home extends BaseController
 		return view('pages/category',$data);	
 	}
 
+	
+	public function resultPage()
+	{	
+		if(isset($_GET['search'])){
+			$data = [
+				'class' => $this,
+				'results' => $this->searchItemsByName($_GET['item_name']),
+			];
+			
+			return view('pages/result', $data);	
+		}else{
+			$this->index();
+		}
+	}
+
+
+	function searchItemsByName($item_name){
+		$items = $this->itemModel->like('item_name', $item_name)->findAll();
+		return $items;
+
+	}
+
 
 	function getLatestItems($options){
 		$items = $this->itemModel->get($options);
@@ -62,20 +84,7 @@ class Home extends BaseController
 		return $categories;
 
 	}
-
 	
-
-
-	
-	function searchItemsByName($itemModel, $name){
-        if ($this->request->getMethod() === 'get') {
-			$items = $this->itemModel->get($name);
-			print("items search result: ");
-			var_dump($items);
-        }
-
-	}
-
 	function getPosterInfo($uid){
 		$poster = $this->userModel->get(['user_id' => [$uid]]);
 		return $poster;

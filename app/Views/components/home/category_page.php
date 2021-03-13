@@ -21,8 +21,8 @@
             echo view_cell('\App\Libraries\Product::getItem', ['item' => $item, 'poster'=>$poster_info[0]]);
             endforeach; ?>
         </div>
-        <div class="bottom-end">
+        <!-- <div class="bottom-end">
             <button>View more</button>
-        </div>
+        </div> -->
     </div>
 </div>

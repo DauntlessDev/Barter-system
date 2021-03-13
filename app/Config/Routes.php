@@ -43,7 +43,8 @@ $routes->environment('development', function($routes) {
 
 /* PUBLIC ROUTES */
 $routes->get('/', 'Home::index', ['as' => 'home']);
-$routes->get('category/(:any)', 'Home::categoryPage/$1');
+$routes->get('/category/(:any)', 'Home::categoryPage/$1');
+$routes->get('/result', 'Home::resultPage');
 
 // $routes->get('category', 'Home::categoryPage');
 
