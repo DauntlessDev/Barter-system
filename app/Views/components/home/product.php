@@ -15,16 +15,12 @@
       
     </div>
     <div class="product-details">
-        <p class="product-name"><?= $item['item_name'] ?></p>
+        <div class="product-name"><?= $item['item_name'] ?></div>
+        <!-- <h6>
+            <?//= $item['desc_title']?>
+            </h6> -->
         <p>
-            <?php
-                $class->displayProductTitle($item['desc_title']);
-            ?>
-        </p>
-        <p>
-            <?php
-                $class->displayProductDescription($item['desc_content']);
-            ?>
+            <?= $item['desc_content']?>
          </p>
         <div class="new-tag">New</div>
     </div>
