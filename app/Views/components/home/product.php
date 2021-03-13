@@ -15,7 +15,7 @@
       
     </div>
     <div class="product-details">
-        <p class="product-name"><?= $item['item_name'] ?></p>
+        <p class="product-name"><?= ucwords($item['item_name']) ?></p>
         <p>
             <?php
                 $class->displayProductTitle($item['desc_title']);
