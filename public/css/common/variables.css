@@ -19,4 +19,18 @@
     --msg-inboxCardHeader: rgb(44, 44, 44)
     --msg-inboxCardContent: rgb(83, 83, 83);
     /* ./Messages */
+
+    /* text color */
+    --category-titleColor: gray;
+    --product-titleColor: gray;
+    --product-dateColor: gray;
+    --product-nameColor: rgb(77, 77, 77);
+    --product-detailColor: gray;
+    --product-hoverColor: rgb(205, 226, 231);
+    /* ./text color */
+
+    /* Containers */
+    --container-box-shadow: 2px 2px 4px #e2e0e0;
+    --container-Bg: #F6F5F3;
+    /* ./Containers */
 }
