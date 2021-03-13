@@ -58,7 +58,7 @@ class Validation
 		'address'	 	  => 'required|max_length[30]|alpha_numeric_punct',
 		'contact_details' => 'required|min_length[3]|max_length[30]|numeric',
 		'username'   	  => [
-			'label' => 'Username',
+			'label' => 'username',
 			'rules' => 'required|min_length[3]|max_length[30]|alpha_numeric|is_unique[user.username]',
 			'errors' => [
 				'is_unique' => 'The {field} {value} is already taken.'
