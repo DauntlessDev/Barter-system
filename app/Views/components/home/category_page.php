@@ -12,7 +12,7 @@
 
     <div class="fresh-finds">
         <div class="fresh-finds-header">
-            <p>Category: <?= $category['category_name'] ?></p>
+            <p>Category: <?= ucfirst($category['category_name']) ?></p>
         </div>
         <div class="product-list">
             <?php foreach($category['items'] as $item):
