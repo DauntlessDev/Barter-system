@@ -141,11 +141,12 @@
 
 }
 
-.product-header img{
+.product-header img {
     width: 3.125rem;
     height: 3.125rem;
     display:inline;
     border-radius: 2.1875rem;
+    filter: opacity(80%) brightness(80%);
 }
 
 .product-header-sub{
