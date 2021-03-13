@@ -8,7 +8,7 @@
          alt="profile-pic" class="profile-pic">
         <div class="product-header-sub">
             <p><?= $poster['username'] ?></p>
-            <h6><?= $item['created_at'] ?></h6>
+            <h6><?= date('M d, Y', strtotime($item['created_at'])); ?></h6>
         </div>
     </div>
     <div class="main-img" style="background-image:url(<?= base_url($item['photo_url']) ?>); ">
