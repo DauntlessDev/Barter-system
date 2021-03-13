@@ -57,7 +57,13 @@ class Validation
 		'last_name'  	  => 'required|min_length[3]|max_length[30]|alpha_space',
 		'address'	 	  => 'required|max_length[30]|alpha_numeric_punct',
 		'contact_details' => 'required|min_length[3]|max_length[30]|numeric',
-		'username'   	  => 'required|min_length[3]|max_length[30]|alpha_numeric|is_unique[user.username]',
+		'username'   	  => [
+			'label' => 'Username',
+			'rules' => 'required|min_length[3]|max_length[30]|alpha_numeric|is_unique[user.username]',
+			'errors' => [
+				'is_unique' => 'The {field} {value} is already taken.'
+			],
+		],
 		'password'   	  => 'required|min_length[8]|max_length[255]',
 	];
 }
