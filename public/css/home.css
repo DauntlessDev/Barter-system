@@ -27,11 +27,11 @@ body{
 }
 
 .explore {
-    margin-top:20px;
+    margin-top:40px;
     padding: 25px;
     background-color: white;
     border-radius: 5px;
-    box-shadow: 0px 0px 5px #9cbfe6 ;
+    box-shadow: 0px 0px 3px #9cbfe6 ;
 }
 
 .explore-header{
@@ -75,7 +75,7 @@ body{
     margin: 20px 0px;
     margin-bottom: 40px;
     border-radius: 5px;
-    box-shadow: 0px 0px 5px #9cbfe6 ;
+    box-shadow: 0px 0px 3px #9cbfe6 ;
 }
 
 .fresh-finds-header{
@@ -128,7 +128,7 @@ body{
 }
 
 .product:hover{
-    box-shadow: 0 0 10px 0 #9cbfe6, inset 0 0 0 1px rgb(44 44 45 / 7%);
+    box-shadow: 0 0 1px 0 #9cbfe6, inset 0 0 0 1px rgb(44 44 45 / 7%);
     cursor: pointer;
 }
 .product-header{
