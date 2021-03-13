@@ -5,6 +5,8 @@
     justify-content: space-between;
     padding: 20px 110px;
     background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px #9cbfe6 ;
 
 }
 
@@ -26,6 +28,7 @@
     border: none;
     color: white;
     background-color: rgb(109, 31, 126);
+    cursor: pointer;
 }
 
 .sell-button{
@@ -38,4 +41,7 @@
     color: white;
     border-radius: 5px;
     border:none;
+    border-radius: var(--radius-button);
+    box-shadow: var(--button-shadow);
+    cursor: pointer;
 }
