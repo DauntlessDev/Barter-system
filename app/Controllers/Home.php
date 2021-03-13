@@ -60,8 +60,6 @@ class Home extends BaseController
 			];
 			
 			return view('pages/result', $data);	
-		}else{
-			$this->index();
 		}
 	}
 
