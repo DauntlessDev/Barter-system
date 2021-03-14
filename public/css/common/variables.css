@@ -16,7 +16,10 @@
 
     --msg-inboxBg: rgb(201, 198, 160);
     --msg-inboxCard: rgb(204, 204, 204);
-    --msg-inboxCardHeader: rgb(44, 44, 44)
+    --msg-inboxCardHeader: rgb(44, 44, 44);
     --msg-inboxCardContent: rgb(83, 83, 83);
     /* ./Messages */
+
+    --container-shadow: #c4d5e4;
+    --accent: #0062c7;
 }
