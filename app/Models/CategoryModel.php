@@ -10,7 +10,10 @@ class CategoryModel extends Model
 	protected $table 			= 'category';
 	protected $primaryKey       = 'category_id';
 	protected $useAutoIncrement	= true;
-	protected $allowedFields    = ['category_name'];
+	protected $allowedFields    = [
+		'category_name',
+		'icon',
+	];
 
 	protected $useTimestamps    = true;
 	protected $createdField     = 'created_at';
