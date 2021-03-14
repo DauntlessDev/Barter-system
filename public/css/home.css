@@ -12,7 +12,7 @@
 
 .feature {
     display: flex;
-    margin: 1.25rem 0;
+    /* margin: 1.25rem 0; */
 }
 
 .feature img {
@@ -35,11 +35,12 @@
 .explore-header {
     display: block;
     font-size: 1.3125rem;
+    padding-bottom: .5rem;
     color: var(--category-titleColor);
 }
 
 .category-container {
-    display: flex;
+    display: inline-flex;
     border-radius: 0.3125rem;
     align-items: center;
     flex-wrap: wrap;
@@ -47,8 +48,8 @@
 }
 
 .category {
-    padding: 1.25rem;
-    min-width: 8rem;
+    padding: .5rem;
+    min-width: 5rem;
     width: 10%;
     display: flex;
     flex-direction: column;
@@ -62,9 +63,9 @@
 }
 
 .category img{
-    width: 5rem;
-    margin: 0 auto;
+    width: 3rem;
     cursor: pointer;
+    
 }
 
 
@@ -73,7 +74,7 @@
     background-color: white;
     border-radius: 0.3125rem;
     box-shadow: var(--container-box-shadow);
-    margin: 2.5rem 0;
+    /* margin: 1rem 0; */
     border-radius: 0.3125rem;
     display: flex;
     flex-direction: column;
@@ -84,13 +85,14 @@
     display: block;
     font-size: 1.3125rem;
     color: var(--product-titleColor);
+    padding-bottom: .5rem;
 }
 
 .product-list{
     border-radius: 0.3125rem;
     display: flex;
-    gap: 1rem;
     flex-wrap: wrap;
+    gap: 1rem;
     margin-top: 0.625rem;
     justify-content: center;
 }
@@ -125,7 +127,7 @@
     height: 28.125rem;
     min-width: 16rem;
     width: 22%;
-    padding: 1rem;
+    padding: .5rem;
     display: inline;
     align-items: center;
     border-radius: 0.5rem;
@@ -133,7 +135,7 @@
 }
 
 
-.product:hover {
+.product:hover, .category:hover {
     transform: scale(1.02);
 }
 
@@ -141,7 +143,7 @@
 .category:hover {
     box-shadow: 0 0 0.0625rem 0 #dad4d4, inset 0 0 0 0.0625rem rgb(44 44 45 / 7%);
     cursor: pointer;
-    background-color: var(--product-hoverColor);
+    /* background-color: var(--product-hoverColor); */
 }
 
 .product-header{
@@ -251,4 +253,10 @@
     border: 0.0625rem solid black;
     background: white;
 
+}
+
+@media screen and (max-width: 600px) {
+    .feature img {
+        height: 30vh;
+    }
 }
