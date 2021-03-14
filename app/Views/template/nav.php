@@ -16,6 +16,7 @@
 
   <div class="nav-links">
     <?php if (session()->get('isLoggedIn') === true) : ?>
+        <a href="<?= route_to('home') ?>">Home</a>
         <a href="<?= route_to('userProfile') ?>"><?= session()->get('user')['username'] ?? '' ?></a>
         <a href="<?= route_to('userProfileEdit') ?>">Edit Profile</a>
         <a href="<?= route_to('message') ?>">Messages</a>
