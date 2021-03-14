@@ -8,6 +8,21 @@
     justify-content: space-around;
     gap: 2.5rem;
     background-color: var(--container-Bg);
+}   
+
+@media screen and (max-width: 1400px) {
+    .wrapper{
+    padding: 2.5rem 7.5vw;
+    }
+
+}
+
+
+@media screen and (max-width: 1000px) {
+    .feature, .feature img {
+        display: none;
+    }
+
 }
 
 .feature {
