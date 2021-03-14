@@ -52,7 +52,7 @@ Features:
 
 `composer refresh-db`
 
-That's it your done! *If there's an error please check [Manual Database Installation](#manual-database-installation-⏩)*
+That's it your done! *If there's an error please check [Manual Database Installation](#manual-database-installation-)*
 
 > start server (using cmd/terminal)
 
