@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="shortcut icon" href="assets/home/  favicon.ico" type="image/x-icon">
   <link rel="icon" href="assets/home/favicon.ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;900&display=swap" rel="stylesheet">
   <!-- Page specific css renders here -->
   <?= $this->renderSection('css') ?>
 </head>
