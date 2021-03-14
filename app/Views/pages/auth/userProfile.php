@@ -48,7 +48,7 @@
 
                                     <div class="p-items-box">
                                         <div class="p-item-box-container">
-                                            <a href="" style="color: #000">
+                                            <a href="">
                                                 <div class="p-item-img">
                                                     <span class="p-item-img-container">
                                                         <img class="img" src="http://via.placeholder.com/300">
@@ -56,7 +56,6 @@
                                                 </div>
 
                                                 <p class="item-title">Fujifilm Instax Mini 11 (White)</p>
-                                                <p class="item-desc-title">Description Title</p>
                                                 <p class="item-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. </p>
                                             </a>
                                         </div>

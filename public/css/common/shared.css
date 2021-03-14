@@ -1,3 +1,9 @@
 @import "main.css";
 @import "button.css";
 @import "form.css";
+
+body{
+    font-size: 15px;
+    background: white;
+    font-family: "Roboto", sans-serif;
+}

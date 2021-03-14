@@ -1,7 +1,5 @@
 @import "common/shared.css";
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,100&display=swap');
-
 .container {
     height: 110vh;
     min-width: 992px;
@@ -78,7 +76,7 @@ u, underline {
 .p-nav-links-a {
     color: #0062c7;
     text-decoration: none;
-    border-bottom: 2px solid #0062c7;
+    border-bottom: 2px solid var(--accent);
     cursor: pointer;
     padding: 20px 0;
     margin: 0 16px;
@@ -143,7 +141,7 @@ u, underline {
 }
 
 .p-nav-link a:hover, .p-nav-links a:visited {
-    color: #0062c7;
+    color: var(--accent);
     text-decoration: none;
 }
 
@@ -172,7 +170,8 @@ div {
 
 .p-items-content {
     padding-bottom: 20px;
-    box-shadow: 0px 0px 5px #9cbfe6;
+    box-shadow: 0px 0px 5px var(--container-shadow);
+    border-radius: 5px;
 }
 
 .p-items-head {
@@ -209,12 +208,17 @@ div {
     -webkit-box-pack: justify;
     justify-content: space-between;
     padding: 8px;
+    color: #444444;
     transition: transform .4s cubic-bezier(.4,0,.2,1),-webkit-transform .4s cubic-bezier(.4,0,.2,1);
+}
+
+.p-item-box-container a {
+    color: #444444;
 }
 
 .p-items-box:hover {
     border: 1px solid transparent;
-    box-shadow: 0 0 10px 0 #9cbfe6, inset 0 0 0 1px rgb(44 44 45 / 7%);
+    box-shadow: 0 0 5px 0 var(--container-shadow);
 }
 
 .p-item-box-container {
@@ -277,6 +281,6 @@ div {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
