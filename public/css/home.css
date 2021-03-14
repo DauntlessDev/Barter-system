@@ -47,7 +47,7 @@
     /* align-items: center;
     justify-content: center; */
     padding: .5rem;
-    /* width: 8.75rem; */
+    width: 7.75rem;
     display: inline;
     justify-content: center;
     align-content: center;
@@ -55,11 +55,13 @@
     text-overflow: ellipsis;
     transition: transform .2s;
     border-radius: 5px;
+    text-align: center;
 }
 
 .category img{
-    width: 5rem;
+    width: 3rem;
     cursor: pointer;
+    
 }
 
 .category p{
