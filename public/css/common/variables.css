@@ -22,9 +22,10 @@
 
     /* text color */
     --category-titleColor: gray;
+    --category-itemLabelColor: rgb(48, 48, 48);
     --product-titleColor: gray;
     --product-dateColor: gray;
-    --product-nameColor: rgb(77, 77, 77);
+    --product-nameColor: rgb(73, 73, 73);
     --product-detailColor: gray;
     --product-hoverColor: rgb(205, 226, 231);
     /* ./text color */
