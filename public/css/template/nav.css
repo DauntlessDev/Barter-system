@@ -47,6 +47,10 @@ nav > #nav-check {
     padding: 10px 10px 10px 10px;
   }
 
+  nav > .nav-header > .nav-title a {
+    font-size: 1.25rem;
+  }
+
   nav > .nav-btn {
     display: inline-block;
     position: absolute;
@@ -87,7 +91,9 @@ nav > #nav-check {
   nav > .nav-links > a {
     display: block;
     width: 100%;
-    padding: 13px 10px 13px 10px;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.25rem;
   }
 
   nav > #nav-check:not(:checked) ~ .nav-links {
@@ -99,5 +105,6 @@ nav > #nav-check {
     height: min-content;
     opacity: 0.95;
     overflow-y: auto;
+    margin-top: 1.25rem;
   }
 }
