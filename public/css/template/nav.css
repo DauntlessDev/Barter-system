@@ -95,7 +95,9 @@ nav > #nav-check {
   }
 
   nav > #nav-check:checked ~ .nav-links {
-    height: calc(100vh - 50px);
+    /* height: calc(100vh - 50px); */
+    height: min-content;
+    opacity: 0.95;
     overflow-y: auto;
   }
 }
