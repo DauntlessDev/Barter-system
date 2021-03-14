@@ -2,27 +2,12 @@
 @import "common/variables.css";
 
 .wrapper{
-    padding: 2.5rem 11rem;
+    padding: 2.5rem var(--global-horizontalPadding);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     gap: 2.5rem;
     background-color: var(--container-Bg);
-}   
-
-@media screen and (max-width: 1400px) {
-    .wrapper{
-    padding: 2.5rem 7.5vw;
-    }
-
-}
-
-
-@media screen and (max-width: 1000px) {
-    .feature, .feature img {
-        display: none;
-    }
-
 }
 
 .feature {
@@ -108,7 +93,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    padding: 0 1.25rem;
     margin-top: 0.625rem;
     justify-content: center;
 }
@@ -269,4 +253,10 @@
     border: 0.0625rem solid black;
     background: white;
 
+}
+
+@media screen and (max-width: 600px) {
+    .feature img {
+        height: 30vh;
+    }
 }
