@@ -3,6 +3,7 @@
     --primary-color: rgb(0, 140, 255);
     --radius-button: 0.2rem;
     --radius-input: 0.2rem;
+    --global-horizontalPadding: 7.5vw;
 
     /* Messages */
     --msg-searchFieldColor: black;

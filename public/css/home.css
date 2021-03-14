@@ -2,7 +2,7 @@
 @import "common/variables.css";
 
 .wrapper{
-    padding: 2.5rem 7.5vw;
+    padding: 2.5rem var(--global-horizontalPadding);
     display: flex;
     flex-direction: column;
     justify-content: space-around;

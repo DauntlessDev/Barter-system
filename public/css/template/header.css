@@ -2,13 +2,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.25rem 6.875rem;
+    padding: 1.25rem var(--global-horizontalPadding);
     background-color: white;
     border-radius: 5px;
     border: 1px solid #ececec;
     flex-wrap: wrap;
 }
-
 
 .logo {
     height: 55px;
