@@ -29,15 +29,6 @@
     color: var(--msg-receiverCardTextColor);
 }
 
-.msg_container {
-    display: flex;
-    height: 85%;
-    width: 100%;
-    border-radius: 0.3rem;
-    overflow: hidden;
-    margin-top: 2rem;
-}
-
 .content {
     width: 100%;
     background-color: var(--msg-contentBg);
@@ -46,14 +37,4 @@
     flex-direction: column;
     word-wrap: break-word;
     height: 100%;
-}
-
-.recipient_container {
-    width: 100%;
-    padding: 0.3rem 0;
-    background-color: var(--msg-contentHeader);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 0.1rem;
 }

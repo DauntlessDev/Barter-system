@@ -12,3 +12,7 @@
 .searchUserField::placeholder {
     color: var(--msg-searchFieldPlaceHolderColor);
 }
+
+@media only screen and (max-width: 600px) {
+    
+}
