@@ -59,6 +59,7 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
 	$routes->get('/logout', 'Auth\Auth::logout', ['as' => 'logout']);
 
 	$routes->get('/item/(:num)/delete', 'Item::delete/$1', ['as' => 'itemDelete']);
+	$routes->add('/item/(:num)/edit', 'Item::edit/$1', ['as' => 'itemEdit']);
 
 	$routes->add('/profile/edit', 'Auth\UserProfile::edit', ['as' => 'userProfileEdit']);
 

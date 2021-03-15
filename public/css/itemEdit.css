@@ -1,0 +1,22 @@
+@import "common/shared.css";
+
+.container {
+    padding: 0 var(--global-horizontalPadding);
+    background-color: var(--container-Bg);
+}
+
+.wrapper {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 90vh;
+}
+
+.container_form{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}

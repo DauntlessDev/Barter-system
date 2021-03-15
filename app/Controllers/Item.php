@@ -29,7 +29,27 @@ class Item extends BaseController
 			'user' => $user,
 		];
 
-		return view('pages/itemprofile', $data);
+		return view('pages/itemProfile', $data);
+	}
+
+	/**
+	 * METHOD: GET/POST
+	*/
+	public function create() {}
+
+	/**
+	 * METHOD: GET/POST
+	*/
+	public function edit(int $item_id) {
+		$item = $this->itemModel->find($item_id);
+
+		if ($this->request->getMethod() === 'get') return view('pages/auth/itemProfileEdit', ['item' => $item]);
+		if ($this->request->getMethod() === 'post') {
+			// do form validation
+			// update database
+			// check for error
+			return "Process editing of item";
+		}
 	}
 
 	/**

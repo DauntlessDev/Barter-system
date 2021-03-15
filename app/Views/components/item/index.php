@@ -8,8 +8,8 @@
         <div class="right-container">
             <?php if ((session()->get('user')['user_id'] ?? null) === $item['poster_uid']):?>
             <div class="actions">
-                <a class="edit-btn" href="#">edit</a>
-                <p class="delete-btn" href="#" onclick="confirm('Delete the item?') ? window.location = '<?= base_url(route_to('itemDelete', $item['item_id'])) ?>' : null">delete</p>
+                <a class="edit-btn" href="<?= base_url(route_to('itemEdit', $item['item_id'])) ?>">edit</a>
+                <p class="delete-btn" onclick="confirm('Delete the item?') ? window.location = '<?= base_url(route_to('itemDelete', $item['item_id'])) ?>' : null">delete</p>
             </div>
             <?php endif; ?>
             <div class="container poster">
