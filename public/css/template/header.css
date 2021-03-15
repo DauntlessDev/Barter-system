@@ -15,7 +15,8 @@
 }
 
 .search-input {
-    width: 20vw;
+    width: 40vw;
+    max-width: 35rem;
     min-width: 10rem;
     height: 35px;
 }
