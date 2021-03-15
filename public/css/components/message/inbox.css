@@ -1,15 +1,19 @@
 .inbox_card {
     min-height: 4rem;
-    height: 4rem;
+    height: 4.25rem;
     width: 100%;
-    background-color: var(--msg-inboxCard);
     padding: 0.5rem;
     cursor: pointer;
     opacity: 0.85;
+    border-bottom: 1px solid rgb(240, 240, 240);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .inbox_card:hover {
     opacity: 1;
+    background-color: var(--msg-inboxCard);
 }
 
 .inbox_card p {
@@ -18,11 +22,20 @@
     overflow: hidden;
 }
 
-.inbox_card p:first-child {
-    color:var(--msg-inboxCardHeader);
+.inbox_card .inbox_header p:first-child {
+    color: var(--msg-inboxCardHeader);
+}
+
+.inbox_card .inbox_header p:nth-child(2) {
+    font-size: 0.7rem;
+    color: var(--msg-inboxCardTime);
 }
 
 .inbox_card p:nth-child(2) {
-    text-align: center;
     color:var(--msg-inboxCardContent);
+}
+
+.inbox_card .inbox_header {
+    display: flex;
+    justify-content: space-between;
 }

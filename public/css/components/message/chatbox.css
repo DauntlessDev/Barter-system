@@ -19,25 +19,27 @@
 }
 
 .sender > .chatBox {
-    background-color: var(--msg-senderCard);
+    background-color: var(--msg-senderCardBg);
+    color: var(--msg-senderCardTextColor);
     text-align: right;
 }
 
 .receiver > .chatBox {
-    background-color: var(--msg-receiverCard);
+    background-color: var(--msg-receiverCardBg);
+    color: var(--msg-receiverCardTextColor);
 }
 
 .msg_container {
     display: flex;
-    height: 70%;
-    width: 70%;
+    height: 85%;
+    width: 100%;
     border-radius: 0.3rem;
     overflow: hidden;
+    margin-top: 2rem;
 }
 
 .content {
-    width: 48vw;
-    /* height: 95%; */
+    width: 100%;
     background-color: var(--msg-contentBg);
     overflow-y: auto;
     display: flex;

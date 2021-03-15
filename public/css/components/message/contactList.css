@@ -4,7 +4,9 @@
     outline: none;
     padding: 0.4rem;
     background-color: var(--msg-searchFieldBg);
-    color: var(--msg-searchFieldColor)
+    color: var(--msg-searchFieldColor);
+    border-right: 1px solid rgb(240, 240, 240);
+    border-bottom: 1px solid rgb(240, 240, 240);
 }
 
 .searchUserField::placeholder {

@@ -60,10 +60,13 @@ function ChatManager(apiManager) {
   function sendChat(msg) {
     if (msg === '') return;
 
+
     apiManager.sendMessage(window.recipientUserId, msg);
   }
 
   function onSendBtnClick(e) {
+    if (!window.recipientUserId) return; // don't send chat to blank recipient
+
     const msgTextArea = document.querySelector('.msgTextArea');
 
     sendChat(msgTextArea.value);
@@ -163,17 +166,28 @@ function InboxManager(apiManager, chatManager) {
     chatManager.loadMessages(recipientUserId, recipientUsername);
   }
 
-  function createInboxCard(username, lastMsg) {
+  function createInboxCard(username, lastMsg, created_at) {
     const chatBoxContainerDiv = document.createElement('div');
     chatBoxContainerDiv.classList.add('inbox_card');
 
+    // Header
     const userEl = document.createElement('p');
     userEl.textContent = username;
 
+    const createdAtEl = document.createElement('p');
+    createdAtEl.textContent = created_at;
+
+    const headerEl = document.createElement('div');
+    headerEl.classList.add('inbox_header');
+    headerEl.appendChild(userEl);
+    headerEl.appendChild(createdAtEl);
+
+    // Content
     const lastMsgEl = document.createElement('p');
     lastMsgEl.textContent = lastMsg;
 
-    chatBoxContainerDiv.appendChild(userEl);
+    // Result
+    chatBoxContainerDiv.appendChild(headerEl);
     chatBoxContainerDiv.appendChild(lastMsgEl);
 
     return chatBoxContainerDiv;
@@ -182,12 +196,11 @@ function InboxManager(apiManager, chatManager) {
   function drawInboxCard({
     user_id, username, content, created_at,
   }) {
-    const inboxCard = createInboxCard(username, content);
+    const inboxCard = createInboxCard(username, content, created_at);
 
     inboxCard.addEventListener('click', onInboxClick, false);
     inboxCard.setAttribute('data-user_id', user_id);
     inboxCard.setAttribute('data-username', username);
-    inboxCard.setAttribute('data-created_at', created_at);
 
     inboxContainer.appendChild(inboxCard);
   }
