@@ -1,5 +1,29 @@
 # Barter system ⚡️
-Barter system using Code Igniter 4
+Barter system using Codeigniter 4
+
+Features:
+- [x] intended routes (redirect back to visited url before login)
+- [ ] form validation
+  - [x] login
+  - [x] sign up
+  - [ ] add item
+  - [ ] edit item
+  - [x] edit profile
+  - [ ] place offer
+- [x] login/signup
+- [x] real-time messaging
+- [x] view items per category
+- [x] search products
+- [ ] place offers
+- [ ] add item
+- [ ] add review
+- [ ] view reviews
+- [ ] image uploads
+
+<br>
+
+- frontend create from scratch(no bootstrap/template)
+- proof of work can be found [here](https://github.com/Simperfy/Barter-system/pulls?q=is%3Apr+is%3Aclosed)
 
 <br>
 
@@ -27,7 +51,7 @@ Barter system using Code Igniter 4
 
 `composer refresh-db`
 
-That's it your done!
+That's it your done! *If there's an error please check [Manual Database Installation](#manual-database-installation-)*
 
 > start server (using cmd/terminal)
 
@@ -59,18 +83,18 @@ or
 
 ## Manual Database Installation ⏩
 
-If the above instructions did not work you may try these steps below.
+If the above instruction's `composer setup` did not work you may try these steps below.
 
 <br>
 
 <details>
-    <summary>Installation (alternative way)</summary>
+    <summary>alternative way for composer setup</summary>
 
 > Start xampp's apache & mysql
 
 ![xampp output](docs/img/xampp.png)
 
-> create/replace `.env` file
+> overwrite `.env` file
 
 ```
 CI_ENVIRONMENT = development
@@ -152,9 +176,7 @@ add the following lines, and restart the live server.
 
 ## Authors 🏅
 
-Contributions Badge based on [allcontributors.org](https://allcontributors.org/docs/en/emoji-key)
-
-> Will update badges in the future accordingly
+**Amazing people behind these project:**
 
 <table>
   <tr>
@@ -168,6 +190,7 @@ Contributions Badge based on [allcontributors.org](https://allcontributors.org/d
           </a>
           <br/>
           <a href="#" title="Design">🎨</a>
+          <a href="#" title="Frontend(UI)">🖼️</a>
       </td>
       <td align="center">
           <a href="https://github.com/DauntlessDev">
@@ -178,11 +201,10 @@ Contributions Badge based on [allcontributors.org](https://allcontributors.org/d
               </sub>
           </a>
           <br/>
-          <a href="#" title="Business">💼</a>
           <a href="#" title="Database Design">🔣</a>
-          <a href="#" title="Main Frontend">🖼️</a>
-          <a href="#" title="Event Organizing">📋</a>
-          <a href="#" title="Ideas/Planning">🤔</a>
+          <a href="#" title="Design">🎨</a>
+          <a href="#" title="Frontend(UI)">🖼️</a>
+          <a href="#" title="Project Idea">🤔</a>
       </td>
       <td align="center">
           <a href="https://github.com/Hezzz">
@@ -193,10 +215,10 @@ Contributions Badge based on [allcontributors.org](https://allcontributors.org/d
               </sub>
           </a>
           <br/>
-          <a href="#" title="Main Backend">🕹</a>
-          <a href="#" title="Business">💼</a>
+          <a href="#" title="Backend(main)">🕹</a>
           <a href="#" title="Database Design">🔣</a>
-          <a href="#" title="Documentation">📖</a>
+          <a href="#" title="Documentation(backend models)">📖</a>
+          <a href="#" title="ERD Creator">📈</a>
       </td>
       <td align="center">
           <a href="https://github.com/Simperfy">
@@ -208,11 +230,10 @@ Contributions Badge based on [allcontributors.org](https://allcontributors.org/d
           </a>
           <br/>
           <a href="#" title="Backend">🕹</a>
-          <a href="#" title="Design/Prototype">🎨</a>
-          <a href="#" title="Documentation">📖</a>
-          <a href="#" title="Frontend">🖼️</a>
+          <a href="#" title="Design">🎨</a>
+          <a href="#" title="Frontend(UX)">🖼️</a>
           <a href="#" title="Infrastructure/DevOps">🚇</a>
-          <a href="#" title="Tutorial">✅</a>
+          <a href="#" title="Project Installation Tutorial">✅</a>
       </td>
       <td align="center">
           <a href="https://github.com/stormy26">
@@ -223,7 +244,20 @@ Contributions Badge based on [allcontributors.org](https://allcontributors.org/d
               </sub>
           </a>
           <br/>
-          <a href="#" title="Business">💼</a>
+          <a href="#" title="Spokesperson">📢</a>
       </td>
   </tr>
 </table>
+
+<br>
+
+<details>
+    <summary>...</summary>
+
+[ERD](https://lucid.app/lucidchart/7d01ca64-6625-4663-a23f-361770ed6385/edit) by <a href="https://github.com/Hezzz">Hezzz</a>
+
+[Prototype](https://www.figma.com/file/PwrsPkK8xzcjMvn1iqkQBK/Barter-System) by <a href="https://github.com/Simperfy">Simperfy</a>
+
+Idea of <a href="https://github.com/DauntlessDev">DauntlessDev</a>
+
+</details>
