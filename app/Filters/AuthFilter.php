@@ -31,7 +31,7 @@ class AuthFilter implements FilterInterface
 		if (session()->get('isLoggedIn')) {
 			foreach ($exceptionRouteList as $exceptRoute) {
 				if ($this->isMatchedUrl(route_to($exceptRoute), $request)) {
-					return redirect()->route('userProfile');
+					return redirect()->route('userProfile', [session()->get('user')['user_id']]);
 				}
 			}
 		}

@@ -49,21 +49,23 @@ $routes->get('/result', 'Home::resultPage', ['as' => 'result']);
 
 // $routes->get('category', 'Home::categoryPage');
 
+
 /* PROTECTED ROUTES */
 $routes->group('', ['filter' => 'auth'], function($routes) {
-    $routes->add('/signup', 'Auth\Auth::signup', ['as' => 'signup']);
+	$routes->add('/signup', 'Auth\Auth::signup', ['as' => 'signup']);
 
 	$routes->add('/login', 'Auth\Auth::login', ['as' => 'login']);
 
 	$routes->get('/logout', 'Auth\Auth::logout', ['as' => 'logout']);
 
-	$routes->get('/profile', 'Auth\UserProfile::index', ['as' => 'userProfile']);
+	$routes->get('/item/(:num)/delete', 'Item::delete/$1', ['as' => 'itemDelete']);
 
 	$routes->add('/profile/edit', 'Auth\UserProfile::edit', ['as' => 'userProfileEdit']);
 
 	$routes->get('/messages', 'Auth\Message::index', ['as' => 'message']);
 });
 
+$routes->get('/profile/(:num)', 'Auth\UserProfile::index/$1', ['as' => 'userProfile']);
 /* MESSAGES API */
 $routes->post('/messages/send', 'Auth\Message::send', ['as' => 'message.send', 'filter' => 'ajax']);
 $routes->post('/messages/inbox', 'Auth\Message::inbox', ['as' => 'message.inbox', 'filter' => 'ajax']);

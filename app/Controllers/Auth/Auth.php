@@ -46,7 +46,7 @@ class Auth extends BaseController
 				return redirect()->to($redirectURI);
 			}
 
-			return redirect()->route('userProfile');
+			return redirect()->route('userProfile', [$user['user_id']]);
 		}
 	}
 

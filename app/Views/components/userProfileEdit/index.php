@@ -23,7 +23,7 @@
                 </div>
             </div>
 
-            <form class="ep-box" action="<?= route_to('userProfileEdit') ?>" method="POST" id="editProfile-form">
+            <form class="ep-box" action="<?= route_to('userProfileEdit', session()->get('user')['user_id']) ?>" method="POST" id="editProfile-form">
                 <?= $this->include('components/partials/_userFields.php') ?>
                 <!-- <button class="button" type="submit" form="editProfile-form" value="submit">Edit Profile</button> -->
             </form>
