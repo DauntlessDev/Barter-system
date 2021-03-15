@@ -12,17 +12,17 @@
 
     <div class="fresh-finds">
         <div class="fresh-finds-header">
-            <p>Category: <?= $category['category_name'] ?></p>
+            <p>Category: <?= ucfirst($category['category_name']) ?></p>
         </div>
         <div class="product-list">
             <?php foreach($category['items'] as $item):
             $poster_id = $item['poster_uid'];
             $poster_info = $class->getPosterInfo($poster_id);
             echo view_cell('\App\Libraries\Product::getItem', ['item' => $item, 'poster'=>$poster_info[0]]);
-        endforeach; ?>
+            endforeach; ?>
         </div>
-        <div class="bottom-end">
+        <!-- <div class="bottom-end">
             <button>View more</button>
-        </div>
+        </div> -->
     </div>
 </div>

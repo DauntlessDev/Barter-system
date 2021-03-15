@@ -1,5 +1,7 @@
 @import "common/shared.css";
+@import "common/variables.css";
 @import "components/message/container.css";
+@import "components/message/contactList.css";
 @import "components/message/inbox.css";
 @import "components/message/chatbox.css";
 @import "components/message/msgTextArea.css";

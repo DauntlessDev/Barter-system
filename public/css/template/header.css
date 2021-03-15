@@ -1,11 +1,12 @@
-
-.header{
+.header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 110px;
+    padding: 1.25rem var(--global-horizontalPadding);
     background-color: white;
-
+    border-radius: 5px;
+    border: 1px solid #ececec;
+    flex-wrap: wrap;
 }
 
 .logo {
@@ -13,26 +14,40 @@
     width: auto;
 }
 
-.search-input{
-    width: 500px;
-    height: 30px;
+.search-input {
+    width: 20vw;
+    min-width: 10rem;
+    height: 35px;
 }
 
-.search-button{
-    width: 50px;
+.search-button {
+    /* width: 50px; */
     height: 35px;
+    padding: 0 1rem;
     border-radius: 5px;
     border: none;
     color: white;
-    background-color: rgb(32, 171, 76);
+    background-color: rgb(109, 31, 126);
+    cursor: pointer;
 }
 
-.sell-button{
+.sell-button {
     margin-left: 40px;
     width: 100px;
     height: 35px;
+    font-weight: bold;
+    font-weight: 19px;
     background-color: #0062c7;
     color: white;
     border-radius: 5px;
     border:none;
+    border-radius: var(--radius-button);
+    box-shadow: var(--button-shadow);
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+    .header {
+        display: none;
+    }
 }

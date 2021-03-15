@@ -19,12 +19,12 @@
 }
 
 .sender > .chatBox {
-    background-color: rgb(18, 171, 209);
+    background-color: var(--msg-senderCard);
     text-align: right;
 }
 
 .receiver > .chatBox {
-    background-color: rgb(197, 181, 173);
+    background-color: var(--msg-receiverCard);
 }
 
 .msg_container {
@@ -38,17 +38,18 @@
 .content {
     width: 48vw;
     /* height: 95%; */
-    background-color: rgb(245, 245, 245);
+    background-color: var(--msg-contentBg);
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     word-wrap: break-word;
+    height: 100%;
 }
 
 .recipient_container {
     width: 100%;
     padding: 0.3rem 0;
-    background-color: bisque;
+    background-color: var(--msg-contentHeader);
     display: flex;
     justify-content: center;
     align-items: center;

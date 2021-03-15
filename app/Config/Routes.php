@@ -43,12 +43,14 @@ $routes->environment('development', function($routes) {
 
 /* PUBLIC ROUTES */
 $routes->get('/', 'Home::index', ['as' => 'home']);
+$routes->get('/category/(:num)', 'Home::categoryPage/$1', ['as' => 'category']);
+$routes->get('/item/(:num)', 'Item::index/$1', ['as' => 'item']);
+$routes->get('/result', 'Home::resultPage', ['as' => 'result']);
 
-$routes->add('/itemprofile', 'Item::index', ['as' => 'itemprofile']);
+// $routes->get('category', 'Home::categoryPage');
 
 /* PROTECTED ROUTES */
 $routes->group('', ['filter' => 'auth'], function($routes) {
-
     $routes->add('/signup', 'Auth\Auth::signup', ['as' => 'signup']);
 
 	$routes->add('/login', 'Auth\Auth::login', ['as' => 'login']);
@@ -60,13 +62,12 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
 	$routes->add('/profile/edit', 'Auth\UserProfile::edit', ['as' => 'userProfileEdit']);
 
 	$routes->get('/messages', 'Auth\Message::index', ['as' => 'message']);
-
 });
 
 /* MESSAGES API */
-$routes->get('/messages/send', 'Auth\Message::send', ['as' => 'message.send', 'filter' => 'ajax']);
-$routes->get('/messages/inbox/(:num)', 'Auth\Message::inbox/$1', ['as' => 'message.inbox', 'filter' => 'ajax']);
-$routes->get('/messages/conversation/(:num)/(:num)', 'Auth\Message::conversation/$1/$2', ['as' => 'message.conversation', 'filter' => 'ajax']);
+$routes->post('/messages/send', 'Auth\Message::send', ['as' => 'message.send', 'filter' => 'ajax']);
+$routes->post('/messages/inbox', 'Auth\Message::inbox', ['as' => 'message.inbox', 'filter' => 'ajax']);
+$routes->post('/messages/conversation', 'Auth\Message::conversation', ['as' => 'message.conversation', 'filter' => 'ajax']);
 
 /*
  * --------------------------------------------------------------------

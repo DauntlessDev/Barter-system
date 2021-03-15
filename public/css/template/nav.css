@@ -1,26 +1,110 @@
 @import "../common/main.css";
 
 nav {
+  width: 100%;
   background-color: #262222;
+  position: relative;
+  padding: 0.8125rem var(--global-horizontalPadding);
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 13px 200px;
-  text-decoration: none;
 }
 
-nav li,
-.nav li,
-nav div {
-  gap: 1rem;
-  display: flex;
+nav > .nav-header {
+  display: inline;
 }
 
-.login {
-  padding-left: 1rem;
+nav > .nav-header > .nav-title {
+  display: inline-block;
+  color: #fff;
 }
 
-a {
-  text-decoration: none;
+nav > .nav-header > .nav-title a {
   color: white;
+  text-decoration: none;
+}
+
+nav > .nav-btn {
+  display: none;
+}
+
+nav > .nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+nav > .nav-links > a {
+  display: inline-block;
+  text-decoration: none;
+  color: #efefef;
+}
+
+nav > #nav-check {
+  display: none;
+}
+
+@media only screen and (max-width:600px) {
+  nav > .nav-header > .nav-title {
+    padding: 10px 10px 10px 10px;
+  }
+
+  nav > .nav-header > .nav-title a {
+    font-size: 1.25rem;
+  }
+
+  nav > .nav-btn {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0.5rem;
+  }
+
+  nav > .nav-btn > label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+  }
+
+  nav > .nav-btn > label:hover,nav  #nav-check:checked ~ .nav-btn > label {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  nav > .nav-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid #eee;
+  }
+
+  nav > .nav-links {
+    position: absolute;
+    display: block;
+    width: 100%;
+    background-color: #333;
+    height: 0;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 50px;
+    left: 0;
+  }
+
+  nav > .nav-links > a {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.25rem;
+  }
+
+  nav > #nav-check:not(:checked) ~ .nav-links {
+    height: 0;
+  }
+
+  nav > #nav-check:checked ~ .nav-links {
+    /* height: calc(100vh - 50px); */
+    height: min-content;
+    opacity: 0.95;
+    overflow-y: auto;
+    margin-top: 1.25rem;
+  }
 }
