@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Services\FileService;
 use CodeIgniter\Config\BaseService;
 
 /**
@@ -19,13 +20,17 @@ use CodeIgniter\Config\BaseService;
  */
 class Services extends BaseService
 {
-	// public static function example($getShared = true)
-	// {
-	//     if ($getShared)
-	//     {
-	//         return static::getSharedInstance('example');
-	//     }
-	//
-	//     return new \CodeIgniter\Example();
-	// }
+	/**
+	 * @param bool $getShared
+	 * @return FileService
+	 */
+	public static function file_service($getShared = true)
+	{
+	    if ($getShared)
+	    {
+	        return static::getSharedInstance('file_service');
+	    }
+
+	    return new FileService();
+	}
 }

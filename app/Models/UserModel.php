@@ -32,8 +32,16 @@ class UserModel extends Model implements ModelInterface
     /* Validation rules for sign up */
     protected $validationRules  = 'signup';
 
-    protected $beforeInsert     = ['passwordHash'];
-    protected $beforeUpdate     = ['passwordHash'];
+    protected $beforeInsert     = ['passwordHash', 'checkPhotoUrl'];
+    protected $beforeUpdate     = ['passwordHash', 'checkPhotoUrl'];
+
+    protected function checkPhotoUrl(array $data){
+        if(empty($data['data']['photo_url'])) {
+            $data['data']['photo_url'] = 'images/default/profile.jpg';
+        }
+
+        return $data;
+    }
 
     protected function passwordHash(array $data){
         if(isset($data['data']['password']))

@@ -24,7 +24,6 @@ class UserSeeder extends Seeder
 				'last_name' => "doe $randomLowerCaseLetters",
 				'address' => "PH",
 				'contact_details' => "09999999999",
-				'photo_url' => "#",
 			];
 
 			// check for validation error

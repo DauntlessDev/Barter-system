@@ -4,7 +4,7 @@ namespace App\Controllers\Auth;
 
 use App\Controllers\BaseController;
 use App\Models\UserModel;
-use \CodeIgniter\Config\Services;
+use Config\Services;
 use Exception;
 
 class Auth extends BaseController
@@ -71,6 +71,9 @@ class Auth extends BaseController
 
 			// validate all fields
 			if (!$this->validate($rules)) return view('pages/signup', ['validation' => $this->validator]);
+
+			$fileService = Services::file_service();
+			$_POST['photo_url'] = $fileService->saveFile($this->request, 'profile_image');
 
 			if ($this->userModel->create($_POST) === false)
 				throw new Exception('Error while inserting to database');
