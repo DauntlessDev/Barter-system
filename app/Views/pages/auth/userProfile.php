@@ -26,11 +26,11 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="p-body">
                     <div class="p-sidebar">
                         <div class="p-icon-container">
-                            <img src="assets/home/profile-pic-sample.jpg"> <!-- add url to the user's profile picture -->
+                            <img src="<?= base_url(session()->get('user')['photo_url']) ?>"> <!-- add url to the user's profile picture -->
                         </div>
                         <h2><?= session()->get('user')['first_name'] ?? '' ?> <?= session()->get('user')['last_name'] ?? '' ?></h2>
                         <h3>@<?= session()->get('user')['username'] ?? '' ?></h3>

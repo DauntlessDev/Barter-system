@@ -19,13 +19,15 @@ class ItemSeeder extends Seeder
 
 		$categories = $categoryModel->findAll();
 
+		$availableList = ['available', 'pending', 'unavailable'];
+
 		foreach($categories as $category) {
 			for ($i = 0; $i < rand(1, 5); $i++) {
 				$data = [
 					'poster_uid'   => rand(1, 10),
 					'item_name'    => "item".$faker->word,
-					'photo_url'    => 'https://via.placeholder.com/300',
-					'avail_status' => 'available',
+					'photo_url'    => 'images/default/product.jpg',
+					'avail_status' => $availableList[rand(0, count($availableList)-1)],
 					'desc_title'   => $faker->word,
 					'desc_content' => $faker->text,
 				];

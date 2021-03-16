@@ -68,10 +68,14 @@ class RoutingTest extends FeatureTestCase
 
     public function test_should_see_logout_when_loggedIn() {
         $sessions = [
-            'isLoggedIn' => true
+            'isLoggedIn' => true,
+            'user' => [
+                'user_id' => 1,
+                'photo_url' => '#',
+            ],
         ];
 
-        $result = $this->withSession($sessions)->call('get', route_to('userProfile'));
+        $result = $this->withSession($sessions)->call('get', route_to('userProfile', [1]));
         $result->assertSee('logout');
     }
 
