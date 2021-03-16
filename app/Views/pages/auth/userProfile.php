@@ -17,6 +17,11 @@
     <div class="container">
         <div class="p-container">
             <div class="p-content">
+                <?php if (session()->getFlashdata('msg') !== null): ?>
+                    <div>
+                        <p style='color: green; text-align: center;'><?= session()->getFlashdata('msg') ?></p>
+                    </div>
+                <?php endif; ?>
                 <div class="p-nav-container">
                     <div class="p-nav-margin"></div>
                     <div class="p-nav-links-container">
@@ -32,9 +37,9 @@
                         <div class="p-icon-container">
                             <img src="<?= base_url(session()->get('user')['photo_url']) ?>"> <!-- add url to the user's profile picture -->
                         </div>
-                        <h2><?= session()->get('user')['first_name'] ?? '' ?> <?= session()->get('user')['last_name'] ?? '' ?></h2>
-                        <h3>@<?= session()->get('user')['username'] ?? '' ?></h3>
-                        <p><?= session()->get('user')['address'] ?? '' ?></p>
+                        <h2><?= $user['first_name'] ?? '' ?> <?= $user['last_name'] ?? '' ?></h2>
+                        <h3>@<?= $user['username'] ?? '' ?></h3>
+                        <p><?= $user['address'] ?? '' ?></p>
                     </div>
 
                     <div class="p-items-container">
@@ -48,7 +53,7 @@
 
                                     <div class="p-items-box">
                                         <div class="p-item-box-container">
-                                            <a href="">
+                                            <a href="#">
                                                 <div class="p-item-img">
                                                     <span class="p-item-img-container">
                                                         <img class="img" src="http://via.placeholder.com/300">
