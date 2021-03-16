@@ -19,8 +19,11 @@ class UserProfile extends BaseController
     /**
 	 * METHOD: GET
 	*/
-    public function index() {
-        return view('pages/auth/userProfile');
+    public function index(int $user_id) {
+        $data = [
+            'user' => $this->userModel->find($user_id),
+        ];
+        return view('pages/auth/userProfile', $data);
     }
 
     /**

@@ -1,19 +1,21 @@
 .form {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
 }
 
 .form-group {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.5rem;
 }
 
 .form input[type="text"], .form input[type="password"] {
     padding: 0.5rem;
     outline: none;
-    border: none;
+    border: 1px solid rgb(200, 200, 200);
+    width: 100%;
     border-radius: var(--radius-input);
 }

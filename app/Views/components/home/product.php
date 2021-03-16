@@ -1,4 +1,4 @@
-<div class="product">
+<div class="product" onclick="window.location = '<?= base_url(route_to('item', $item['item_id'])) ?>'">
     <div class="product-header">
         <!-- logic in base_url is temporary, waiting for changinge user data in database -->
         <img src="
