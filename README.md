@@ -2,12 +2,6 @@
 Barter system using Codeigniter 4
 
 Features:
-
-- frontend create from scratch(no bootstrap/template)
-- proof of work can be found [here](https://github.com/Simperfy/Barter-system/pulls?q=is%3Apr+is%3Aclosed)
-
-<br>
-
 - [x] intended routes (redirect back to visited url before login)
 - [ ] form validation
   - [x] login
@@ -25,6 +19,11 @@ Features:
 - [ ] add review
 - [ ] view reviews
 - [ ] image uploads
+
+<br>
+
+- frontend create from scratch(no bootstrap/template)
+- proof of work can be found [here](https://github.com/Simperfy/Barter-system/pulls?q=is%3Apr+is%3Aclosed)
 
 <br>
 
@@ -52,7 +51,7 @@ Features:
 
 `composer refresh-db`
 
-That's it your done! *If there's an error please check [Manual Database Installation](#manual-database-installation-⏩)*
+That's it your done! *If there's an error please check [Manual Database Installation](#manual-database-installation-)*
 
 > start server (using cmd/terminal)
 
