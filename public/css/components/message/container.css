@@ -39,6 +39,7 @@
     border-radius: 0.3rem;
     overflow: hidden;
     margin-top: 2rem;
+    box-shadow: 1px 1px 4px rgb(233, 233, 233);
 }
 
 .recipient_container {
