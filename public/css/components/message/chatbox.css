@@ -1,7 +1,7 @@
 .chatBox_container {
     display: flex;
     width: 100%;
-    padding: 1rem;
+    padding: 1rem 2vw;
 }
 
 .chatBox_container.sender {
