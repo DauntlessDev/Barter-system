@@ -72,14 +72,18 @@ class RoutingTest extends FeatureTestCase
         }
     }
 
-    // public function test_should_see_logout_when_loggedIn() {
-    //     $sessions = [
-    //         'isLoggedIn' => true,
-    //     ];
+    public function test_should_see_logout_when_loggedIn() {
+        $sessions = [
+            'isLoggedIn' => true,
+            'user' => [
+                'user_id' => 1,
+                'photo_url' => '#',
+            ],
+        ];
 
-    //     $result = $this->withSession($sessions)->call('get', route_to('userProfile', 1));
-    //     $result->assertSee('logout');
-    // }
+        $result = $this->withSession($sessions)->call('get', route_to('login')); // not really sure how why this works
+        $result->assertSee('logout');
+    }
 
     // Can't test because there are no straight forward way to mock models inside controller
     // public function test_should_see_okay_when_calling_messages_api() {

@@ -14,11 +14,11 @@
             <h3>Profile photo</h3>
 
             <div class="ep-container-pp">
-                <img class="fit" src="img/sana.jpg">
+                <img class="fit" src="<?= base_url(session()->get('user')['photo_url']) ?>">
 
                 <div class="ep-container-info">
                 <p>Clear frontal face photos are an important way for buyers and sellers to learn about each other. <b><i>Change this</i></b>.</p>
-                
+
                 <input class="ep-upload-pp" type="file" name="photo_url" id="photo_url" value="" autocomplete="off">
                 </div>
             </div>

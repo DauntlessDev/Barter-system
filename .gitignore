@@ -126,3 +126,4 @@ nb-configuration.xml
 /.phpunit.*.cache
 
 /node_modules/
+/public/images/uploads
