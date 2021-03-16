@@ -8,17 +8,26 @@
     /* Messages */
     --msg-searchFieldColor: black;
     --msg-searchFieldPlaceHolderColor: gray;
-    --msg-searchFieldBg: white;
+    --msg-searchFieldBg: rgb(253, 253, 253);
 
-    --msg-contentHeader: bisque;
-    --msg-contentBg: rgb(245, 245, 245);
-    --msg-senderCard: rgb(18, 171, 209);
-    --msg-receiverCard: rgb(197, 181, 173);
+    --msg-contentHeader: rgb(255, 255, 255);
+    --msg-contentBg: rgb(250, 250, 250);
+    --msg-senderCardBg: rgb(0, 204, 255);
+    --msg-senderCardTextColor: rgb(255, 255, 255);
+    --msg-receiverCardBg: rgb(230, 230, 230);
+    --msg-receiverCardTextColor: rgb(48, 48, 48);
 
-    --msg-inboxBg: rgb(201, 198, 160);
-    --msg-inboxCard: rgb(204, 204, 204);
+    --msg-inboxBg: rgb(255, 255, 255);
+    --msg-inboxCard: rgb(222, 222, 222);
     --msg-inboxCardHeader: rgb(44, 44, 44);
+    --msg-inboxCardTime: rgb(156, 156, 156);
     --msg-inboxCardContent: rgb(83, 83, 83);
+
+    --msg-textFieldColor: rgb(24, 24, 24);
+    --msg-textFieldBg: rgb(255, 255, 255);
+
+    --msg-btnColor: rgb(255, 255, 255);
+    --msg-btnBgColor: rgb(0, 204, 255);
     /* ./Messages */
 
     /* text color */
@@ -38,5 +47,4 @@
 
     --container-shadow: #c4d5e4;
     --accent: #0062c7;
-
 }

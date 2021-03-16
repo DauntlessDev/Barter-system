@@ -4,14 +4,23 @@
 
 .msgTextArea {
     width: 100%;
+    outline: none;
+    resize: none;
+    border: 1px solid rgb(190, 190, 190);
+    background-color: var(--msg-textFieldBg);
+    color: var(--msg-textFieldColor);
 }
 
 .send-btn {
-    color:blue;
+    color:var(--msg-btnColor);
+    background-color: var(--msg-btnBgColor);
     border: none;
     cursor: pointer;
     outline: none;
     opacity: 0.85;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    font-size: 1.01rem;
 }
 
 .send-btn:hover {

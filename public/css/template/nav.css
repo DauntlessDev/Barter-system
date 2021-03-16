@@ -36,6 +36,7 @@ nav > .nav-btn {
 nav > .nav-links {
   display: flex;
   gap: 1rem;
+  z-index: 100;
 }
 
 nav > .nav-links > a {
@@ -111,6 +112,6 @@ nav > #nav-check {
     height: min-content;
     opacity: 0.95;
     overflow-y: auto;
-    margin-top: 1.25rem;
+    margin-top: 1.2rem;
   }
 }

@@ -1,4 +1,4 @@
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="<?= base_url('js/lib/axios.min.js') ?>"></script>
 <script>
     window.user_id = "<?= session()->get('user')['user_id'] ?>"; <?php // this should be encrypted but I don't care about security for now ?>
     window.sendEndpoint = "<?= route_to('message.send') ?>";

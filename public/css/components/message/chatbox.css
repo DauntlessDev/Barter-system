@@ -1,7 +1,7 @@
 .chatBox_container {
     display: flex;
     width: 100%;
-    padding: 1rem;
+    padding: 1rem 2vw;
 }
 
 .chatBox_container.sender {
@@ -19,39 +19,22 @@
 }
 
 .sender > .chatBox {
-    background-color: var(--msg-senderCard);
+    background-color: var(--msg-senderCardBg);
+    color: var(--msg-senderCardTextColor);
     text-align: right;
 }
 
 .receiver > .chatBox {
-    background-color: var(--msg-receiverCard);
-}
-
-.msg_container {
-    display: flex;
-    height: 70%;
-    width: 70%;
-    border-radius: 0.3rem;
-    overflow: hidden;
+    background-color: var(--msg-receiverCardBg);
+    color: var(--msg-receiverCardTextColor);
 }
 
 .content {
-    width: 48vw;
-    /* height: 95%; */
+    width: 100%;
     background-color: var(--msg-contentBg);
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     word-wrap: break-word;
     height: 100%;
-}
-
-.recipient_container {
-    width: 100%;
-    padding: 0.3rem 0;
-    background-color: var(--msg-contentHeader);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 0.1rem;
 }
