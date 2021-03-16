@@ -9,6 +9,12 @@ nav {
   justify-content: space-between;
 }
 
+@media screen and (max-width: 1400px) {
+  nav{
+    padding: 0.8125rem 7.5vw;
+  }
+}
+
 nav > .nav-header {
   display: inline;
 }
