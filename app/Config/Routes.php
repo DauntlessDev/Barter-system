@@ -61,6 +61,8 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
 	$routes->get('/item/(:num)/delete', 'Item::delete/$1', ['as' => 'itemDelete']);
 	$routes->add('/item/(:num)/edit', 'Item::edit/$1', ['as' => 'itemEdit']);
 
+	$routes ->add('item/create', 'Item::create', ['as' => 'itemCreate']);
+
 	$routes->add('/profile/edit', 'Auth\UserProfile::edit', ['as' => 'userProfileEdit']);
 
 	$routes->get('/messages', 'Auth\Message::index', ['as' => 'message']);

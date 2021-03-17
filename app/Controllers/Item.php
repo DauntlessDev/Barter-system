@@ -35,7 +35,10 @@ class Item extends BaseController
 	/**
 	 * METHOD: GET/POST
 	*/
-	public function create() {}
+	public function create() {
+		return view('pages/auth/itemCreate');
+		
+	}
 
 	/**
 	 * METHOD: GET/POST

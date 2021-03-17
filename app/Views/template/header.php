@@ -8,5 +8,5 @@
             </button>
         </div>
     </form> 
-    <button class="sell-button">Sell</button>
+    <button class="sell-button" onclick="window.location='<?= route_to('itemCreate'); ?>'">Sell</button>
 </div>
