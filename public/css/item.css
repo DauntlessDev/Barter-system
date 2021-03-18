@@ -74,7 +74,6 @@ body{
 .offer{
     background-color: #0062c7;
     box-shadow: #9cbfe6;
-    margin-left: 50%;
     width: 50%;
     height: 3rem;
     color: #f1f1f1;
@@ -93,7 +92,6 @@ body{
 .message{
     background-color: #008000;
     box-shadow: #04b404;
-    margin-left: 50%;
     margin-bottom: 20px;
     width: 50%;
     height: 3rem;
