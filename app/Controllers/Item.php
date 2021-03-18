@@ -63,7 +63,7 @@ class Item extends BaseController
 	 * METHOD: GET/POST
 	*/
 	public function edit(int $item_id) {
-		$item = $this->itemModel->get(['item_id' => [$item_id]]);
+		$item = $this->itemModel->get(['item_id' => [$item_id]])[0];
 		$categories = $this->categoryModel->findAll();
 
 		// If current logged user is not the poster, redirect to index page
