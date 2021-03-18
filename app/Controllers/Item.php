@@ -3,17 +3,23 @@
 namespace App\Controllers;
 use App\Models\ItemModel;
 use App\Models\UserModel;
+use App\Models\CategoryModel;
+use Config\Services;
 use Exception;
 
 class Item extends BaseController
 {
 	protected $itemModel;
 	protected $userModel;
+	protected $categoryModel;
 
 	public function __construct()
 	{
 		$this->userModel = new UserModel();
 		$this->itemModel = new ItemModel();
+		helper(['form']);
+		$this->validation = Services::validation();
+		$this->categoryModel = new CategoryModel();
 	}
 
 	/**
@@ -35,7 +41,23 @@ class Item extends BaseController
 	/**
 	 * METHOD: GET/POST
 	*/
-	public function create() {}
+	public function create() {
+		$categories = $this->categoryModel->findAll();
+		if ($this->request->getMethod() === 'get') return view('pages/auth/itemCreate', ['categories' => $categories]);
+		if ($this->request->getMethod() === 'post') {
+			$rules = $this->validation->getRuleGroup('addItem');
+			if (!$this->validate($rules)) return view('pages/auth/itemCreate', ['validation' => $this->validator, 'categories' => $categories]);
+
+			$_POST['poster_uid'] = (int)session()->get('user')['user_id'];
+			$fileService = Services::file_service();
+			$_POST['photo_url'] = $fileService->saveFile($this->request, 'item_photo');
+
+			if ($this->itemModel->create($_POST, $_POST['category_ids']) === false)
+				throw new Exception('Error while inserting to database');
+
+			return redirect()->route('itemCreate')->with('msg', 'Item creation successful, you may see it in your profile');
+		}
+	}
 
 	/**
 	 * METHOD: GET/POST
