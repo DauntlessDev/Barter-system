@@ -56,7 +56,7 @@ body{
     padding: 10px;
     font-size: 16px;
     color: #000;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border: 1px solid #bebebe;
     outline: none;
     background: transparent;
@@ -105,13 +105,14 @@ body{
 
 [type="checkbox"]{
     /* margin-top: 20px;    */
-    color: #535353;
-    width: 2.3em;
-    height: 2.3em;
+    color: #747272;
+    width: 1.3em;
+    height: 1.3em;
     background-color: white;
     border-radius: 40%;
     vertical-align: middle;
     border: 1px solid #ddd;
+    margin-right: 5px;
     /* -webkit-appearance: none; */
     outline: none;
     cursor: pointer;
@@ -139,11 +140,11 @@ label{
     margin-top: 20px;
 }
 
-.add-button{
+.button-add{
     margin-top: 10px;
     margin-left: 50%;
     width: 50%;
-    height: 10%;
+    height: 3rem;
     background-color: #0062c7;
     border: none;
     color: #fff;
@@ -163,6 +164,31 @@ label{
     margin-bottom: 20px;
 }
 
-.desc-text{
+.desc_content{
     margin-top: 20px;
 }
+
+.validation-box{
+    margin-top: 2%;
+    margin-left: 40%;
+}
+
+.col{
+    float: left;
+    width: 33.3%;
+}
+
+#desc_title{
+    margin-bottom: 10px;
+}
+
+.about-title{
+    margin-top: 20px;
+
+}
+
+.categories:after {
+    content: "";
+    display: table;
+    clear: both;
+  }

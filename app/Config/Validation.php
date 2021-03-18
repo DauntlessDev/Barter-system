@@ -66,4 +66,14 @@ class Validation
 		],
 		'password'   	  => 'required|min_length[8]|max_length[255]',
 	];
+
+	public $additem = [
+		'poster_uid' => 'required',
+		'item_name' => 'required|min_length[3]|max_length[250]|alpha_numeric_punct',
+		'photo_url' => 'required',
+		'avail_status' => 'required|alpha_numeric',
+		'desc_title' => 'required|min_length[3]|max_length[30]|alpha_numeric_punct',
+		'desc_content' => 'alpha_numeric_punct',
+
+	];
 }
