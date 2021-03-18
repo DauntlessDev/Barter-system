@@ -63,14 +63,21 @@ class Item extends BaseController
 	 * METHOD: GET/POST
 	*/
 	public function edit(int $item_id) {
-		$item = $this->itemModel->find($item_id);
+		$item = $this->itemModel->get(['item_id' => [$item_id]]);
+		$categories = $this->categoryModel->findAll();
 
-		if ($this->request->getMethod() === 'get') return view('pages/auth/itemProfileEdit', ['item' => $item]);
+		// If current logged user is not the poster, redirect to index page
+		$current_user = session()->get('user')['user_id'];
+		if (!$item['poster_uid'] === $current_user) return redirect()->route('item', [$item['item_id']])->with('msg', 'No permission to edit this item.');
+
+		if ($this->request->getMethod() === 'get') return view('pages/auth/itemProfileEdit', ['item' => $item, 'categories' => $categories]);
 		if ($this->request->getMethod() === 'post') {
-			// do form validation
-			// update database
-			// check for error
-			return "Process editing of item";
+			$rules = $this->validation->getRuleGroup('addItem');
+			if (!$this->validate($rules)) return view('pages/auth/itemProfileEdit', ['validation' => $this->validator, 'categories' => $categories]);
+			
+			if ($this->itemModel->update($item['item_id'], $_POST) === false)
+				throw new Exception('Error while updating an item.');
+			return redirect()->route('item', [$item['item_id']])->with('msg', 'Item update successful!');
 		}
 	}
 
