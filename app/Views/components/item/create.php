@@ -15,7 +15,6 @@
         <div class="left-container">
             <div class="item-upload-photo">
                 <input class="item-upload" type="file" name="item_photo" id="item_photo" autocomplete="off" accept=".jpg, .jpeg, .png">
-                <input type="hidden" name="photo_url" value="images/default/product.jpg">
             </div>
         </div>
         <div class="right-container">
@@ -24,33 +23,26 @@
                     <label for="listing-title">Listing Title</label>
                 </div>
                 <div class="categories">
-                    <div class="col">
-                        <label class="label-checkbox" for="toys"><input type="checkbox" name="checklist[]" id="toys" value="8"> Toys</label><br>
-                        <label class="label-checkbox" for="toys"><input type="checkbox" name="checklist[]" id="sports" value="7"> Sports</label><br>
-                        <label class="label-checkbox" for="toys"><input type="checkbox" name="checklist[]" id="school" value="3"> School</label><br>
-                        <label class="label-checkbox" for="toys"><input type="checkbox" name="checklist[]" id="others" value="10"> Others</label><br>
-                    </div>
-                    <div class="col">
-                        <label class="label-checkbox" for="toys"><input type="checkbox" name="checklist[]" id="office" value="9"> Office</label><br>
-                        <label class="label-checkbox" for="toys"><input type="checkbox" name="checklist[]" id="home" value="5"> Home</label><br>
-                        <label class="label-checkbox" for="toys"><input type="checkbox" name="checklist[]" id="hardware" value="4"> Hardware</label><br>
-                        <label class="label-checkbox" for="toys"><input type="checkbox" name="checklist[]" id="gadgets" value="3"> Gadgets</label><br>
-                    </div>
-                    <div class="col">
-                        <label class="label-checkbox" for="toys"><input type="checkbox" name="checklist[]" id="entertainment" value="2"> Entertainment</label><br>
-                        <label class="label-checkbox" for="toys"><input type="checkbox" name="checklist[]" id="clothing" value="1"> Clothing</label><br>
-                    </div>
+                    <?php foreach ($categories as $index=>$category): ?>
+                        <?php if ($index % 4 === 0): ?>
+                            <div class="col">
+                        <?php endif; ?>
+                        <label class="label-checkbox" for="<?= $category['category_name'] ?>"><input type="checkbox" name="category_ids[]" id="<?= $category['category_name'] ?>" value="<?= $category['category_id'] ?>"> <?= $category['category_name'] ?></label><br>
+                        <?php if (($index + 1) % 4 === 0 || $index + 1 === count($categories)): ?>
+                            </div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
                 </div>
                 <div class="about"><h1 class="about-title">About the item</h1></div>
                 <div class="description">
                     <h3 class="desc">Description</h3>
                         <input type="text" name="desc_title" id="desc_title" placeholder="Description Header"> 
                         <select name="avail_status" id="avail_status">
+                            <?php // this would do because avail_status is an ENUM  ?>
                             <option value="available" selected >Available</option>
                             <option value="unavailable" disabled>Unavailable</option>
                             <option value="pending" disabled>Pending</option>
                         </select>
-                        <input type="hidden" name="poster_uid" value="<?= (session()->get('user')['user_id'])?>">
                     <textarea name="desc_content" id="" cols="30" rows="10" class="desc_content" placeholder="Insert your description here"></textarea>
                 </div>
                 <hr class="divider">

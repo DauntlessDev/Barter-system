@@ -42,35 +42,21 @@ class Item extends BaseController
 	 * METHOD: GET/POST
 	*/
 	public function create() {
-		$data = [
-			'class' => $this,
-			'categories' => $this -> categoryModel -> get()
-		];
-		
-		if ($this->request->getMethod() === 'get') return view('pages/auth/itemCreate');
+		$categories = $this->categoryModel->findAll();
+		if ($this->request->getMethod() === 'get') return view('pages/auth/itemCreate', ['categories' => $categories]);
 		if ($this->request->getMethod() === 'post') {
+			$rules = $this->validation->getRuleGroup('addItem');
+			if (!$this->validate($rules)) return view('pages/auth/itemCreate', ['validation' => $this->validator, 'categories' => $categories]);
 
-			
-
-			$category_ids = array();
-			if(isset($_POST['checklist'])) {
-    			foreach($_POST['checklist'] as $check) {
-       				array_push($category_ids, $check); 
-    			}
-			}
-			$rules = $this->validation->getRuleGroup('additem');
-			if (!$this->validate($rules)) return view('pages/auth/itemCreate', ['validation' => $this->validator]);
-
+			$_POST['poster_uid'] = (int)session()->get('user')['user_id'];
 			$fileService = Services::file_service();
 			$_POST['photo_url'] = $fileService->saveFile($this->request, 'item_photo');
 
-
-			if ($this->itemModel->create($_POST, $category_ids) === false)
+			if ($this->itemModel->create($_POST, $_POST['category_ids']) === false)
 				throw new Exception('Error while inserting to database');
 
 			return redirect()->route('itemCreate')->with('msg', 'Item creation successful, you may see it in your profile');
 		}
-		
 	}
 
 	/**
