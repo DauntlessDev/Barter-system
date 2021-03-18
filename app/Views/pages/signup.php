@@ -24,6 +24,10 @@
 
             <div>
                 <form class="form" action="<?= route_to('signup') ?>" method="POST" id="signup-form" enctype="multipart/form-data">
+                    <div class="user-box">
+                        <input type="file" name="profile_image" id="profile_image">
+                        <label for="profile_image">Profile image</label>
+                    </div>
                     <?= $this->include('components/partials/_userFields') ?>
                     <button class="button" type="submit" form="signup-form" value="submit">Sign up</button>
                 
