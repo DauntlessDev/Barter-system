@@ -103,7 +103,7 @@ body{
     margin-bottom: 20px;
 }
 
-[type="checkbox"]{
+.checkbox{
     /* margin-top: 20px;    */
     color: #747272;
     width: 1.3em;
@@ -118,7 +118,7 @@ body{
     cursor: pointer;
 }
 
-label{
+.label-checkbox{
     color: #535353;
 }
 

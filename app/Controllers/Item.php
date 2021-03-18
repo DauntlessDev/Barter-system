@@ -49,8 +49,11 @@ class Item extends BaseController
 		
 		if ($this->request->getMethod() === 'get') return view('pages/auth/itemCreate');
 		if ($this->request->getMethod() === 'post') {
+
+			
+
 			$category_ids = array();
-			if(!empty($_POST['checklist'])) {
+			if(isset($_POST['checklist'])) {
     			foreach($_POST['checklist'] as $check) {
        				array_push($category_ids, $check); 
     			}

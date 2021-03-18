@@ -70,8 +70,8 @@ class Validation
 	public $additem = [
 		'poster_uid' => 'required',
 		'item_name' => 'required|min_length[3]|max_length[250]|alpha_numeric_punct',
-		'photo_url' => 'required',
 		'avail_status' => 'required|alpha_numeric',
+		'checklist' => 'required',
 		'desc_title' => 'required|min_length[3]|max_length[30]|alpha_numeric_punct',
 		'desc_content' => 'alpha_numeric_punct',
 
