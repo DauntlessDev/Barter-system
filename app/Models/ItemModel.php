@@ -122,10 +122,10 @@ class ItemModel extends Model
      * $itemModel->update(1, $data);
      */
     public function update($item_id = null, $data = null) : bool{
-        if ($data['category_id']) {
+        if ($data['category_ids']) {
             $builder = $this->builder('item_listing');
             $builder->where('item_id', $item_id)
-                    ->where('category_id', $data['category_id'])
+                    ->where('category_id', $data['category_ids'])
                     ->set(['category_id' => $data['new_category_id']])
                     ->update();
         }
