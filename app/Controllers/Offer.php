@@ -1,11 +1,6 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\ItemModel;
-use App\Models\UserModel;
-use App\Models\CategoryModel;
-use Config\Services;
-use Exception;
 
 class Offer extends BaseController
 {

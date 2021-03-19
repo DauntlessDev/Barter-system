@@ -6,6 +6,7 @@ use App\Models\UserModel;
 use App\Models\CategoryModel;
 use Config\Services;
 use Exception;
+use phpDocumentor\Reflection\PseudoTypes\True_;
 
 class Item extends BaseController
 {
@@ -28,13 +29,17 @@ class Item extends BaseController
 	public function index(int $item_id)
 	{
 		$item = $this->itemModel->find($item_id);
-		$user = $this->userModel->find($item['poster_uid']);;
-
+		$user = $this->userModel->find($item['poster_uid']);
+	
 		$data = [
 			'item' => $item,
 			'user' => $user,
 		];
 
+		if($user['user_id'] == $item['poster_uid']){
+			return view('pages/itemProfile', $data);
+		}
+		
 		return view('pages/itemProfile', $data);
 	}
 

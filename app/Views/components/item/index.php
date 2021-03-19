@@ -1,6 +1,6 @@
 <div class="wrapper">
     <div class="all-container">
-        <?php if ((session()->get('user')['user_id'] ?? null) === $item['poster_uid']) : ?>
+        <?php if ((session()->get('user')['user_id'] ?? null) === $item['poster_uid']): ?>
             <div class="main-container">
                 <div class="left-container itempic">
                     <img src="<?= base_url($item['photo_url']) ?>" alt="" class="itempicture">
@@ -50,78 +50,25 @@
                 </div>
             </div>
             <div class="offers">
-            <div class="offerlist-container">
-        <div class="title">
-            <h1 class="offer-title">Your offers</h1>
-        </div>
-        <div class="list-container">
-            <div class="offer-container">
-                <div class="text-content">
-                    <h3 class="subject-title">Subject</h3>
-                    <h4 class="message-view">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim reiciendis odio hic eius voluptates numquam illum laboriosam corporis. Aut aliquam aperiam sapiente, perspiciatis fuga excepturi illo repellendus molestias facere dolorem.</h4>
+                <div class="offerlist-container">
+                    <div class="title">
+                        <h1 class="offer-title">Your offers</h1>
+                    </div>
+                    <div class="list-container">
+                        <?php for ($x = 0; $x <= 10; $x++) { ?>
+                            <?= "<div class=\"offer-container\">"; ?>
+                            <?= "<div class=\"text-content\">"; ?>
+                            <?= "<h3 class=\"subject-title\">Subject</h3>"; ?>
+                            <?= "<h4 class=\"message-view\">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim reiciendis odio hic eius voluptates numquam illum laboriosam corporis. Aut aliquam aperiam sapiente, perspiciatis fuga excepturi illo repellendus molestias facere dolorem.</h4>"; ?>
+                            <?= "</div>"; ?>
+                            <?= "<div class=\"accept\">"; ?>
+                            <?= "<button class=\"accept_button\" type=\"submit\" form=\"placeOffer-form\" value=\"submit\">Accept Offer</button>"; ?>
+                            <?= "</div>"; ?>
+                            <?= "</div>"; ?>
+                        <?php } ?>
+                    </div>
                 </div>
-                <div class="accept">
-                    <button class="accept_button" type="submit" form="placeOffer-form" value="submit">Accept Offer</button>
-                </div>
-            </div>
-            <div class="offer-container">
-                <div class="text-content">
-                    <h3 class="subject-title">Subject</h3>
-                    <h4 class="message-view">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim reiciendis odio hic eius voluptates numquam illum laboriosam corporis. Aut aliquam aperiam sapiente, perspiciatis fuga excepturi illo repellendus molestias facere dolorem.</h4>
-                </div>
-                <div class="accept">
-                    <button class="accept_button" type="submit" form="placeOffer-form" value="submit">Accept Offer</button>
-                </div>
-            </div>
-            <div class="offer-container">
-                <div class="text-content">
-                    <h3 class="subject-title">Subject</h3>
-                    <h4 class="message-view">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim reiciendis odio hic eius voluptates numquam illum laboriosam corporis. Aut aliquam aperiam sapiente, perspiciatis fuga excepturi illo repellendus molestias facere dolorem.</h4>
-                </div>
-                <div class="accept">
-                    <button class="accept_button" type="submit" form="placeOffer-form" value="submit">Accept Offer</button>
-                </div>
-            </div>
-            <div class="offer-container">
-                <div class="text-content">
-                    <h3 class="subject-title">Subject</h3>
-                    <h4 class="message-view">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim reiciendis odio hic eius voluptates numquam illum laboriosam corporis. Aut aliquam aperiam sapiente, perspiciatis fuga excepturi illo repellendus molestias facere dolorem.</h4>
-                </div>
-                <div class="accept">
-                    <button class="accept_button" type="submit" form="placeOffer-form" value="submit">Accept Offer</button>
-                </div>
-            </div>
-            <div class="offer-container">
-                <div class="text-content">
-                    <h3 class="subject-title">Subject</h3>
-                    <h4 class="message-view">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim reiciendis odio hic eius voluptates numquam illum laboriosam corporis. Aut aliquam aperiam sapiente, perspiciatis fuga excepturi illo repellendus molestias facere dolorem.</h4>
-                </div>
-                <div class="accept">
-                    <button class="accept_button" type="submit" form="placeOffer-form" value="submit">Accept Offer</button>
-                </div>
-            </div>
-            <div class="offer-container">
-                <div class="text-content">
-                    <h3 class="subject-title">Subject</h3>
-                    <h4 class="message-view">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim reiciendis odio hic eius voluptates numquam illum laboriosam corporis. Aut aliquam aperiam sapiente, perspiciatis fuga excepturi illo repellendus molestias facere dolorem.</h4>
-                </div>
-                <div class="accept">
-                    <button class="accept_button" type="submit" form="placeOffer-form" value="submit">Accept Offer</button>
-                </div>
-            </div>
-            <div class="offer-container">
-                <div class="text-content">
-                    <h3 class="subject-title">Subject</h3>
-                    <h4 class="message-view">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim reiciendis odio hic eius voluptates numquam illum laboriosam corporis. Aut aliquam aperiam sapiente, perspiciatis fuga excepturi illo repellendus molestias facere dolorem.</h4>
-                </div>
-                <div class="accept">
-                    <button class="accept_button" type="submit" form="placeOffer-form" value="submit">Accept Offer</button>
-                </div>
-            </div>
-        </div>
-    </div>
-            </div>
-        <?php else : ?>
+            <?php else: ?>
             <div class="main-container">
                 <div class="left-container itempic">
                     <img src="<?= base_url($item['photo_url']) ?>" alt="" class="itempicture">
@@ -166,6 +113,6 @@
                     </div>
                 </div>
             </div>
-        <?php endif; ?>
+            <?php endif; ?>
+        </div>
     </div>
-</div>
