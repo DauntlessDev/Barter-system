@@ -71,7 +71,7 @@ class Validation
 
 	public $addEditItem = [
 		'item_name' 	 => 'required|min_length[3]|max_length[250]|alpha_numeric_punct',
-		'poster_uid'	 => 'required|is_poster',
+		'poster_uid'	 => 'is_poster',
 		'avail_status' 	 => 'required|alpha_numeric',
 		'category_ids' 	 => 'required',
 		'category_ids.*' => 'numeric|is_not_unique[category.category_id]',
