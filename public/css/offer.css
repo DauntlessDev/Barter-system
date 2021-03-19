@@ -18,6 +18,7 @@ body{
 
 .whole_contents{
     margin-left: 30%;
+    width: 40%;
 }
 
 .subject{
@@ -38,7 +39,8 @@ body{
 }
 
 .message_area{
-    width: 60%;
+    border: 1px solid rgb(200, 200, 200);
+    width: 100%;
 }
 
 .place_button{
