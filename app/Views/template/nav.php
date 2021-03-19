@@ -19,14 +19,12 @@
         <a href="<?= route_to('home') ?>">Home</a>
         <a href="<?= route_to('userProfile', session()->get('user')['user_id']) ?>"><?= session()->get('user')['username'] ?? '' ?></a>
         <a href="<?= route_to('userProfileEdit') ?>">Edit Profile</a>
-        <a href="<?= route_to('userReviews') ?>">Reviews</a>
         <a href="<?= route_to('message') ?>">Messages</a>
         <a href="<?= route_to('logout') ?>">Logout</a>
     <?php else : ?>
         <a href="<?= route_to('signup') ?>">Sign up</a>
         <div class="spacer"></div>
         <a href="<?= route_to('login') ?>">Login</a>
-        <a href="<?= route_to('userReviews') ?>">Reviews</a>
     <?php endif; ?>
   </div>
 </nav>
