@@ -31,6 +31,7 @@ class ItemModel extends Model
             $data['data']['photo_url'] = 'images/default/product.jpg';
         }
         return $data;
+        
     }
 
     // protected $validationRules    = [];
