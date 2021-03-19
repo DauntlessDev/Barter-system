@@ -47,7 +47,7 @@
 
         <hr class="divider">
         
-        <button class="button-add" type="submit" form="additem-form" value="submit">
+        <button class="button-add" type="submit" form="edititem-form" value="submit">
             <?php if(empty($item)): ?>
                 Add Item
             <?php else: ?>
