@@ -83,7 +83,8 @@ class Item extends BaseController
 
 			$_POST['poster_uid'] = (int)session()->get('user')['user_id'];
 			$fileService = Services::file_service();
-			$_POST['photo_url'] = empty($fileService->saveFile($this->request, 'item_photo')) ? $item['photo_url'] : $fileService->saveFile($this->request, 'item_photo');
+			$image_url = $fileService->saveFile($this->request, 'item_photo');
+			$_POST['photo_url'] = empty($image_url) ? $item['photo_url'] : $image_url;
 			
 			if ($this->itemModel->update($item['item_id'], $_POST) === false)
 				throw new Exception('Error while updating an item.');
