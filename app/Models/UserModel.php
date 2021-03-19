@@ -14,9 +14,9 @@ class UserModel extends Model implements ModelInterface
     protected $primaryKey       = 'user_id';
     protected $useAutoIncrement = true;
     protected $allowedFields    = [
-        'username', 
-        'password', 
-        'first_name', 
+        'username',
+        'password',
+        'first_name',
         'last_name',
         'address',
         'contact_details',
@@ -75,23 +75,23 @@ class UserModel extends Model implements ModelInterface
     /**
      * Returns rows from the `users` table as an array, given
      * certain options, otherwise returns all.
-     * 
-     * @param array $where Values that identify that user. 
-     * 
+     *
+     * @param array $where Values that identify that user.
+     *
      * **Must have:**
-     * *one key-to-many values* `[count = 1]` OR 
+     * *one key-to-many values* `[count = 1]` OR
      * *many one key-to-one value* `[count = 1 OR N]`
-     * 
+     *
      * Example: `$where = ['username' => 'johndoe', ...]` OR
      *          `$where = ['first_name' => 'john', 'last_name' => 'doe', ...]`
-     * 
+     *
      * @param array $options Query options to be used.
-     * 
+     *
      * Example: `limit` | `offset`
      *          `$options = ['limit' => '1', 'offset' => '1', ...]`
-     * 
+     *
      * @return array `ResultArray` of users.
-     * 
+     *
      */
     public function get($where = [], $options = null){
         $limit = $options['limit'] ?? 0;
@@ -114,35 +114,33 @@ class UserModel extends Model implements ModelInterface
 
 
     /**
-     * Updates the details and credentials of the 
+     * Updates the details and credentials of the
      * currently logged user.
-     * 
+     *
      * @param array $data New data to be updated.
      * @param array $where Values that identify that user.
-     * 
-     * **Must have:** `['user_id' => 'session_user']`. 
-     * 
+     *
+     * **Must have:** `['user_id' => 'session_user']`.
+     *
      * @return true|false `true` If successful update otherwise, `false`.
      *
      */
-    public function update($data = null, $where = null) : bool{
-        return $this->where($where)
-                    ->set($data)
-                    ->update();
-    }
-
+    // @Hezzz this is quite broken
+    // public function update($data = null, $where = null) : bool{
+    //     return $this->update($data, $where);
+    // }
 
     /* Delete Methods */
 
 
     /**
      * Delete a user, usually the current logged in user.
-     * 
-     * @param array $where Values that identify that user.
-     * 
-     * **Must have:** `['user_id' => 'session_user']`.
-     * 
-     */
+     *
+    * @param array $where Values that identify that user.
+     *
+    * **Must have:** `['user_id' => 'session_user']`.
+     *
+    */
     public function delete($where = null, bool $purge = false){
         return $this->where($where)
                     ->delete();

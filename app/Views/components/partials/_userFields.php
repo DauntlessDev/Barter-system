@@ -1,7 +1,7 @@
 <h3>Profile information</h3>
 
 <div class="user-box">
-    <input type="text" name="username" id="username" value="<?= session()->get('user')['username'] ?? 'janedoe' ?>" autocomplete="off" required>
+    <input type="text" name="username" id="username" value="<?= session()->get('user')['username'] ?? 'janedoe' ?>" autocomplete="off" required <?= !empty(session()->get('user')) ? 'readonly' : '' ?> >
     <label for="username">Username</label>
 </div>
 

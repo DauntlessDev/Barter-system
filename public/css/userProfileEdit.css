@@ -2,7 +2,6 @@
 
 .ep-container * {
     background-color: #fff;
-    color: #000;
     margin: 0;
     padding: 0;
 }
@@ -53,6 +52,8 @@
     margin: 0px 24px 88px;
     padding-bottom: 0px;
     padding-top: 50px;
+    background-color: #fff;
+    color: #000;
 }
 
 .ep-sidebar {
@@ -222,8 +223,14 @@
     border: 1px solid #0062c7;
 }
 
+.ep-box .user-box input:read-only {
+    cursor: default;
+    color: #a1a1a1;
+}
+
 .ep-box .user-box input:focus ~ label,
-.ep-box .user-box input:valid ~ label {
+.ep-box .user-box input:valid ~ label,
+.ep-box .user-box input:read-only ~ label {
     top: -15px;
     left: 5px;
     color: #535353;

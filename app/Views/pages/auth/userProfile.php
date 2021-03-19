@@ -66,6 +66,14 @@
                                         </div>
                                     </div>
 
+                                    <div class="p-items-box">
+                                        <div class="p-item-box-container">
+                                            <a href="#">
+                                            help
+                                            </a>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
