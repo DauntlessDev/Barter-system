@@ -122,14 +122,16 @@ class ItemModel extends Model
      * $itemModel->update(1, $data);
      */
     public function update($item_id = null, $data = null) : bool{
+        // Delete binded categories first in item_listing.
+        $this->deleteItemListing($item_id);
         if ($data['category_ids']) {
             $builder = $this->builder('item_listing');
-            $builder->where('item_id', $item_id)
-                    ->where('category_id', $data['category_ids'])
-                    ->set(['category_id' => $data['new_category_id']])
-                    ->update();
+            $batchData = [];
+            foreach($data['category_ids'] as $category_id){
+                array_push($batchData, ['item_id' => $item_id, 'category_id' => $category_id]);
+            }
+            $builder->insertBatch($batchData);
         }
-
         return parent::update($item_id, $data);
     }
 
@@ -216,7 +218,6 @@ class ItemModel extends Model
      * `item_listing` table.
      *
      * @param mixed $item_id `item_id` of the item selected.
-     * @param array $category_ids `category_id`s To be deleted.
      *
      */
     protected function deleteItemListing($item_id) {
