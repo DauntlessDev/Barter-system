@@ -45,7 +45,7 @@ class Item extends BaseController
 		$categories = $this->categoryModel->findAll();
 		if ($this->request->getMethod() === 'get') return view('pages/auth/itemCreate', ['categories' => $categories]);
 		if ($this->request->getMethod() === 'post') {
-			$rules = $this->validation->getRuleGroup('addItem');
+			$rules = $this->validation->getRuleGroup('addEditItem');
 			if (!$this->validate($rules)) return view('pages/auth/itemCreate', ['validation' => $this->validator, 'categories' => $categories]);
 
 			$_POST['poster_uid'] = (int)session()->get('user')['user_id'];
@@ -66,14 +66,24 @@ class Item extends BaseController
 		$item = $this->itemModel->get(['item_id' => [$item_id]])[0];
 		$categories = $this->categoryModel->findAll();
 
-		// If current logged user is not the poster, redirect to index page
+		// If current logged user is not the poster, redirect to index page (Does not work yet..)
 		$current_user = session()->get('user')['user_id'];
-		if (!$item['poster_uid'] === $current_user) return redirect()->route('item', [$item['item_id']])->with('msg', 'No permission to edit this item.');
+		if ($current_user !== $item['poster_uid'])
+			return redirect()->route('item', [$item['item_id']])->with('msg', 'No permission to edit this item.');
 
-		if ($this->request->getMethod() === 'get') return view('pages/auth/itemProfileEdit', ['item' => $item, 'categories' => $categories]);
+		$data = [
+			'item' => $item, 
+			'categories' => $categories
+		];
+
+		if ($this->request->getMethod() === 'get') return view('pages/auth/itemProfileEdit', $data);
 		if ($this->request->getMethod() === 'post') {
-			$rules = $this->validation->getRuleGroup('addItem');
-			if (!$this->validate($rules)) return view('pages/auth/itemProfileEdit', ['validation' => $this->validator, 'categories' => $categories]);
+			$rules = $this->validation->getRuleGroup('addEditItem');
+			if (!$this->validate($rules)) return view('pages/auth/itemProfileEdit', $data, ['validation' => $this->validator]);
+
+			$_POST['poster_uid'] = (int)session()->get('user')['user_id'];
+			$fileService = Services::file_service();
+			$_POST['photo_url'] = $fileService->saveFile($this->request, 'item_photo')?? $item['photo_url'];
 			
 			if ($this->itemModel->update($item['item_id'], $_POST) === false)
 				throw new Exception('Error while updating an item.');
