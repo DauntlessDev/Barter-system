@@ -25,14 +25,13 @@ class ItemModel extends Model
     protected $updatedField     = 'updated_at';
 
     protected $beforeInsert     = ['checkPhotoUrl'];
-    protected $beforeUpdate     = ['checkPhotoUrl'];
 
     protected function checkPhotoUrl(array $data){
         if(empty($data['data']['photo_url'])) {
             $data['data']['photo_url'] = 'images/default/product.jpg';
         }
-
         return $data;
+        
     }
 
     // protected $validationRules    = [];
@@ -122,14 +121,16 @@ class ItemModel extends Model
      * $itemModel->update(1, $data);
      */
     public function update($item_id = null, $data = null) : bool{
-        if ($data['category_id']) {
+        // Delete binded categories first in item_listing.
+        $this->deleteItemListing($item_id);
+        if ($data['category_ids']) {
             $builder = $this->builder('item_listing');
-            $builder->where('item_id', $item_id)
-                    ->where('category_id', $data['category_id'])
-                    ->set(['category_id' => $data['new_category_id']])
-                    ->update();
+            $batchData = [];
+            foreach($data['category_ids'] as $category_id){
+                array_push($batchData, ['item_id' => $item_id, 'category_id' => $category_id]);
+            }
+            $builder->insertBatch($batchData);
         }
-
         return parent::update($item_id, $data);
     }
 
@@ -216,7 +217,6 @@ class ItemModel extends Model
      * `item_listing` table.
      *
      * @param mixed $item_id `item_id` of the item selected.
-     * @param array $category_ids `category_id`s To be deleted.
      *
      */
     protected function deleteItemListing($item_id) {
