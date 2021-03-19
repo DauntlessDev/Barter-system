@@ -47,14 +47,10 @@ class UserProfile extends BaseController
                 if ($_POST['password'] === '')
                     unset($_POST['password']);
 
-            // echo $this->userModel->update($user_id, $_POST);
-            // var_dump($_POST);
-            // exit();
 			if ($this->userModel->update($user_id, $_POST) === false)
 				throw new Exception('Error while inserting to database');
 
-            // TODO: Update session here, sige sige, ## chat ka sa discord if may problem, miminimize ko 'to
-            // will fix muna the ui mismo
+            // TODO: Update session here
 
 			return redirect()->route('userProfileEdit')->with('msg', 'Successfully updated user!!!!!!!!!!!! >:(');
         }

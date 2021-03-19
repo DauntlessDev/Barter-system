@@ -16,7 +16,7 @@
                 <?php // more on flashdata https://codeigniter.com/user_guide/libraries/sessions.html#flashdata?>
                 <?php if (session()->getFlashdata('msg') !== null): ?>
                     <div>
-                    <p style='color: red'><?= session()->getFlashdata('msg') ?></p>
+                    <p style='color: green'><?= session()->getFlashdata('msg') ?></p>
                     </div>
                     <?php endif; ?>
                 <?php // validation https://www.codeigniter.com/user_guide/libraries/validation.html?highlight=validate#customizing-error-display ?>

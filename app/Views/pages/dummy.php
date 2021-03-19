@@ -38,7 +38,6 @@
     <?php
         // print_r($userModel->get()); // GET ALL users
         // print_r($userModel->get(['username' => ['user0']])); // filter user by username
-        print_r($userModel->update(1, ['first_name' => 'TEST'])); // filter user by username
     ?>
     </pre>
 </details>
