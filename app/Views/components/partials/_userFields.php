@@ -1,11 +1,6 @@
 <h3>Profile information</h3>
 
 <div class="user-box">
-    <input type="file" name="profile_image" id="profile_image">
-    <label for="profile_image">Profile image</label>
-</div>
-
-<div class="user-box">
     <input type="text" name="username" id="username" value="<?= session()->get('user')['username'] ?? 'janedoe' ?>" autocomplete="off" required>
     <label for="username">Username</label>
 </div>

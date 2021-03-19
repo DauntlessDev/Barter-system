@@ -6,24 +6,23 @@ Features:
 - [ ] form validation
   - [x] login
   - [x] sign up
-  - [ ] add item
-  - [ ] edit item
-  - [x] edit profile
-  - [ ] place offer
-- [x] login/signup
+  - [ ] edit profile
+  - [ ] add/edit item
+  - [ ] add/edit review
+- [ ] place/accept offer
+- [x] login/sign up
 - [x] real-time messaging
 - [x] view items per category
-- [x] search products
-- [ ] place offers
-- [ ] add item
-- [ ] add review
+- [ ] view items per user profile
+- [x] search for items
+- [ ] place item listing
 - [ ] view reviews
-- [ ] image uploads
+- [x] image uploads
 
 <br>
 
-- frontend create from scratch(no bootstrap/template)
-- proof of work can be found [here](https://github.com/Simperfy/Barter-system/pulls?q=is%3Apr+is%3Aclosed)
+- no front-end framework (pure css/js)
+- proof of work can be found [here](https://github.com/Simperfy/Barter-system/pulls?q=is%3Apr+is%3Aclosed) and [here](https://github.com/Simperfy/Barter-system/issues?q=is%3Aissue+is%3Aclosed)
 
 <br>
 
@@ -189,8 +188,8 @@ add the following lines, and restart the live server.
               </sub>
           </a>
           <br/>
-          <a href="#" title="Design">🎨</a>
           <a href="#" title="Frontend(UI)">🖼️</a>
+          <a href="#" title="UI Design">🎨</a>
       </td>
       <td align="center">
           <a href="https://github.com/DauntlessDev">
@@ -201,10 +200,10 @@ add the following lines, and restart the live server.
               </sub>
           </a>
           <br/>
-          <a href="#" title="Database Design">🔣</a>
-          <a href="#" title="Design">🎨</a>
+          <a href="#" title="Database Design(support)">🔣</a>
           <a href="#" title="Frontend(UI)">🖼️</a>
           <a href="#" title="Project Idea">🤔</a>
+          <a href="#" title="UI Design">🎨</a>
       </td>
       <td align="center">
           <a href="https://github.com/Hezzz">
@@ -216,7 +215,7 @@ add the following lines, and restart the live server.
           </a>
           <br/>
           <a href="#" title="Backend(main)">🕹</a>
-          <a href="#" title="Database Design">🔣</a>
+          <a href="#" title="Database Design(main)">🔣</a>
           <a href="#" title="Documentation(backend models)">📖</a>
           <a href="#" title="ERD Creator">📈</a>
       </td>
@@ -230,10 +229,11 @@ add the following lines, and restart the live server.
           </a>
           <br/>
           <a href="#" title="Backend">🕹</a>
-          <a href="#" title="Design">🎨</a>
+          <a href="#" title="Database Design(support)">🔣</a>
           <a href="#" title="Frontend(UX)">🖼️</a>
           <a href="#" title="Infrastructure/DevOps">🚇</a>
           <a href="#" title="Project Installation Tutorial">✅</a>
+          <a href="#" title="UI Design">🎨</a>
       </td>
       <td align="center">
           <a href="https://github.com/stormy26">
@@ -245,9 +245,45 @@ add the following lines, and restart the live server.
           </a>
           <br/>
           <a href="#" title="Spokesperson">📢</a>
+          <a href="#" title="Frontend(UI)">🖼️</a>
       </td>
   </tr>
 </table>
+
+<hr>
+
+Person who "`worked`__*assigned*" on features:
+
+- intended routes (redirect back to visited url before login) `@Simperfy`__*@Simperfy*
+- form validation
+  - login `@Simperfy`__*@Simperfy*
+  - sign up `@Simperfy`__*@Simperfy*
+  - edit profile ``__*@briellers*
+  - add/edit item `@Simperfy, @stormy26`__*@stormy26*
+  - add/edit review ``__*@briellers*
+- place/accept offer ``__*@stormy26*
+- login/sign up page `@briellers, @Simperfy`__*@briellers*
+- authentication `@Simperfy`__*@Simperfy*
+- real-time messaging `@Simperfy`__*@Simperfy*
+- view items per category `@DauntlessDev, @Simperfy`__*@DauntlessDev*
+- view items per user profile ``__*@briellers*
+- search for items `@DauntlessDev`__*@DauntlessDev*
+- place item listing ``__*@stormy26*
+- view reviews ``__*@briellers*
+- image uploads `@Simperfy`__*@Simperfy*
+
+<br>
+
+- Category Model/Schema `@Hezzz, @Simperfy`__*@Hezzz*
+- Item Model/Schema `@Hezzz, @Simperfy`__*@Hezzz*
+- User Model/Schema `@Hezzz, @Simperfy`__*@Hezzz*
+- Offers Model/Schema `@Hezzz, @Simperfy`__*@Hezzz*
+- Reviews Model/Schema `@Hezzz, @Simperfy`__*@Hezzz*
+- Messages Model/Schema `@Hezzz, @Simperfy`__*@Hezzz*
+
+<br>
+
+- Hosting  `@Simperfy`__*@Simperfy*
 
 <br>
 
