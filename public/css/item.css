@@ -108,6 +108,16 @@ body{
     background-color: #004b00 ;
 }
 
+.disabled {
+    cursor: not-allowed;
+    background-color: var(--disabledBtnBg);
+}
+
+.disabled:hover {
+    cursor: not-allowed;
+    background-color: var(--disabledBtnBg);
+}
+
 .details{
     font-weight: bold;
     font-size: 1.25rem;

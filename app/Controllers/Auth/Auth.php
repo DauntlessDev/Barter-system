@@ -42,7 +42,7 @@ class Auth extends BaseController
 			$this->setSession($user);
 
 			if (isset($_GET['redirect'])) {
-				$redirectURI = '/'.$_GET['redirect'];
+				$redirectURI = '/'.urldecode($_GET['redirect']);
 				return redirect()->to($redirectURI);
 			}
 

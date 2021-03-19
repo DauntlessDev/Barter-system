@@ -271,7 +271,7 @@ function SearchManager(chatManager) {
     const parsedUrl = new URL(window.location.href);
     const userID = parseInt(parsedUrl.searchParams.get('user_id'), 10);
     const username = parsedUrl.searchParams.get('username');
-    window.history.replaceState(null, null, window.location.pathname);
+    window.history.replaceState(null, null, window.location.pathname); // remove get param from prying eyes
 
     const apiManager = APIManager();
     const chatManager = ChatManager(apiManager);
@@ -281,7 +281,9 @@ function SearchManager(chatManager) {
     const firstInbox = await inboxManager.load();
 
     if (userID && username) {
-      chatManager.loadMessages(userID, username);
+      if (parseInt(window.user_id, 10) !== userID) {
+        chatManager.loadMessages(userID, username);
+      }
     // check if user have at least one item in inbox
     } else if (firstInbox) {
       chatManager.loadMessages(firstInbox.user_id, firstInbox.username);

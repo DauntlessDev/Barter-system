@@ -45,8 +45,14 @@
             </div>
             <p class="gotoprofile"><a href="<?= base_url(route_to('userProfile', $user['user_id'])) ?>">Check user profile</a></p>
             <div class="offerbutton">
-            <?php if (session()->get('user')['user_id'] !== $user['user_id']): ?>
-                <button class="message" onclick="window.location='<?= $msgURL ?>'">Message</button>
+            <?php if (session()->get('user') !== null): ?>
+                <?php if (session()->get('user')['user_id'] !== $user['user_id']): ?>
+                    <button class="message" onclick="window.location='<?= $msgURL ?>'">Message</button>
+                <?php else: ?>
+                    <button class="message disabled" title="You cannot message yourself">Message</button>
+                <?php endif; ?>
+            <?php else: ?>
+                    <button class="message" onclick="window.location='<?= $msgURL ?>'">Message</button>
             <?php endif; ?>
                 <input type="submit" name="offer" value="Offer" class="offer"></input>
             </div>
