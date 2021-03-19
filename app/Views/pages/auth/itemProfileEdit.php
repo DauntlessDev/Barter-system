@@ -7,7 +7,7 @@
 
 <?php // CSS ?>
 <?= $this->section('css') ?>
-    <link rel="stylesheet" href="<?= base_url('css/itemEdit.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('css/itemCreateEdit.css') ?>">
 <?= $this->endSection() ?>
 
 <?php // Main Content ?>
