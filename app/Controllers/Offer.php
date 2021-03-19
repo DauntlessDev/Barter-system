@@ -9,16 +9,15 @@ use Exception;
 
 class Offer extends BaseController
 {
-
-	public function __construct()
-	{
-
-        
-	}
-
     public function place()
 	{
 
-		return view('pages/auth/placeOffer');
+		if ($this->request->getMethod() === 'get') return view('pages/auth/placeOffer');
+		if ($this->request->getMethod() === 'post') {
+			// do form validation
+			// update database
+			// check for error
+			return "Process editing of item";
+		}
 	}
 }
