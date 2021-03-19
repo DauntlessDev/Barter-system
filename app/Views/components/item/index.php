@@ -46,7 +46,7 @@
             <p class="gotoprofile"><a href="<?= base_url(route_to('userProfile', $user['user_id'])) ?>">Check user profile</a></p>
             <div class="offerbutton">
                 <input type="submit" name="message" value="Message" class="message"></input>
-                <input type="submit" name="offer" value="Offer" class="offer"></input>
+                <input type="submit" name="offer" value="Offer" class="offer" onclick="window.location='<?= route_to('placeOffer'); ?>'"></input>
             </div>
         </div>
     </div>
