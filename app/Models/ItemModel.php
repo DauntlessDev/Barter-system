@@ -25,13 +25,11 @@ class ItemModel extends Model
     protected $updatedField     = 'updated_at';
 
     protected $beforeInsert     = ['checkPhotoUrl'];
-    protected $beforeUpdate     = ['checkPhotoUrl'];
 
     protected function checkPhotoUrl(array $data){
         if(empty($data['data']['photo_url'])) {
             $data['data']['photo_url'] = 'images/default/product.jpg';
         }
-
         return $data;
     }
 
