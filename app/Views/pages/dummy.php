@@ -3,7 +3,7 @@
     <pre>
     <?php
         // print_r($itemModel->get());
-        print_r($itemModel->get(['item_id' => ['1']])); // get all items with categories
+        print_r($itemModel->get(['item_name' => ['item0']])); // get all items with categories
 
         // $data = [
         //     'item_name' => 'updated item',
