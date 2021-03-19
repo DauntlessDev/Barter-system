@@ -54,5 +54,7 @@
                 <button class="button-add" type="submit" form="additem-form" value="submit">Add Item</button>
             </div>
         </div>
+    <form class="form" action="<?= route_to('itemCreate') ?>" method="POST" id="additem-form" enctype="multipart/form-data" >
+        <?= $this->include('components/partials/_itemFields') ?>
     </form>
 </div>
