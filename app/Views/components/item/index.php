@@ -57,13 +57,15 @@
                     <?php if (session()->get('user') !== null) : ?>
                         <?php if (session()->get('user')['user_id'] !== $user['user_id']) : ?>
                             <button class="message" onclick="window.location='<?= $msgURL ?>'">Message</button>
+                            <button class="offer" onclick="window.location='<?= route_to('placeOffer', $item['item_id']); ?>'">Offer</button>
                         <?php else : ?>
                             <button class="message disabled" title="You cannot message yourself">Message</button>
+                            <button class="offer disabled" title="You cannot place offer to your own item">Offer</button>
                         <?php endif; ?>
                     <?php else : ?>
                         <button class="message" onclick="window.location='<?= $msgURL ?>'">Message</button>
+                        <button class="offer" onclick="window.location='<?= route_to('placeOffer', $item['item_id']); ?>'">Offer</button>
                     <?php endif; ?>
-                    <input type="submit" name="offer" value="Offer" class="offer" onclick="window.location='<?= route_to('placeOffer'); ?>'"></input>
                 </div>
             </div>
         </div>
