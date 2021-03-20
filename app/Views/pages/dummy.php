@@ -48,12 +48,11 @@
     <summary>Offer Model</summary>
     <pre>
     <?php
-    print_r($offerModel->get()); // get All Offer
-    // print_r($offerModel->get([
-    //     'item_id' => 1,
-    //     'poster_uid' => 1,
-    //     'customer_uid' => 4,
-    // ])); // get Single Offer
+    // print_r($offerModel->get()); // get All Offer
+    print_r($offerModel->get([
+        'item_id' => 1,
+        // 'customer_uid' => 1,
+    ])); // get offers of item
     ?>
     </pre>
 </details>
