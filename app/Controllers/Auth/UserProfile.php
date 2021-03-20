@@ -52,11 +52,19 @@ class UserProfile extends BaseController
 
             // TODO: Update session here
 
-			return redirect()->route('userProfileEdit')->with('msg', 'Successfully updated user!!!!!!!!!!!! >:(');
+			return redirect()->route('userProfileEdit')->with('msg', 'Successfully updated user!');
         }
     }
 
     public function reviews() {
         return view('pages/auth/userProfile');
     }
+
+    private function setSession($user) {
+		$data = [
+			'user' => $user,
+			'isLoggedIn' => true,
+		];
+		session()->set($data);
+	}
 }
