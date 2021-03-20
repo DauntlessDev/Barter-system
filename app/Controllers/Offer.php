@@ -22,11 +22,13 @@ class Offer extends BaseController
     public function create(int $item_id)
 	{
 		$user_id = session()->get('user')['user_id'];
+		$canPlaceOffer = count($this->offerModel->get(['customer_uid' => $user_id, 'item_id' => $item_id])) == 0;
 		$item = $this->itemModel->find($item_id);
 		if(!$item) throw PageNotFoundException::forPageNotFound('Item does not exist');
+		if(!$canPlaceOffer) throw PageNotFoundException::forPageNotFound('You cannot another offer.');
 		if($item['poster_uid'] === $user_id) throw PageNotFoundException::forPageNotFound('You cannot place offer to your own item.');
 
-        if ($this->request->getMethod() === 'get') return view('pages/auth/placeOffer', ['item_id' => $item_id]);
+        if ($this->request->getMethod() === 'get') return view('pages/auth/placeOffer', ['item_id' => $item_id, 'canPlaceOffer' => $canPlaceOffer]);
 		if ($this->request->getMethod() === 'post') {
 			$rules = $this->validation->getRuleGroup('addOffer');
 

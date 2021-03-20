@@ -4,22 +4,25 @@ namespace App\Controllers;
 use App\Models\ItemModel;
 use App\Models\UserModel;
 use App\Models\CategoryModel;
+use App\Models\OfferModel;
 use Config\Services;
 use Exception;
 
 class Item extends BaseController
 {
-	protected $itemModel;
 	protected $userModel;
+	protected $itemModel;
 	protected $categoryModel;
+	protected $offerModel;
 
 	public function __construct()
 	{
-		$this->userModel = new UserModel();
-		$this->itemModel = new ItemModel();
 		helper(['form']);
-		$this->validation = Services::validation();
+		$this->validation 	 = Services::validation();
+		$this->userModel 	 = new UserModel();
+		$this->itemModel 	 = new ItemModel();
 		$this->categoryModel = new CategoryModel();
+		$this->offerModel 	 = new OfferModel();
 	}
 
 	/**
@@ -30,13 +33,24 @@ class Item extends BaseController
 		$item = $this->itemModel->find($item_id);
 		$user = $this->userModel->find($item['poster_uid']);
 		$msgURL = base_url(route_to('message')."?user_id=$user[user_id]&username=$user[username]");
+		$offers = $this->offerModel->get(['item_id' => $item_id]);
+		$canPlaceOffer = false;
+
+		if (session()->get('user')) {
+			$user_id = session()->get('user')['user_id'];
+			if ($item['poster_uid'] !== $user_id) {
+				$canPlaceOffer = array_search($user_id, array_column($offers, 'customer_uid')) === false;
+			}
+		}
 
 		$data = [
 			'item' => $item,
 			'user' => $user,
 			'msgURL' => $msgURL,
+			'offers' => $offers,
+			'canPlaceOffer' => $canPlaceOffer
 		];
-		
+
 		return view('pages/itemProfile', $data);
 	}
 
@@ -74,7 +88,7 @@ class Item extends BaseController
 			return redirect()->route('item', [$item['item_id']])->with('msg', 'No permission to edit this item.');
 
 		$data = [
-			'item' => $item, 
+			'item' => $item,
 			'categories' => $categories
 		];
 
