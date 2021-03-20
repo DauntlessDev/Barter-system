@@ -11,7 +11,7 @@
                     <div class="p-items-box">
                         <div class="p-item-box-container">
 
-                            <a href="#">
+                            <a href="<?= base_url(route_to('item', $item['item_id'])) ?>">
                                 <div class="p-item-img">
                                     <span class="p-item-img-container">
                                         <img class="img" src="<?= base_url($item['photo_url']) ?>">
