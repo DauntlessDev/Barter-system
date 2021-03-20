@@ -27,7 +27,7 @@
                     <div class="p-nav-links-container">
                         <div class="p-nav-links">
                             <a class ="p-nav-links-a" href="<?= base_url(route_to('userProfile', $user['user_id'])) ?>">Items</a>  
-                            <a class ="p-nav-link" href="<?= base_url(route_to('userProfile', $user['user_id'])) ?>/reviews">Reviews</a>                  
+                            <a class ="p-nav-link" href="<?= base_url(route_to('userReviews', $user['user_id'])) ?>">Reviews</a>                  
                         </div>
                     </div>
                 </div>

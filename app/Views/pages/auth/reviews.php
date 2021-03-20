@@ -27,7 +27,7 @@
                     <div class="p-nav-links-container">
                         <div class="p-nav-links">
                             <a class ="p-nav-link" href="<?= base_url(route_to('userProfile', $user['user_id'])) ?>">Items</a>  
-                            <a class ="p-nav-links-a" href="">Reviews</a>                  
+                            <a class ="p-nav-links-a" href="<?= base_url(route_to('userReviews', $user['user_id'])) ?>">Reviews</a>                  
                         </div>
                     </div>
                 </div>
@@ -50,151 +50,40 @@
                                 </div>
 
                                 <ul class="p-reviews-body">
-                                    <li class="p-reviews-box">
-                                        <div class="p-review">
-                                            <div class="p-review-container">
-                                                <div class="p-reviewer-img-container">
-                                                    <img class="p-reviewer" src="http://via.placeholder.com/300">
-                                                </div>
-                                                <div class="p-reviewer-info-container">
-                                                    <div class="p-reviewer-info">
-                                                        <div class="p-reviewer-name">
-                                                            <a href="">Minatozaki Sana</a> ∙ 22 days ago
-                                                        </div>
-                                                        <div class="p-reviewer-ratings">
-                                                            <div class="stars">
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star"></span>
-                                                                <span class="fa fa-star space"></span>
-                                                                <span>0.00</span>
+
+                                    <?php for($x = 0; $x < 10; $x++): ?>
+                                        <li class="p-reviews-box">
+                                            <div class="p-review">
+                                                <div class="p-review-container">
+                                                    <div class="p-reviewer-img-container">
+                                                        <img class="p-reviewer" src="http://via.placeholder.com/300">
+                                                    </div>
+                                                    <div class="p-reviewer-info-container">
+                                                        <div class="p-reviewer-info">
+                                                            <div class="p-reviewer-name">
+                                                                <a href="">Minatozaki Sana</a> ∙ 22 days ago
                                                             </div>
+                                                            <div class="p-reviewer-ratings">
+                                                                <div class="stars">
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star space"></span>
+                                                                    <span>0.00</span>
+                                                                </div>
+                                                            </div>
+                                                            <p class="p-review-body">
+                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula lectus libero, eu faucibus orci posuere vitae. Duis hendrerit feugiat nunc maximus aliquam. Sed ac ipsum sit amet nunc suscipit vestibulum.
+                                                            </p>
                                                         </div>
-                                                        <p class="p-review-body">
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula lectus libero, eu faucibus orci posuere vitae. Duis hendrerit feugiat nunc maximus aliquam. Sed ac ipsum sit amet nunc suscipit vestibulum.
-                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                    <li class="p-reviews-box">
-                                        <div class="p-review">
-                                            <div class="p-review-container">
-                                                <div class="p-reviewer-img-container">
-                                                    <img class="p-reviewer" src="http://via.placeholder.com/300">
-                                                </div>
-                                                <div class="p-reviewer-info-container">
-                                                    <div class="p-reviewer-info">
-                                                        <div class="p-reviewer-name">
-                                                            <a href="">Minatozaki Sana</a> ∙ 22 days ago
-                                                        </div>
-                                                        <div class="p-reviewer-ratings">
-                                                            <div class="stars">
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star"></span>
-                                                                <span class="fa fa-star space"></span>
-                                                                <span>0.00</span>
-                                                            </div>
-                                                        </div>
-                                                        <p class="p-review-body">
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula lectus libero, eu faucibus orci posuere vitae. Duis hendrerit feugiat nunc maximus aliquam. Sed ac ipsum sit amet nunc suscipit vestibulum.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="p-reviews-box">
-                                        <div class="p-review">
-                                            <div class="p-review-container">
-                                                <div class="p-reviewer-img-container">
-                                                    <img class="p-reviewer" src="http://via.placeholder.com/300">
-                                                </div>
-                                                <div class="p-reviewer-info-container">
-                                                    <div class="p-reviewer-info">
-                                                        <div class="p-reviewer-name">
-                                                            <a href="">Minatozaki Sana</a> ∙ 22 days ago
-                                                        </div>
-                                                        <div class="p-reviewer-ratings">
-                                                            <div class="stars">
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star"></span>
-                                                                <span class="fa fa-star space"></span>
-                                                                <span>0.00</span>
-                                                            </div>
-                                                        </div>
-                                                        <p class="p-review-body">
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula lectus libero, eu faucibus orci posuere vitae. Duis hendrerit feugiat nunc maximus aliquam. Sed ac ipsum sit amet nunc suscipit vestibulum.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="p-reviews-box">
-                                        <div class="p-review">
-                                            <div class="p-review-container">
-                                                <div class="p-reviewer-img-container">
-                                                    <img class="p-reviewer" src="http://via.placeholder.com/300">
-                                                </div>
-                                                <div class="p-reviewer-info-container">
-                                                    <div class="p-reviewer-info">
-                                                        <div class="p-reviewer-name">
-                                                            <a href="">Minatozaki Sana</a> ∙ 22 days ago
-                                                        </div>
-                                                        <div class="p-reviewer-ratings">
-                                                            <div class="stars">
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star"></span>
-                                                                <span class="fa fa-star space"></span>
-                                                                <span>0.00</span>
-                                                            </div>
-                                                        </div>
-                                                        <p class="p-review-body">
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula lectus libero, eu faucibus orci posuere vitae. Duis hendrerit feugiat nunc maximus aliquam. Sed ac ipsum sit amet nunc suscipit vestibulum.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="p-reviews-box">
-                                        <div class="p-review">
-                                            <div class="p-review-container">
-                                                <div class="p-reviewer-img-container">
-                                                    <img class="p-reviewer" src="http://via.placeholder.com/300">
-                                                </div>
-                                                <div class="p-reviewer-info-container">
-                                                    <div class="p-reviewer-info">
-                                                        <div class="p-reviewer-name">
-                                                            <a href="">Minatozaki Sana</a> ∙ 22 days ago
-                                                        </div>
-                                                        <div class="p-reviewer-ratings">
-                                                            <div class="stars">
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star checked"></span>
-                                                                <span class="fa fa-star"></span>
-                                                                <span class="fa fa-star space"></span>
-                                                                <span>0.00</span>
-                                                            </div>
-                                                        </div>
-                                                        <p class="p-review-body">
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula lectus libero, eu faucibus orci posuere vitae. Duis hendrerit feugiat nunc maximus aliquam. Sed ac ipsum sit amet nunc suscipit vestibulum.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
+                                        </li>
+
+                                    <?php endfor; ?>
+                            
                                 </ul>
                                 
                             </div>
