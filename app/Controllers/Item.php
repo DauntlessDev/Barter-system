@@ -6,7 +6,6 @@ use App\Models\UserModel;
 use App\Models\CategoryModel;
 use Config\Services;
 use Exception;
-use phpDocumentor\Reflection\PseudoTypes\True_;
 
 class Item extends BaseController
 {
