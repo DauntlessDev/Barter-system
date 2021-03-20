@@ -26,8 +26,8 @@
                     <div class="p-nav-margin"></div>
                     <div class="p-nav-links-container">
                         <div class="p-nav-links">
-                            <a class ="p-nav-links-a" href="#">Items</a>  
-                            <a class ="p-nav-link" href="#">Reviews</a>                  
+                            <a class ="p-nav-links-a" href="<?= base_url(route_to('userProfile', $user['user_id'])) ?>">Items</a>  
+                            <a class ="p-nav-link" href="<?= base_url(route_to('userProfile', $user['user_id'])) ?>/reviews">Reviews</a>                  
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                 <div class="p-body">
                     <div class="p-sidebar">
                         <div class="p-icon-container">
-                            <img src="<?= base_url(session()->get('user')['photo_url']) ?>"> <!-- add url to the user's profile picture -->
+                            <img src="<?= base_url(session()->get('user')['photo_url']) ?>">
                         </div>
                         <h2><?= $user['first_name'] ?? '' ?> <?= $user['last_name'] ?? '' ?></h2>
                         <h3>@<?= $user['username'] ?? '' ?></h3>
@@ -62,14 +62,6 @@
 
                                                 <p class="item-title">Fujifilm Instax Mini 11 (White)</p>
                                                 <p class="item-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. </p>
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="p-items-box">
-                                        <div class="p-item-box-container">
-                                            <a href="#">
-                                            help
                                             </a>
                                         </div>
                                     </div>

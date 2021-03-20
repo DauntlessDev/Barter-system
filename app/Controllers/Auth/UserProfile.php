@@ -51,13 +51,24 @@ class UserProfile extends BaseController
 				throw new Exception('Error while inserting to database');
 
             // TODO: Update session here
+            // $user = $this->userModel->where([ 'username' => $user_id ])->first();
+            // session()->destroy();
+			// $this->setSession($user);
+
+            // Commented the code that logs out the session after saving changes
+
+            
+            // session()->set('user', ['user_id' => $user_id]);
 
 			return redirect()->route('userProfileEdit')->with('msg', 'Successfully updated user!');
         }
     }
 
-    public function reviews() {
-        return view('pages/auth/userProfile');
+    public function reviews(int $user_id) {
+        $data = [
+            'user' => $this->userModel->find($user_id),
+        ];
+        return view('pages/auth/reviews', $data);
     }
 
     private function setSession($user) {

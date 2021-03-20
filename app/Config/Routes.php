@@ -69,7 +69,7 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
 });
 
 $routes->get('/profile/(:num)', 'Auth\UserProfile::index/$1', ['as' => 'userProfile']);
-$routes->get('/profile/reviews', 'Auth\UserProfile::reviews', ['as' => 'userReviews']);
+$routes->get('/profile/(:num)/reviews', 'Auth\UserProfile::reviews/$1', ['as' => 'userReviews']);
 
 /* MESSAGES API */
 $routes->post('/messages/send', 'Auth\Message::send', ['as' => 'message.send', 'filter' => 'ajax']);
