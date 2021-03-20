@@ -11,6 +11,19 @@
     <div class="ep-content">
         <div class="ep-content-box">
             <h1>Edit Profile</h1>
+
+            <div class="validation-box">
+                <?php // more on flashdata https://codeigniter.com/user_guide/libraries/sessions.html#flashdata?>
+                <?php if (session()->getFlashdata('msg') !== null): ?>
+                    <div>
+                    <p style='color: green'><?= session()->getFlashdata('msg') ?></p>
+                    </div>
+                    <?php endif; ?>
+                <?php // validation https://www.codeigniter.com/user_guide/libraries/validation.html?highlight=validate#customizing-error-display ?>
+                <?= isset($validation) ? $validation->listErrors('user_errors') : '' ?>
+            </div>
+
+
             <h3>Profile photo</h3>
 
             <div class="ep-container-pp">
@@ -26,12 +39,13 @@
             <form class="ep-box" action="<?= route_to('userProfileEdit', session()->get('user')['user_id']) ?>" method="POST" id="editProfile-form">
                 <?= $this->include('components/partials/_userFields.php') ?>
                 <!-- <button class="button" type="submit" form="editProfile-form" value="submit">Edit Profile</button> -->
-            </form>
 
-            <div class="ep-divider"></div>
-            <div class="user-box">
-                <button class="button" type="submit" form="editProfile-form" value="submit">Save changes</button>
-            </div>
+                <div class="ep-divider"></div>
+                <div class="user-box">
+                    <button class="button" type="submit" form="editProfile-form" value="submit">Save changes</button>
+                </div>
+
+            </form>
         </div>
     </div>
 
