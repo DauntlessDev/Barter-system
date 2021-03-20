@@ -50,15 +50,8 @@ class UserProfile extends BaseController
 			if ($this->userModel->update($user_id, $_POST) === false)
 				throw new Exception('Error while inserting to database');
 
-            // TODO: Update session here
-            // $user = $this->userModel->where([ 'username' => $user_id ])->first();
-            // session()->destroy();
-			// $this->setSession($user);
-
-            // Commented the code that logs out the session after saving changes
-
-            
-            // session()->set('user', ['user_id' => $user_id]);
+            $user = $this->userModel->where([ 'user_id' => $user_id ])->first();
+            $this->setSession($user);
 
 			return redirect()->route('userProfileEdit')->with('msg', 'Successfully updated user!');
         }
