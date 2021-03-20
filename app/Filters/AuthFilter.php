@@ -45,7 +45,7 @@ class AuthFilter implements FilterInterface
 				}
 			}
 
-			$get = 'redirect='.$request->uri->getPath();
+			$get = 'redirect='.$request->uri->getPath().'?'.urlencode($request->uri->getQuery());
 			return redirect()->to(route_to('login')."?$get");
 		}
 	}

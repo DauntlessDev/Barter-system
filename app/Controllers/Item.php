@@ -30,10 +30,12 @@ class Item extends BaseController
 	{
 		$item = $this->itemModel->find($item_id);
 		$user = $this->userModel->find($item['poster_uid']);
-	
+		$msgURL = base_url(route_to('message')."?user_id=$user[user_id]&username=$user[username]");
+
 		$data = [
 			'item' => $item,
 			'user' => $user,
+			'msgURL' => $msgURL,
 		];
 
 		if($user['user_id'] == $item['poster_uid']){
