@@ -70,9 +70,4 @@ class UserProfile extends BaseController
         ];
         return view('pages/auth/reviews', $data);
     }
-
-    function getItem($uid) {
-		$items = $this->userModel->get(['poster_uid' => [$uid]]);
-		return $items;
-	}
 }
