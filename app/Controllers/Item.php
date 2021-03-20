@@ -37,10 +37,6 @@ class Item extends BaseController
 			'user' => $user,
 			'msgURL' => $msgURL,
 		];
-
-		if($user['user_id'] == $item['poster_uid']){
-			return view('pages/itemProfile', $data);
-		}
 		
 		return view('pages/itemProfile', $data);
 	}
