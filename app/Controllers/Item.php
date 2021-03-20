@@ -28,11 +28,13 @@ class Item extends BaseController
 	public function index(int $item_id)
 	{
 		$item = $this->itemModel->find($item_id);
-		$user = $this->userModel->find($item['poster_uid']);;
+		$user = $this->userModel->find($item['poster_uid']);
+		$msgURL = base_url(route_to('message')."?user_id=$user[user_id]&username=$user[username]");
 
 		$data = [
 			'item' => $item,
 			'user' => $user,
+			'msgURL' => $msgURL,
 		];
 
 		return view('pages/itemProfile', $data);

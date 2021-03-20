@@ -60,7 +60,6 @@ function ChatManager(apiManager) {
   function sendChat(msg) {
     if (msg === '') return;
 
-
     apiManager.sendMessage(window.recipientUserId, msg);
   }
 
@@ -269,6 +268,11 @@ function SearchManager(chatManager) {
 
 (
   async () => {
+    const parsedUrl = new URL(window.location.href);
+    const userID = parseInt(parsedUrl.searchParams.get('user_id'), 10);
+    const username = parsedUrl.searchParams.get('username');
+    window.history.replaceState(null, null, window.location.pathname); // remove get param from prying eyes
+
     const apiManager = APIManager();
     const chatManager = ChatManager(apiManager);
     const searchManager = SearchManager(chatManager);
@@ -276,8 +280,12 @@ function SearchManager(chatManager) {
 
     const firstInbox = await inboxManager.load();
 
+    if (userID && username) {
+      if (parseInt(window.user_id, 10) !== userID) {
+        chatManager.loadMessages(userID, username);
+      }
     // check if user have at least one item in inbox
-    if (firstInbox) {
+    } else if (firstInbox) {
       chatManager.loadMessages(firstInbox.user_id, firstInbox.username);
     }
   }
