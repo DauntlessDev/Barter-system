@@ -5,6 +5,7 @@ namespace App\Controllers\Auth;
 use App\Controllers\BaseController;
 use App\Models\UserModel;
 use \CodeIgniter\Config\Services;
+use Exception;
 
 class UserProfile extends BaseController
 {
@@ -33,8 +34,33 @@ class UserProfile extends BaseController
     public function edit() {
         if ($this->request->getMethod() === 'get') return view('pages/auth/userProfileEdit');
         if ($this->request->getMethod() === 'post') {
-            // TODO: UPDATE USER HERE AFTER MERGING MODELS BRANCH
-            print_r($_POST);
+            $rules = $this->validation->getRuleGroup('editProfile');
+
+			// validate all fields
+			if (!$this->validate($rules)) return view('pages/auth/userProfileEdit', ['validation' => $this->validator]);
+
+            $user_id = session()->get('user')['user_id'];
+
+            if (isset($_POST['username'])) unset($_POST['username']);
+
+            if (isset($_POST['password']))
+                if ($_POST['password'] === '')
+                    unset($_POST['password']);
+
+			if ($this->userModel->update($user_id, $_POST) === false)
+				throw new Exception('Error while inserting to database');
+
+            $user = $this->userModel->where([ 'user_id' => $user_id ])->first();
+            session()->set(['user' => $user]);
+
+			return redirect()->route('userProfileEdit')->with('msg', 'Successfully updated user!');
         }
+    }
+
+    public function reviews(int $user_id) {
+        $data = [
+            'user' => $this->userModel->find($user_id),
+        ];
+        return view('pages/auth/reviews', $data);
     }
 }
