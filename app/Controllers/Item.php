@@ -36,7 +36,7 @@ class Item extends BaseController
 			'user' => $user,
 			'msgURL' => $msgURL,
 		];
-
+		
 		return view('pages/itemProfile', $data);
 	}
 
