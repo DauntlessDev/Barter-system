@@ -70,10 +70,10 @@
         // print_r($reviewModel->get([
         //     'reviewee_uid' => 2,
         // ])); // get all Reviews
-        // print_r($reviewModel->get([
-        //     'reviewer_uid' => 1,
-        //     'reviewee_uid' => 2,
-        // ])); // get specific Reviews
+        print_r($reviewModel->get([
+            'reviewer_uid' => 1,
+            'reviewee_uid' => 2,
+        ])); // get specific Reviews
     ?>
     </pre>
 </details>

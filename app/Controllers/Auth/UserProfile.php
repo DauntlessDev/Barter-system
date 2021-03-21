@@ -66,7 +66,7 @@ class UserProfile extends BaseController
     }
 
     public function reviews(int $user_id) {
-        $reviews = $this->reviewModel->get(['reviewee_uid' => [$user_id]]);
+        $reviews = $this->reviewModel->get(['reviewee_uid' => $user_id]);
 
         $data = [
             'reviews' => $reviews,

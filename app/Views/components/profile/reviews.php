@@ -12,14 +12,13 @@
                         <div class="p-review">
                             <div class="p-review-container">
                                 <div class="p-reviewer-img-container">
-                                    <img class="p-reviewer" src="http://via.placeholder.com/300"> 
-                                    <!-- should add image of the reviewer, doesn't exist in the database yet -->
+                                    <img class="p-reviewer" src="<?= base_url($review['photo_url']) ?>"> 
                                 </div>
                                 <div class="p-reviewer-info-container">
                                     <div class="p-reviewer-info">
                                         <div class="p-reviewer-name">
                                             <a href="<?= base_url(route_to('userProfile', $review['reviewer_uid'])) ?>">
-                                                <?= $review['reviewer_uid'] ?? '' // still need to change this to reviewer's username ?> 
+                                                <?= $review['username'] ?? '' ?> 
                                             </a> ∙ <?= time_elapsed_string($review['created_at']) ?>
                                         </div>
                                         <div class="p-reviewer-ratings">
