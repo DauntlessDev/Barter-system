@@ -63,7 +63,6 @@
     <summary>Review Model</summary>
     <pre>
     <?php
-        print_r($reviewModel->get()); // All Review
         // print_r($reviewModel->get([
         //     'reviewer_uid' => 1,
         // ])); // get all Reviewed
