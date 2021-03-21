@@ -67,11 +67,22 @@ body{
     font-size: 2rem;
 }
 
-.availstatus{
+.availstatus {
     font-weight: bold;
     font-size: 1.125rem;
     opacity: 100%;
-        color: rgb(90, 182, 67);
+}
+
+.availstatus.available {
+    color: rgb(90, 182, 67)
+}
+
+.availstatus.pending {
+    color: rgb(158, 142, 52)
+}
+
+.availstatus.unavailable {
+    color: rgb(156, 57, 57)
 }
 
 .offer{
@@ -174,7 +185,7 @@ body{
 }
 
 .checked{
-    color: #003b6a;
+    color: #0076d6;
 }
 
 .actions {

@@ -40,7 +40,7 @@
                     <p class="rating"></p>
                 </div>
                 <div class="container status">
-                    <p class="availstatus"><?= $item['avail_status'] ?></p>
+                    <?= view_cell('\App\Libraries\ItemStatus::index', ['avail_status' => $item['avail_status']]) ?>
                 </div>
                 <div class="container desc">
                     <p class="details">Details</p>
