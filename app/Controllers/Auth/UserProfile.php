@@ -4,6 +4,7 @@ namespace App\Controllers\Auth;
 
 use App\Controllers\BaseController;
 use App\Models\UserModel;
+use App\Models\ItemModel;
 use \CodeIgniter\Config\Services;
 use Exception;
 
@@ -15,15 +16,21 @@ class UserProfile extends BaseController
 		helper(['form']);
 		$this->validation = Services::validation();
 		$this->userModel = new UserModel();
+        $this->itemModel = new ItemModel();
 	}
 
     /**
 	 * METHOD: GET
 	*/
     public function index(int $user_id) {
+        $items = $this->itemModel->get(['poster_uid' => [$user_id]]);
+
         $data = [
+            'items' => $items,
             'user' => $this->userModel->find($user_id),
         ];
+
+
         return view('pages/auth/userProfile', $data);
     }
 
