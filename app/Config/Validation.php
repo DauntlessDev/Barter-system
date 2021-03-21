@@ -93,4 +93,9 @@ class Validation
 		],
 		'password'   	  => 'max_length[255]',
 	];
+
+	public $addOffer = [
+		'offer_msg_title' => 'required|max_length[30]|alpha_numeric_punct',
+		'offer_msg_content' => 'required|max_length[30]|alpha_numeric_punct',
+	];
 }

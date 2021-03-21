@@ -1,6 +1,6 @@
 <div class="wrapper">
     <div class="main-container">
-        <form class="form" action="<?= route_to('placeOffer') ?>" method="POST" id="placeOffer-form" enctype="multipart/form-data">
+        <form class="form" action="<?= route_to('placeOffer', $item_id) ?>" method="POST" id="placeOffer-form" enctype="multipart/form-data">
             <div class="whole_contents">
                 <div class="head">
                     <div class="title">
@@ -15,7 +15,7 @@
                         <?= isset($validation) ? $validation->listErrors('user_errors') : '' ?>
                     </div>
                     <div class="subject">
-                        <h2 class="subject_header">Subject</h2>
+                        <h2 class="subject_header">Title</h2>
                         <input type="text" class="offer_subject" name="offer_msg_title" id="offer_subject" placeholder="Insert message subject">
                     </div>
                 </div>
@@ -29,6 +29,7 @@
                     </div>
                 </div>
                 <div class="offer">
+                    <i class="offer-note">This offer cannot be edited or deleted after submission.</i>
                     <button class="place_button" type="submit" form="placeOffer-form" value="submit">Place Offer</button>
                 </div>
             </div>
