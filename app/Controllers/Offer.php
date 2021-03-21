@@ -42,6 +42,11 @@ class Offer extends BaseController
 				throw new Exception('Error while inserting using OfferModel');
 			}
 
+			// update avail_status
+			if ($this->itemModel->update($item['item_id'], ['avail_status' => 'pending']) === false) {
+				throw new Exception('Error while updating item status');
+			}
+
 			return redirect()->route('item', [$item['item_id']])->with('msg', 'Offer placed successfully!');
 		}
 	}
