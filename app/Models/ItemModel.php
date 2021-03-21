@@ -123,7 +123,7 @@ class ItemModel extends Model
     public function update($item_id = null, $data = null) : bool{
         // Delete binded categories first in item_listing.
         $this->deleteItemListing($item_id);
-        if ($data['category_ids']) {
+        if (isset($data['category_ids'])) {
             $builder = $this->builder('item_listing');
             $batchData = [];
             foreach($data['category_ids'] as $category_id){

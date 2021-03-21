@@ -21,7 +21,7 @@ body{
     width: 40%;
 }
 
-.subject{
+.subject {
     margin-top: 20px;
 }
 
@@ -61,4 +61,12 @@ body{
 
 .place_button:hover{
     background-color: #003b6a ;
+}
+
+.offer-title, .offer-message-title, .offer-note, .subject {
+    color: rgb(87, 87, 87);
+}
+
+.offer-note {
+    display: block;
 }

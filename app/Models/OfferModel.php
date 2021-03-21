@@ -67,12 +67,6 @@ class OfferModel implements ModelInterface
      *
      */
     public function get($where = [], $options = null) {
-        if ($where !== []) {
-            if (empty($where['item_id'])) throw new Exception("item_id cannot be null");
-            if (empty($where['poster_uid'])) throw new Exception("poster_uid cannot be null");
-            if (empty($where['customer_uid']))throw new Exception("customer_uid cannot be null");
-        }
-
         $limit = $options['limit'] ?? 0;
         $offset = $options['offset'] ?? 0;
         $sortBy = $options['sortBy'] ?? 'created_at';
