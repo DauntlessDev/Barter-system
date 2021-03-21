@@ -187,7 +187,7 @@
     list-style-type: none;
     margin: 0;
     overflow: auto;
-    height: 65vh;
+    max-height: 65vh;
 }
 
 .p-reviews-box {
