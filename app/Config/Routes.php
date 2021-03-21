@@ -67,7 +67,8 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
 
 	$routes->get('/messages', 'Auth\Message::index', ['as' => 'message']);
 
-	$routes->add('/placeoffer/(:num)', 'Offer::create/$1', ['as' => 'placeOffer']);
+	$routes->add('/place-offer/(:num)', 'Offer::create/$1', ['as' => 'placeOffer']);
+	$routes->add('/accept-offer/(:num)', 'Offer::accept/$1', ['as' => 'acceptOffer']);
 });
 
 $routes->get('/profile/(:num)', 'Auth\UserProfile::index/$1', ['as' => 'userProfile']);
