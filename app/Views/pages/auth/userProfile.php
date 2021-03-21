@@ -33,43 +33,12 @@
                 </div>
 
                 <div class="p-body">
-                    <div class="p-sidebar">
-                        <div class="p-icon-container">
-                            <img src="<?= base_url(session()->get('user')['photo_url']) ?>">
-                        </div>
-                        <h2><?= $user['first_name'] ?? '' ?> <?= $user['last_name'] ?? '' ?></h2>
-                        <h3>@<?= $user['username'] ?? '' ?></h3>
-                        <p><?= $user['address'] ?? '' ?></p>
-                    </div>
 
-                    <div class="p-items-container">
-                        <div>
-                            <div class="p-items-content">
-                                <div class="p-items-head">
-                                    <h3>Items</h3>
-                                </div>
-
-                                <div class="p-items-body">
-
-                                    <div class="p-items-box">
-                                        <div class="p-item-box-container">
-                                            <a href="#">
-                                                <div class="p-item-img">
-                                                    <span class="p-item-img-container">
-                                                        <img class="img" src="http://via.placeholder.com/300">
-                                                    </span>
-                                                </div>
-
-                                                <p class="item-title">Fujifilm Instax Mini 11 (White)</p>
-                                                <p class="item-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. </p>
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Sidebar -->
+                    <?= $this->include('components/profile/sidebar') ?>
+                    <!-- Items Body -->
+                    <?= $this->include('components/profile/items') ?>
+                    
                 </div>
 
             </div>
