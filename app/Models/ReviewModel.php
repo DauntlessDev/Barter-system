@@ -53,7 +53,7 @@ class ReviewModel implements ModelInterface
      * $reviewModel->get($where);
      */
     public function get($where = [], $options = null){
-        if (empty($where['reviewer_uid']) && empty($where['reviewee_uid'])) throw new Exception("Neither reviewer_uid nor reviewee_uid should be empty.");
+        if (empty($where['reviewer_uid']) && empty($where['reviewee_uid'])) throw new Exception("Either reviewer_uid or reviewee_uid should be given.");
 
         $limit = $options['limit'] ?? 0;
         $offset = $options['offset'] ?? 0;
