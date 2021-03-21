@@ -41,28 +41,44 @@ class ReviewModel implements ModelInterface
 
 
     /**
-     * Gets the reviews of a selected user.
+     * Gets the reviews of a user or reviews by that user.
      *
      * @param array $reviewee_uid `user_id` Of the user selected.
      * @param array $options Query options to be used.
      * @return array `ResultArray` of reviews.
      * $where = [
-     *      'reviewer_uid' => 1,
+     *      'reviewer_uid' => 1, OR
      *      'reviewee_uid' => 2,
      * ];
      * $reviewModel->get($where);
      */
     public function get($where = [], $options = null){
-        if ($where !== []) {
-            if (empty($where['reviewer_uid']) && empty($where['reviewee_uid'])) throw new Exception("Both reviewer_uid & reviewee_uid cannot be null");
-        }
+        if (empty($where['reviewer_uid']) && empty($where['reviewee_uid'])) throw new Exception("Either reviewer_uid or reviewee_uid cannot be empty.");
 
         $limit = $options['limit'] ?? 0;
         $offset = $options['offset'] ?? 0;
         $sortBy = $options['sortBy'] ?? 'created_at';
         $sortOrder = $options['sortOrder'] ?? 'desc';
 
-        return $this->builder
+        $new_builder = $this->db->table('reviews AS r');
+        if(empty($where['reviewer_uid'])){
+            $reviewee_uid = $where['reviewee_uid'];
+            $cond = "r.reviewee_uid = $reviewee_uid AND r.reviewer_uid = u.user_id";
+        }
+        elseif(empty($where['reviewee_uid'])){
+            $reviewer_uid = $where['reviewer_uid'];
+            $cond = "r.reviewer_uid = $reviewer_uid AND r.reviewee_uid = u.user_id";
+        }
+        else{
+            $reviewee_uid = $where['reviewee_uid'];
+            $reviewer_uid = $where['reviewer_uid'];
+            $cond = "r.reviewee_uid = $reviewee_uid AND r.reviewer_uid = $reviewer_uid AND r.reviewer_uid = u.user_id";
+        }
+
+        return $new_builder
+                    ->select("r.reviewer_uid, r.reviewee_uid, r.rating, r.content, r.created_at, r.updated_at, 
+                              u.username, u.photo_url")
+                    ->join('user as u', $cond)
                     ->where($where)
                     ->orderBy($sortBy, $sortOrder)
                     ->get($limit, $offset)
