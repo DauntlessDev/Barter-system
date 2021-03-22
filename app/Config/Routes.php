@@ -64,6 +64,8 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
 	$routes ->add('item/create', 'Item::create', ['as' => 'itemCreate']);
 
 	$routes->add('/profile/edit', 'Auth\UserProfile::edit', ['as' => 'userProfileEdit']);
+	
+	$routes->add('/reviews/edit/(:num)', 'Auth\Review::edit/$1', ['as' => 'reviewsEdit']);
 
 	$routes->get('/messages', 'Auth\Message::index', ['as' => 'message']);
 
@@ -73,7 +75,6 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
 
 $routes->get('/profile/(:num)', 'Auth\UserProfile::index/$1', ['as' => 'userProfile']);
 $routes->get('/profile/(:num)/reviews', 'Auth\UserProfile::reviews/$1', ['as' => 'userReviews']);
-$routes->get('/reviews/edit/(:num)', 'Auth\Review::index/$1', ['as' => 'reviewsEdit']);
 
 /* MESSAGES API */
 $routes->post('/messages/send', 'Auth\Message::send', ['as' => 'message.send', 'filter' => 'ajax']);

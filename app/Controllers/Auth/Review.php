@@ -4,7 +4,6 @@ namespace App\Controllers\Auth;
 
 use App\Controllers\BaseController;
 use App\Models\UserModel;
-use App\Models\ItemModel;
 use App\Models\ReviewModel;
 use \CodeIgniter\Config\Services;
 use Exception;
@@ -17,7 +16,6 @@ class Review extends BaseController
 		helper(['form']);
 		$this->validation = Services::validation();
 		$this->userModel = new UserModel();
-        $this->itemModel = new ItemModel();
         $this->reviewModel = new ReviewModel();
 	}
 
@@ -36,12 +34,25 @@ class Review extends BaseController
     }
 
     /**
-	 * METHOD: GET
-     * Displays users Edit Profile Page
+	 * METHOD: GET/POST
+     * 
 	*/
-    public function edit() {
-        
-        return redirect()->route('reviewsEdit')->with('msg', 'Successfully updated review!');
+
+    public function edit(int $user_id) {
+        $reviews = $this->reviewModel->get(['reviewee_uid' => $user_id]);
+
+        $data = [
+            'reviews' => $reviews,
+            'user' => $this->userModel->find($user_id),
+        ];
+
+        if ($this->request->getMethod() === 'get') return view('pages/auth/reviewsEdit', $data);
+
+        if ($this->request->getMethod() === 'post') {
+
+            var_dump($_POST);
+
+		}
     }
 }
 
