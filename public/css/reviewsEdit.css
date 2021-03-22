@@ -1,0 +1,164 @@
+@import "common/shared.css";
+
+.container {
+    height: 85vh;
+    min-width: 992px;
+    display: flex;
+    justify-content: start;
+    flex-direction: row;
+    background: var(--container-Bg);;
+}
+
+.container b, strong {
+    color: #0062c7;
+    font-weight: 600;
+}
+
+.container i, em {
+    color: #0062c7;
+}
+
+.container u, underline {
+    color: #0062c7;
+    text-decoration: underline;
+}
+
+.p-container a, a:active, a:visited {
+    text-decoration: none;
+}
+
+.p-container {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin: auto;
+    min-width: 992px;
+    -webkit-box-flex: 1;
+    flex: 1;
+}
+
+.content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    margin: auto;
+    padding: 32px 40px;
+    width: 600px;
+    min-height: 50vh;
+    background-color: #ffffff;
+    box-shadow: 0 3px 4px 0 #9cbfe6, inset 0 0 0 1px rgb(44 44 45 / 7%);
+}
+
+.content h1 {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 600;
+    font-size: 24pt;
+    margin-bottom: 20px;
+}
+
+.content h3 {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 600;
+    font-size: 14pt;
+    margin-bottom: 10px;
+}
+
+.content-rate {
+    margin: 20px 0 15px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.rev-box {
+    width: 100%;
+    margin-bottom: 25px;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-flow: column nowrap;
+}
+
+.rev-box .user-box {
+    position: relative;
+}
+
+.rev-box .user-box input, textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 20px;
+    border: 1px solid #bebebe;
+    outline: none;
+    background: transparent;
+    border-radius: 0.2em;
+}
+
+.rev-box .user-box label {
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    font-size: 16px;
+    color: #535353;
+    pointer-events: none;
+    transition: .3s;
+}
+
+.rev-box .button {
+    background-color: #0062c7;
+    border: none;
+    color: #fff;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    font-weight: 900;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    border-radius: 0.2em;
+    transition: .3s;
+}
+
+.rev-box .button:hover {
+    background-color: #003b6a;
+    cursor: pointer;
+}
+
+.rev-box .user-box input:focus, textarea:focus {
+    border: 1px solid #0062c7;
+}
+
+.rev-box .user-box input:read-only {
+    cursor: default;
+    color: #a1a1a1;
+}
+
+.rev-box .user-box textarea {
+    resize: none;
+    height: 15vh;
+}
+
+.rev-box .user-box input:focus ~ label,
+.rev-box .user-box input:valid ~ label,
+.rev-box .user-box input:read-only ~ label {
+    top: -15px;
+    left: 5px;
+    color: #535353;
+    padding: 5px;
+    background-color: #fff;;
+    font-size: 12px;
+}
+
+.checked {
+    color: #006bc6;
+}
+
+.space {
+    margin-right: 10px;
+}
