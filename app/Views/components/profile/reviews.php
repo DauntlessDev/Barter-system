@@ -3,6 +3,9 @@
         <div class="p-items-content">
             <div class="p-items-head">
                 <h3>Reviews for @<?= $user['username'] ?? '' ?></h3>
+                <div class="p-edit-review">
+                    <button class="button">Add</button>
+                </div>
             </div>
 
             <ul class="p-reviews-body">
@@ -17,9 +20,15 @@
                                 <div class="p-reviewer-info-container">
                                     <div class="p-reviewer-info">
                                         <div class="p-reviewer-name">
+                                            <div>
                                             <a href="<?= base_url(route_to('userProfile', $review['reviewer_uid'])) ?>">
                                                 <?= $review['username'] ?? '' ?> 
                                             </a> ∙ <?= time_elapsed_string($review['created_at']) ?>
+                                            </div>
+                                            <div>
+                                                <a href="#">edit</a> &nbsp; <a href="#" style="color: red;">delete</a>
+                                                <!-- to be checked if the user owns this -->
+                                            </div>
                                         </div>
                                         <div class="p-reviewer-ratings">
                                             <div class="stars">
