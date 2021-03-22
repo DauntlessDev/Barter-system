@@ -30,6 +30,11 @@ class Offers extends Migration
                 'type'              => 'TEXT',
                 'null'              => true,
             ],
+            'status'                => [
+                'type'              => 'ENUM',
+                'constraint'        => ['accepted', 'unaccepted'],
+                'default'           => 'unaccepted',
+            ],
             'created_at DATETIME DEFAULT CURRENT_TIMESTAMP',
             'updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
         ]);
