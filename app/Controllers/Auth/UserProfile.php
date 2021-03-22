@@ -76,4 +76,10 @@ class UserProfile extends BaseController
         return view('pages/auth/reviews', $data);
         
     }
+
+    public function edit_reviews() {
+
+        return view('pages/auth/reviewsEdit');
+        
+    }
 }
