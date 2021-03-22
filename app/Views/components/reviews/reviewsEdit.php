@@ -5,12 +5,12 @@
         
         <div class="user-box">
             <h3>Rating</h3>
-            <input type="text" name="ratings" id="ratings" value="" autocomplete="off" required>
+            <input type="text" name="ratings" value="" autocomplete="off" required>
         </div>
 
         <div class="user-box">
             <h3>Review</h3>
-            <textarea type="text" name="review" id="review" value="" autocomplete="off" required></textarea>
+            <textarea type="text" name="content" value="" autocomplete="off" required></textarea>
         </div>
 
         <div class="user-box">

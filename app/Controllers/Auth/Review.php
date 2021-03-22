@@ -20,20 +20,6 @@ class Review extends BaseController
 	}
 
     /**
-	 * METHOD: GET
-	*/
-    public function index(int $user_id) {
-        $reviews = $this->reviewModel->get(['reviewee_uid' => $user_id]);
-
-        $data = [
-            'reviews' => $reviews,
-            'user' => $this->userModel->find($user_id),
-        ];
-
-        return view('pages/auth/reviewsEdit', $data);
-    }
-
-    /**
 	 * METHOD: GET/POST
      * 
 	*/
