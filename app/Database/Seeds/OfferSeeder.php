@@ -14,11 +14,15 @@ class OfferSeeder extends Seeder
 		$faker = Factory::create();
 		$offerModel = new OfferModel();
 
+		$counter = 0;
+
 		for ($i = 1; $i < 3; $i++) {
+			$counter += 1;
+
 			$data = [
 				'item_id' 			=> 1 * $i,
 				'customer_uid' 		=> 2 * $i,
-				'offer_msg_title' 	=> $faker->word,
+				'offer_msg_title' 	=> 'Offer' . $counter,
 				'offer_msg_content' => $faker->text,
 			];
 
@@ -30,7 +34,7 @@ class OfferSeeder extends Seeder
 			$data = [
 				'item_id' 			=> 2 * $i,
 				'customer_uid' 		=> 3 * $i,
-				'offer_msg_title' 	=> $faker->word,
+				'offer_msg_title' 	=> 'Offer' . $counter,
 				'offer_msg_content' => $faker->text,
 			];
 

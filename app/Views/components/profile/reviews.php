@@ -35,7 +35,6 @@
                                                         <a href="<?= route_to('reviewsEdit', $user['user_id']) ?>">edit</a>
                                                         &nbsp;
                                                         <a href="<?= route_to('reviewsDelete', $user['user_id']) ?>" style="color: red;">delete</a>
-                                                        <!-- to be checked if the user owns this -->
                                                     </div>
                                                 <?php endif; ?>
                                             <?php endif; ?>
