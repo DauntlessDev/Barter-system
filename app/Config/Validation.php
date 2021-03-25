@@ -95,12 +95,12 @@ class Validation
 	];
 
 	public $addOffer = [
-		'offer_msg_title' => 'required|max_length[30]|alpha_numeric_punct',
-		'offer_msg_content' => 'required|max_length[30]|alpha_numeric_punct',
+		'offer_msg_title' => 'required|max_length[255]',
+		'offer_msg_content' => 'required|max_length[1000]',
 	];
 
 	public $addEditReview = [
 		'rating' => 'required|is_natural|less_than_equal_to[5]',
-		'content' => 'required|max_length[500]',
+		'content' => 'required|max_length[255]',
 	];
 }

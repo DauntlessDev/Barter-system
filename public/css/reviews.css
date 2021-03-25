@@ -313,3 +313,13 @@
 .space {
     margin-right: 10px;
 }
+
+.disabled {
+    cursor: not-allowed !important;
+    background-color: var(--disabledBtnBg) !important;
+}
+
+.disabled:hover {
+    cursor: not-allowed !important;
+    background-color: var(--disabledBtnBg) !important;
+}

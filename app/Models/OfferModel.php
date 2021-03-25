@@ -42,7 +42,17 @@ class OfferModel implements ModelInterface
      * 
      */
     public function create($data){
-        return $this->builder->insert($data);
+        $result = $this->builder->insert($data);
+
+        if ($result !== false) {
+            $itemModel = new ItemModel();
+            $item = $itemModel->find($data['item_id']);
+            if ($item['avail_status'] === 'available') {
+                $itemModel->update($data['item_id'], ['avail_status' => 'pending']);
+            }
+        }
+
+        return $result;
     }
 
 

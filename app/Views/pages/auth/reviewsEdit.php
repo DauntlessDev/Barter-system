@@ -15,7 +15,7 @@
     <div class="container">
         <div class="p-container">
             <div class="content">
-            <a href="<?= route_to('userReviews', $user['user_id']) ?>">Go back</a>
+            <a style="text-decoration: underline" href="<?= route_to('userReviews', $user['user_id']) ?>">Go back</a>
             <h1>Edit Review</h1>
             <?= $this->include('components/partials/_feedback') ?>
                 <div class="content-rate">

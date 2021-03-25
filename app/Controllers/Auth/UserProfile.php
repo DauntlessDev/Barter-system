@@ -65,21 +65,24 @@ class UserProfile extends BaseController
         }
     }
 
-    public function reviews(int $user_id) {
-        $reviews = $this->reviewModel->get(['reviewee_uid' => $user_id]);
+    public function reviews(int $reviewee_uid) {
+        $reviews = $this->reviewModel->get(['reviewee_uid' => $reviewee_uid]);
+        $reviewCount = 0;
+
+        if (session()->get('user') !== null) {
+            $user_id = session()->get('user')['user_id'];
+            $reviewCount = count($this->reviewModel->get(['reviewee_uid' => $reviewee_uid, 'reviewer_uid' => $user_id]));
+        }
 
         $data = [
             'reviews' => $reviews,
-            'user' => $this->userModel->find($user_id),
+            'user' => $this->userModel->find($reviewee_uid),
+            'AddButton' => [
+                'status' => $reviewCount === 0,
+                'msg' => 'You can only place one review per user.'
+            ]
         ];
 
         return view('pages/auth/reviews', $data);
-        
-    }
-
-    public function edit_reviews() {
-
-        return view('pages/auth/reviewsEdit');
-        
     }
 }
