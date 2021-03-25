@@ -21,23 +21,46 @@ class Review extends BaseController
 
     /**
 	 * METHOD: GET/POST
-     * 
+     *
 	*/
+    public function create(int $user_id) {
+        $data = [
+            'user_id' => $user_id,
+        ];
 
-    public function edit(int $user_id) {
-        $reviews = $this->reviewModel->get(['reviewee_uid' => $user_id]);
+        if ($this->request->getMethod() === 'get') return view('pages/auth/reviewsCreate', $data);
+        if ($this->request->getMethod() === 'post') {
+            var_dump($_POST);
+        }
+    }
+
+    /**
+	 * METHOD: GET/POST
+     *
+	*/
+    public function edit(int $reviewee_uid) {
+        $user_id = session()->get('user')['user_id'];
+        $searchQuery = ['reviewee_uid' => $reviewee_uid, 'reviewer_uid' => $user_id];
+        $review = $this->reviewModel->get($searchQuery)[0]; // TODO: needs fixing, this would not get the unique review
 
         $data = [
-            'reviews' => $reviews,
-            'user' => $this->userModel->find($user_id),
+            'review' => $review,
+            'user' => $this->userModel->find($reviewee_uid),
         ];
 
         if ($this->request->getMethod() === 'get') return view('pages/auth/reviewsEdit', $data);
-
         if ($this->request->getMethod() === 'post') {
+            $rules = $this->validation->getRuleGroup('addEditReview');
+			if (!$this->validate($rules)) {
+                $data['validation'] = $this->validator;
+                return view('pages/auth/reviewsEdit', $data);
+            }
 
-            var_dump($_POST);
+            if ($this->reviewModel->update($_POST, $searchQuery) === false) {
+				throw new Exception('Error while inserting using ReviewModel');
+			}
 
+            return redirect()->route('reviewsEdit', [$reviewee_uid])->with('msg', 'Review successfully update');
 		}
     }
 }

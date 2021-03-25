@@ -4,7 +4,7 @@
             <div class="p-items-head">
                 <h3>Reviews for @<?= $user['username'] ?? '' ?></h3>
                 <div class="p-edit-review">
-                    <button class="button">Add</button>
+                    <button class="button" onclick="window.location = '<?= route_to('reviewsCreate', $user['user_id']) ?>'">Add</button>
                 </div>
             </div>
 
@@ -26,7 +26,7 @@
                                             </a> ∙ <?= time_elapsed_string($review['created_at']) ?>
                                             </div>
                                             <div>
-                                                <a href="<?= route_to('reviewsEdit', session()->get('user')['user_id']) ?>">edit</a> &nbsp; <a href="#" style="color: red;">delete</a>
+                                                <a href="<?= route_to('reviewsEdit', $user['user_id']) ?>">edit</a> &nbsp; <a href="#" style="color: red;">delete</a>
                                                 <!-- to be checked if the user owns this -->
                                             </div>
                                         </div>

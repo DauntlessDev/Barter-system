@@ -105,7 +105,9 @@ class ReviewModel implements ModelInterface
      * @return true|false `true` If successful update otherwise, `false`.
      * 
      */
-    public function update($data, $where){
+    public function update($data, $where) {
+        if (empty($where['reviewer_uid']) || empty($where['reviewee_uid'])) throw new Exception("Both reviewer_uid and reviewee_uid should be given.");
+
         return $this->builder
                     ->where($where)
                     ->set($data)

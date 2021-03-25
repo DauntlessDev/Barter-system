@@ -23,9 +23,9 @@ class Reviews extends Migration
                 'unsigned'          => true,
 			],
 			'rating'                => [
-                'type'              => 'DECIMAL',
-                'constraint'        => '2,2',
-                'default'           => '0.0',
+                'type'              => 'INT',
+                'constraint'        => 10,
+                'default'           => '0',
             ],
             'content'               => [
                 'type'              => 'VARCHAR',

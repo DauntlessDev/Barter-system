@@ -1,12 +1,7 @@
 <div class="wrapper">
     <div class="all-container">
         <div class="validation-box">
-            <?php if (session()->getFlashdata('msg') !== null) : ?>
-                <div>
-                    <p style='color: green'><?= session()->getFlashdata('msg') ?></p>
-                </div>
-            <?php endif; ?>
-            <?= isset($validation) ? $validation->listErrors('user_errors') : '' ?>
+            <?= $this->include('components/partials/_feedback') ?>
         </div>
         <div class="main-container">
             <!-- username of poster -->

@@ -98,4 +98,9 @@ class Validation
 		'offer_msg_title' => 'required|max_length[30]|alpha_numeric_punct',
 		'offer_msg_content' => 'required|max_length[30]|alpha_numeric_punct',
 	];
+
+	public $addEditReview = [
+		'rating' => 'required|is_natural|less_than_equal_to[5]',
+		'content' => 'required|max_length[500]',
+	];
 }

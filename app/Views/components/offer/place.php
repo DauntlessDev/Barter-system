@@ -7,12 +7,7 @@
                         <h1 class="offer-title">Place Offer</h1>
                     </div>
                     <div class="validation-box">
-                        <?php if (session()->getFlashdata('msg') !== null) : ?>
-                            <div>
-                                <p style='color: green'><?= session()->getFlashdata('msg') ?></p>
-                            </div>
-                        <?php endif; ?>
-                        <?= isset($validation) ? $validation->listErrors('user_errors') : '' ?>
+                        <?= $this->include('components/partials/_feedback') ?>
                     </div>
                     <div class="subject">
                         <h2 class="subject_header">Title</h2>
