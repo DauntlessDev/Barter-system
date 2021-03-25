@@ -39,9 +39,7 @@
                 </div>
                 <div class="container desc">
                     <p class="details">Details</p>
-                    <p class="description">
-                        <?= $item['desc_content'] ?>
-                    </p>
+                    <pre class="description"><?= $item['desc_content'] ?></pre>
                 </div>
                 <div class="lister">
                     <p class="listed">Listed by <?= $user['username'] ?></p>
