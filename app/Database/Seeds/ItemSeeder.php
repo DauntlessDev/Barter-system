@@ -28,7 +28,7 @@ class ItemSeeder extends Seeder
 					'item_name'    => "item ".$counter,
 					'photo_url'    => 'images/default/product.jpg',
 					'avail_status' => 'available',
-					'desc_title'   => $faker->word,
+					'desc_title'   => "description".$counter,
 					'desc_content' => $faker->text,
 				];
 
