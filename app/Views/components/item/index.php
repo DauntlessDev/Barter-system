@@ -30,6 +30,7 @@
                 </div>
                 <div class="container itemname">
                     <p class="itemname"><?= $item['item_name'] ?></p>
+                    <p class="item_desc_title"><?= $item['desc_title'] ?></p>
                 </div>
                 <div class="container rate">
                     <p class="rating"></p>

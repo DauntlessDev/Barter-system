@@ -68,18 +68,21 @@ class UserProfile extends BaseController
     public function reviews(int $reviewee_uid) {
         $reviews = $this->reviewModel->get(['reviewee_uid' => $reviewee_uid]);
         $reviewCount = 0;
+        $user_id = null;
 
         if (session()->get('user') !== null) {
-            $user_id = session()->get('user')['user_id'];
+            $user_id = (int)session()->get('user')['user_id'];
             $reviewCount = count($this->reviewModel->get(['reviewee_uid' => $reviewee_uid, 'reviewer_uid' => $user_id]));
         }
+
+        $isOwner = $user_id === $reviewee_uid;
 
         $data = [
             'reviews' => $reviews,
             'user' => $this->userModel->find($reviewee_uid),
             'AddButton' => [
-                'status' => $reviewCount === 0,
-                'msg' => 'You can only place one review per user.'
+                'status' => ($reviewCount === 0) && !$isOwner,
+                'msg' => !$isOwner ? 'You can only place one review per user.' : 'You cannot review yourself.'
             ]
         ];
 

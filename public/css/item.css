@@ -266,3 +266,8 @@ body{
     word-wrap: break-word;
     margin-top: 20px;
 }
+
+.item_desc_title {
+    color:gray;
+    font-size: 1rem;
+}
