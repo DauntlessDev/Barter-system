@@ -29,12 +29,16 @@
                                                 <?= $review['username'] ?? '' ?> 
                                             </a> ∙ <?= time_elapsed_string($review['created_at']) ?>
                                             </div>
-                                            <div>
-                                                <a href="<?= route_to('reviewsEdit', $user['user_id']) ?>">edit</a>
-                                                &nbsp;
-                                                <a href="<?= route_to('reviewsDelete', $user['user_id']) ?>" style="color: red;">delete</a>
-                                                <!-- to be checked if the user owns this -->
-                                            </div>
+                                            <?php if(session()->get('user') !== null): ?>
+                                                <?php if(session()->get('user')['user_id'] === $review['reviewer_uid']): ?>
+                                                    <div>
+                                                        <a href="<?= route_to('reviewsEdit', $user['user_id']) ?>">edit</a>
+                                                        &nbsp;
+                                                        <a href="<?= route_to('reviewsDelete', $user['user_id']) ?>" style="color: red;">delete</a>
+                                                        <!-- to be checked if the user owns this -->
+                                                    </div>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
                                         </div>
                                         <div class="p-reviewer-ratings">
                                             <div class="stars">
