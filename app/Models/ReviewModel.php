@@ -42,8 +42,9 @@ class ReviewModel implements ModelInterface
 
     /**
      * Gets the reviews of a user or reviews by that user.
+     * Used for getting the edit history.
      *
-     * @param array $reviewee_uid `user_id` Of the user selected.
+     * @param array $where array of key/value to be searched.
      * @param array $options Query options to be used.
      * @return array `ResultArray` of reviews.
      * $where = [
@@ -83,6 +84,61 @@ class ReviewModel implements ModelInterface
                     ->orderBy($sortBy, $sortOrder)
                     ->get($limit, $offset)
                     ->getResultArray();
+    }
+
+
+    /**
+     * Gets the recent reviews of a users or reviews made by the user.
+     * Used in the user profile.
+     *
+     * @param array $where array of key/value to be searched.
+     * @param array $options Query options to be used.
+     * @return array `ResultArray` of reviews.
+     * $where = [
+     *      'reviewer_uid' => 1, OR
+     *      'reviewee_uid' => 2,
+     * ];
+     * $reviewModel->get($where);
+     */
+    public function getAllRecentReviews($where, $options = null){
+        $limit = $options['limit'] ?? 0;
+        $offset = $options['offset'] ?? 0;
+        $sortBy = $options['sortBy'] ?? 'created_at';
+        $sortOrder = $options['sortOrder'] ?? 'desc';
+
+        $this_uid = '';
+        if(empty($where['reviewee_uid'])){
+            $what_user = "reviewer_uid";
+            $other_user = "reviewee_uid";
+            $this_uid = strval($where['reviewer_uid']);
+        }
+        else{
+            $what_user = "reviewee_uid";
+            $other_user = "reviewer_uid";
+            $this_uid = strval($where['reviewee_uid']);
+        }
+
+        $cond1 = "r.".$other_user." = r_sub.".$other_user." AND r.created_at = r_sub.max_date";
+        $cond2 = "rm.".$other_user." = u.user_id";
+
+        $query1 = $this->builder->select("$other_user, MAX(created_at) as max_date")
+                                ->where($what_user, $this_uid)
+                                ->groupBy($other_user)
+                                ->getCompiledSelect();
+
+        $builder1 = $this->db->table('reviews AS r');
+        $query2 = $builder1->select("r.review_id, r.reviewer_uid, r.reviewee_uid, 
+                                    r.rating, r.content, r.created_at, r.updated_at")
+                            ->join("($query1) as r_sub", $cond1)
+                            ->getCompiledSelect();
+
+        $builder2 = $this->db->table("($query2) as rm");
+        return $builder2->select("rm.review_id, rm.reviewer_uid, rm.reviewee_uid, rm.rating, 
+                                    rm.content, rm.created_at, rm.updated_at, u.username, u.photo_url")
+                            ->join('user as u', $cond2)
+                            ->orderBy($sortBy, $sortOrder)
+                            ->get($limit, $offset)
+                            ->getResultArray();
     }
 
 
