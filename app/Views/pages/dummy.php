@@ -73,6 +73,9 @@
         //     'reviewer_uid' => 1,
         //     'reviewee_uid' => 2,
         // ])); // get specific Reviews
+        // print_r($reviewModel->getAllRecentReviews(
+        //     ['reviewee_uid' => 1,]
+        // )); //get recent reviews
     ?>
     </pre>
 </details>
