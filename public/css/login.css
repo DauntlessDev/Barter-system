@@ -16,7 +16,7 @@ body {
     justify-content: start;
     align-items: center;
     flex-direction: column;
-    height: 95vh;
+    min-height: 95vh;
     /* margin: 0px 24px 150px; */
     padding-bottom: 0px;
     padding-top: 50px;
