@@ -12,6 +12,12 @@ class Reviews extends Migration
         $this->db->disableForeignKeyChecks();
 
 		$this->forge->addField([
+            'review_id'             => [
+                'type'              => 'INT',
+                'constraint'        => 10,
+                'unsigned'          => true,
+                'auto_increment'    => true,
+            ],
             'reviewer_uid'          => [
                 'type'              => 'INT',
                 'constraint'        => 10,
@@ -38,13 +44,10 @@ class Reviews extends Migration
 
 		/* Creation of Composite PKs */
 
-		// set as foreign keys
+		$this->forge->addPrimaryKey('review_id');
 		$this->forge->addForeignKey('reviewer_uid', 'user', 'user_id', 'CASCADE', 'CASCADE');
 		$this->forge->addForeignKey('reviewee_uid', 'user', 'user_id', 'CASCADE', 'CASCADE');
 		
-		// set as primary keys
-		$this->forge->addPrimaryKey('reviewer_uid');
-		$this->forge->addPrimaryKey('reviewee_uid');
 
         $this->forge->createTable('reviews');
 

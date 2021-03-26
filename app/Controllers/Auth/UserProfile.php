@@ -65,8 +65,9 @@ class UserProfile extends BaseController
         }
     }
 
+
     public function reviews(int $reviewee_uid) {
-        $reviews = $this->reviewModel->get(['reviewee_uid' => $reviewee_uid]);
+        $reviews = $this->reviewModel->getAllRecentReviews(['reviewee_uid' => $reviewee_uid]);
         $reviewCount = 0;
         $user_id = null;
 
