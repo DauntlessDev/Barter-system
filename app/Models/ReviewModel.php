@@ -118,10 +118,10 @@ class ReviewModel implements ModelInterface
             $this_uid = strval($where['reviewee_uid']);
         }
 
-        $cond1 = "r.".$other_user." = r_sub.".$other_user." AND r.created_at = r_sub.max_date";
+        $cond1 = "r.".$what_user." = $this_uid"." AND r.".$other_user." = r_sub.".$other_user." AND r.created_at = r_sub.max_date";
         $cond2 = "rm.".$other_user." = u.user_id";
 
-        $query1 = $this->builder->select("$other_user, MAX(created_at) as max_date")
+        $query1 = $this->builder->select("$other_user, $what_user, MAX(created_at) as max_date")
                                 ->where($what_user, $this_uid)
                                 ->groupBy($other_user)
                                 ->getCompiledSelect();
