@@ -2,7 +2,7 @@
 
 <?php // Document Title ?>
 <?= $this->section('title') ?>
-    Edit Review
+    Create Review
 <?= $this->endSection() ?>
 
 <?php // CSS ?>
@@ -16,10 +16,10 @@
         <div class="p-container">
             <div class="content">
             <a style="text-decoration: underline" href="<?= route_to('userReviews', $user['user_id']) ?>">Go back</a>
-            <h1>Edit Review</h1>
-            <?= $this->include('components/partials/_feedback') ?>
+            <h1>Create Review</h1>
+                <?= $this->include('components/partials/_feedback') ?>
                 <div class="content-rate">
-                    <form class="rev-box" action="<?= route_to('reviewsEdit', $user['user_id']) ?>" method="POST">
+                    <form class="rev-box" action="<?= route_to('reviewsCreate', $user['user_id']) ?>" method="POST">
                         <?= $this->include('components/partials/_reviewFields') ?>
                     </form>
                 </div>

@@ -1,12 +1,7 @@
 <div class="wrapper">
     <div class="all-container">
         <div class="validation-box">
-            <?php if (session()->getFlashdata('msg') !== null) : ?>
-                <div>
-                    <p style='color: green'><?= session()->getFlashdata('msg') ?></p>
-                </div>
-            <?php endif; ?>
-            <?= isset($validation) ? $validation->listErrors('user_errors') : '' ?>
+            <?= $this->include('components/partials/_feedback') ?>
         </div>
         <div class="main-container">
             <!-- username of poster -->
@@ -35,6 +30,7 @@
                 </div>
                 <div class="container itemname">
                     <p class="itemname"><?= $item['item_name'] ?></p>
+                    <p class="item_desc_title"><?= $item['desc_title'] ?></p>
                 </div>
                 <div class="container rate">
                     <p class="rating"></p>
@@ -44,9 +40,7 @@
                 </div>
                 <div class="container desc">
                     <p class="details">Details</p>
-                    <p class="description">
-                        <?= $item['desc_content'] ?>
-                    </p>
+                    <pre class="description"><?= $item['desc_content'] ?></pre>
                 </div>
                 <div class="lister">
                     <p class="listed">Listed by <?= $user['username'] ?></p>

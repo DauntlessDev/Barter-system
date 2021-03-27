@@ -70,13 +70,13 @@ class Validation
 	];
 
 	public $addEditItem = [
-		'item_name' 	 => 'required|min_length[3]|max_length[250]|alpha_numeric_punct',
+		'item_name' 	 => 'required|min_length[3]|max_length[250]',
 		'poster_uid'	 => 'is_poster',
 		'avail_status' 	 => 'required|alpha_numeric',
 		'category_ids' 	 => 'required',
 		'category_ids.*' => 'numeric|is_not_unique[category.category_id]',
-		'desc_title' 	 => 'required|min_length[3]|max_length[30]|alpha_numeric_punct',
-		'desc_content' 	 => 'alpha_numeric_punct',
+		'desc_title' 	 => 'required|min_length[3]|max_length[30]',
+		'desc_content' 	 => 'required',
 	];
 
 	public $editProfile = [
@@ -95,7 +95,12 @@ class Validation
 	];
 
 	public $addOffer = [
-		'offer_msg_title' => 'required|max_length[30]|alpha_numeric_punct',
-		'offer_msg_content' => 'required|max_length[30]|alpha_numeric_punct',
+		'offer_msg_title' => 'required|max_length[255]',
+		'offer_msg_content' => 'required|max_length[1000]',
+	];
+
+	public $addEditReview = [
+		'rating' => 'required|is_natural|less_than_equal_to[5]',
+		'content' => 'required|max_length[255]',
 	];
 }

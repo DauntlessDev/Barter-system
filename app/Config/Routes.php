@@ -64,8 +64,10 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
 	$routes ->add('item/create', 'Item::create', ['as' => 'itemCreate']);
 
 	$routes->add('/profile/edit', 'Auth\UserProfile::edit', ['as' => 'userProfileEdit']);
-	
+
+	$routes->add('/review/create/(:num)', 'Auth\Review::create/$1', ['as' => 'reviewsCreate']);
 	$routes->add('/reviews/edit/(:num)', 'Auth\Review::edit/$1', ['as' => 'reviewsEdit']);
+	$routes->add('/reviews/delete/(:num)', 'Auth\Review::delete/$1', ['as' => 'reviewsDelete']);
 
 	$routes->get('/messages', 'Auth\Message::index', ['as' => 'message']);
 

@@ -18,8 +18,7 @@
             <h1>Sign-up</h1>
 
             <div class="validation-box">
-                <?php // validation https://www.codeigniter.com/user_guide/libraries/validation.html?highlight=validate#customizing-error-display ?>
-                <?= isset($validation) ? $validation->listErrors('user_errors') : '' ?>
+                <?= $this->include('components/partials/_feedback') ?>
             </div>
 
             <div>
@@ -30,9 +29,9 @@
                     </div>
                     <?= $this->include('components/partials/_userFields') ?>
                     <button class="button" type="submit" form="signup-form" value="submit">Sign up</button>
-                
+
                     <p align="center">Have an account? <a href="<?= route_to('login') ?>">Log in now</a></p>
-                
+
                 </form>
             </div>
         </div>

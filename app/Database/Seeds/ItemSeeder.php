@@ -18,17 +18,17 @@ class ItemSeeder extends Seeder
 		$faker = Factory::create();
 
 		$categories = $categoryModel->findAll();
-
-		$availableList = ['available', 'pending', 'unavailable'];
+		$counter = 0;
 
 		foreach($categories as $category) {
 			for ($i = 0; $i < rand(1, 5); $i++) {
+				$counter += 1;
 				$data = [
 					'poster_uid'   => rand(1, 10),
-					'item_name'    => "item".$faker->word,
+					'item_name'    => "item ".$counter,
 					'photo_url'    => 'images/default/product.jpg',
-					'avail_status' => $availableList[rand(0, count($availableList)-1)],
-					'desc_title'   => $faker->word,
+					'avail_status' => 'available',
+					'desc_title'   => "description".$counter,
 					'desc_content' => $faker->text,
 				];
 
