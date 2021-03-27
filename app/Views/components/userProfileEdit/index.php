@@ -23,28 +23,25 @@
                 <?= isset($validation) ? $validation->listErrors('user_errors') : '' ?>
             </div>
 
+            <form class="ep-box" action="<?= route_to('userProfileEdit', session()->get('user')['user_id']) ?>" method="POST" enctype="multipart/form-data">
+                <h3>Profile photo</h3>
 
-            <h3>Profile photo</h3>
+                <div class="ep-container-pp">
+                    <img class="fit" src="<?= base_url(session()->get('user')['photo_url']) ?>">
 
-            <div class="ep-container-pp">
-                <img class="fit" src="<?= base_url(session()->get('user')['photo_url']) ?>">
+                    <div class="ep-container-info">
+                    <p>Clear frontal face photos are an important way for buyers and sellers to learn about each other.</p>
 
-                <div class="ep-container-info">
-                <p>Clear frontal face photos are an important way for buyers and sellers to learn about each other. <b><i>Change this</i></b>.</p>
-
-                <input class="ep-upload-pp" type="file" name="profile_image" id="profile_image" value="" autocomplete="off">
+                    <input class="ep-upload-pp" type="file" name="profile_image" id="profile_image">
+                    </div>
                 </div>
-            </div>
 
-            <form class="ep-box" action="<?= route_to('userProfileEdit', session()->get('user')['user_id']) ?>" method="POST" id="editProfile-form">
                 <?= $this->include('components/partials/_userFields.php') ?>
-                <!-- <button class="button" type="submit" form="editProfile-form" value="submit">Edit Profile</button> -->
 
                 <div class="ep-divider"></div>
                 <div class="user-box">
-                    <button class="button" type="submit" form="editProfile-form" value="submit">Save changes</button>
+                    <button class="button" type="submit" value="submit">Save changes</button>
                 </div>
-
             </form>
         </div>
     </div>
