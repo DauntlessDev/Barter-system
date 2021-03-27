@@ -30,7 +30,7 @@
                     <img class="fit" src="<?= base_url(session()->get('user')['photo_url']) ?>">
 
                     <div class="ep-container-info">
-                    <p>Clear frontal face photos are an important way for buyers and sellers to learn about each other. <b><i>Change this</i></b>.</p>
+                    <p>Clear frontal face photos are an important way for buyers and sellers to learn about each other.</p>
 
                     <input class="ep-upload-pp" type="file" name="profile_image" id="profile_image">
                     </div>
