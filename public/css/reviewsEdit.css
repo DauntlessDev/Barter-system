@@ -1,7 +1,7 @@
 @import "common/shared.css";
 
 .container {
-    height: 85vh;
+    min-height: 85vh;
     min-width: 992px;
     display: flex;
     justify-content: start;
