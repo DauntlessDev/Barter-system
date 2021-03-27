@@ -55,6 +55,10 @@ class UserProfile extends BaseController
                 if ($_POST['password'] === '')
                     unset($_POST['password']);
 
+            $fileService = Services::file_service();
+			$image_url = $fileService->saveFile($this->request, 'profile_image');
+			$_POST['photo_url'] = empty($image_url) ? session()->get('user')['photo_url'] : $image_url;
+
 			if ($this->userModel->update($user_id, $_POST) === false)
 				throw new Exception('Error while inserting to database');
 
