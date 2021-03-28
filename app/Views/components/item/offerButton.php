@@ -1,8 +1,10 @@
 <div class="offerbutton">
     <?php // TODO: This needs refactoring(if there's time), store message and offer button state to a variable ?>
     <?php if (strtolower($item['avail_status']) === 'unavailable'): ?>
-        <button class="message disabled" title="This item is no longer available">Message</button>
-        <button class="offer disabled" title="This item is no longer available">Offer</button>
+        <?php if ((session()->get('user')['user_id'] ?? null) !== $user['user_id']): ?> 
+            <button class="message disabled" title="This item is no longer available">Message</button>
+            <button class="offer disabled" title="This item is no longer available">Offer</button>
+        <?php endif; ?>
     <?php else: ?>
         <?php if (session()->get('user') !== null) : ?>
             <?php // check if the user is not the owner ?>
