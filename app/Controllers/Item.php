@@ -5,6 +5,7 @@ use App\Models\ItemModel;
 use App\Models\UserModel;
 use App\Models\CategoryModel;
 use App\Models\OfferModel;
+use App\Models\ReviewModel;
 use Config\Services;
 use Exception;
 
@@ -23,6 +24,7 @@ class Item extends BaseController
 		$this->itemModel 	 = new ItemModel();
 		$this->categoryModel = new CategoryModel();
 		$this->offerModel 	 = new OfferModel();
+		$this->reviewModel 	 = new ReviewModel();
 	}
 
 	/**
@@ -35,6 +37,8 @@ class Item extends BaseController
 		$msgURL = base_url(route_to('message')."?user_id=$user[user_id]&username=$user[username]");
 		$offers = $this->offerModel->get(['item_id' => $item_id]);
 		$canPlaceOffer = false;
+		$reviews = $this->reviewModel->get(['reviewee_uid' => $item['poster_uid']]);
+		$rating = $this->calculateRating($reviews);
 
 		if (session()->get('user')) {
 			$user_id = session()->get('user')['user_id'];
@@ -48,10 +52,25 @@ class Item extends BaseController
 			'user' => $user,
 			'msgURL' => $msgURL,
 			'offers' => $offers,
-			'canPlaceOffer' => $canPlaceOffer
+			'canPlaceOffer' => $canPlaceOffer,
+			'rating' => $rating
 		];
 
 		return view('pages/itemProfile', $data);
+	}
+
+	private function calculateRating(array $reviews) {
+		if (count($reviews) === 0) return 0;
+
+		$totalRating = 0;
+		$totalReview = 0;
+
+		foreach ($reviews as $review) {
+			$totalReview += 1;
+			$totalRating += (int)$review['rating'];
+		}
+
+		return $totalRating / $totalReview;
 	}
 
 	/**

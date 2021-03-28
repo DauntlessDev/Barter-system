@@ -19,13 +19,7 @@
                 <div class="container poster">
                     <img src="<?= base_url($user['photo_url']) ?>" alt="" class="dp posterpic">
                     <p class="postername"><?= $user['username'] ?></p>
-                    <div class="stars">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
+                    <?= view_cell('\App\Libraries\Stars::getStars', ['rating' => $rating]) ?>
                 </div>
                 <div class="container itemname">
                     <p class="itemname"><?= $item['item_name'] ?></p>
