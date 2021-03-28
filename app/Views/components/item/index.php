@@ -25,7 +25,6 @@
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star"></span>
                         <span class="fa fa-star"></span>
-                        <span><?= $item['rating'] ?></span>
                     </div>
                 </div>
                 <div class="container itemname">
