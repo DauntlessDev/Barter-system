@@ -40,14 +40,7 @@
                                             <?php endif; ?>
                                         </div>
                                         <div class="p-reviewer-ratings">
-                                            <div class="stars">
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star"></span>
-                                                <span class="fa fa-star space"></span>
-                                                <span><?= $review['rating'] ?></span>
-                                            </div>
+                                        <?= view_cell('\App\Libraries\Stars::getStars', ['rating' => $review['rating']]) ?>
                                         </div>
                                         <p class="p-review-body">
                                             <?= $review['content'] ?>
