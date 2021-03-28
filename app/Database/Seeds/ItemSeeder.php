@@ -176,12 +176,14 @@ class ItemSeeder extends Seeder
 
 		foreach($itemData as $item){
 			$product_num = rand(1, 3);
+			$title = ["Brand New!", "New Arrival", "Slightly used", "Fresh Deal", "Models may vary"];
+
 			$data = [
 					'poster_uid'   => rand(1, 15),
 					'item_name'    => $item['item_name'],
 					'photo_url'    => "images/default/product$product_num.jpg",
 					'avail_status' => 'available',
-					'desc_title'   => $faker->word,
+					'desc_title'   => $title[array_rand($title, 1)],
 					'desc_content' => $faker->text,
 				];
 
