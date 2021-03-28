@@ -2,26 +2,27 @@
 Barter system using Codeigniter 4
 
 Features:
-- [x] intended routes (redirect back to visited url before login)
-- [ ] form validation
+- [x] intended routes *(redirect back to previously visited URL after login)*
+- [x] form validation *(and feedback)*
   - [x] login
   - [x] sign up
-  - [ ] edit profile
-  - [ ] add/edit item
-  - [ ] add/edit review
-- [ ] place/accept offer
+  - [x] edit profile
+  - [x] add/edit item
+  - [x] add/edit review
+- [x] place/accept offer
 - [x] login/sign up
 - [x] real-time messaging
 - [x] view items per category
-- [ ] view items per user profile
+- [x] view items per user profile
 - [x] search for items
-- [ ] place item listing
-- [ ] view reviews
+- [x] place item listing
+- [x] view reviews
 - [x] image uploads
 
 <br>
 
 - no front-end framework (pure css/js)
+- uses MVC design pattern
 - proof of work can be found [here](https://github.com/Simperfy/Barter-system/pulls?q=is%3Apr+is%3Aclosed) and [here](https://github.com/Simperfy/Barter-system/issues?q=is%3Aissue+is%3Aclosed)
 
 <br>
@@ -252,38 +253,40 @@ add the following lines, and restart the live server.
 
 <hr>
 
-Person who "`worked`__*assigned*" on features:
+Person who `worked` on features:
 
-- intended routes (redirect back to visited url before login) `@Simperfy`__*@Simperfy*
+- intended routes `@Simperfy` *(redirect back to previously visited URL after login)*
 - form validation
-  - login `@Simperfy`__*@Simperfy*
-  - sign up `@Simperfy`__*@Simperfy*
-  - edit profile ``__*@briellers*
-  - add/edit item `@Simperfy, @stormy26`__*@stormy26*
-  - add/edit review ``__*@briellers*
-- place/accept offer ``__*@stormy26*
-- login/sign up page `@briellers, @Simperfy`__*@briellers*
-- authentication `@Simperfy`__*@Simperfy*
-- real-time messaging `@Simperfy`__*@Simperfy*
-- view items per category `@DauntlessDev, @Simperfy`__*@DauntlessDev*
-- view items per user profile ``__*@briellers*
-- search for items `@DauntlessDev`__*@DauntlessDev*
-- place item listing ``__*@stormy26*
-- view reviews ``__*@briellers*
-- image uploads `@Simperfy`__*@Simperfy*
+  - login `@Simperfy`
+  - sign up `@Simperfy`
+  - edit profile `@briellers, @Simperfy`
+  - add/edit item `@Hezzz, @Simperfy, @stormy26`
+  - add/edit review `@Simperfy`
+- place/accept offer `@Simperfy, @stormy26`
+- login/sign up UI `@briellers` 
+- view profile `@briellers`
+- edit profile `@briellers, @Hezzz`
+- authentication `@Simperfy`
+- real-time messaging `@Simperfy`
+- view items per category `@DauntlessDev`
+- search for items `@DauntlessDev`
+- home page `@DauntlessDev`
+- place item listing `@Hezzz, @Simperfy, @stormy26`
+- reviews UI `@briellers`
+- image uploads `@Simperfy`
 
 <br>
 
-- Category Model/Schema `@Hezzz, @Simperfy`__*@Hezzz*
-- Item Model/Schema `@Hezzz, @Simperfy`__*@Hezzz*
-- User Model/Schema `@Hezzz, @Simperfy`__*@Hezzz*
-- Offers Model/Schema `@Hezzz, @Simperfy`__*@Hezzz*
-- Reviews Model/Schema `@Hezzz, @Simperfy`__*@Hezzz*
-- Messages Model/Schema `@Hezzz, @Simperfy`__*@Hezzz*
+- Category Model/Schema `@Hezzz, @Simperfy`
+- Item Model/Schema `@Hezzz, @Simperfy`
+- User Model/Schema `@Hezzz, @Simperfy`
+- Offers Model/Schema `@Hezzz, @Simperfy`
+- Reviews Model/Schema `@Hezzz, @Simperfy`
+- Messages Model/Schema `@Hezzz, @Simperfy`
 
 <br>
 
-- Hosting  `@Simperfy`__*@Simperfy*
+- Hosting/CI/CD `@Simperfy`
 
 <br>
 
