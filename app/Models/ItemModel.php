@@ -17,7 +17,6 @@ class ItemModel extends Model
         'avail_status',
         'desc_title',
         'desc_content',
-        'rating',
     ];
 
     protected $useTimestamps    = true;

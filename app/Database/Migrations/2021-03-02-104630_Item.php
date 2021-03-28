@@ -44,11 +44,6 @@ class Item extends Migration
                 'type'              => 'TEXT',
                 'null'              => true,
             ],
-            'rating'                => [
-                'type'              => 'DECIMAL',
-                'constraint'        => '2,2',
-                'default'           => '0.0',
-            ],
             'created_at DATETIME DEFAULT CURRENT_TIMESTAMP',
             'updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
         ]);

@@ -46,11 +46,6 @@ class User extends Migration
                 'constraint'        => '255',
                 'default'           => '#',     /* Please set default photo file */
 			],
-			'item_post_count'       => [
-                'type'              => 'INT',
-                'constraint'        => '5',
-                'default'           => '0',
-			],
 			'rating'                => [
                 'type'              => 'DECIMAL',
                 'constraint'        => '2,2',
