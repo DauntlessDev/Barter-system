@@ -15,8 +15,8 @@
                 <?php endif; ?>
                 <?php // if the user is owner, disable all buttons?>
             <?php else : ?>
-                <button class="message disabled" title="You cannot message yourself">Message</button>
-                <button class="offer disabled" title="You cannot place offer to your own item">Offer</button>
+                <!-- <button class="message disabled" title="You cannot message yourself">Message</button>
+                <button class="offer disabled" title="You cannot place offer to your own item">Offer</button> -->
             <?php endif; ?>
         <?php // if the user is not logged in ?>
         <?php else : ?>
