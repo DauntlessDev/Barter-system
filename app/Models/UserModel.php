@@ -21,7 +21,6 @@ class UserModel extends Model implements ModelInterface
         'address',
         'contact_details',
         'photo_url',
-        'item_post_count',
         'rating',
     ];
 
