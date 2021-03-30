@@ -14,7 +14,6 @@
 
             <ul class="p-reviews-body">
                 <?php foreach($reviews as $review):
-                    // $poster_info = $reviews[]
                     echo view_cell('\App\Libraries\Review::getReview', ['review' => $review, 'reviewer_uid' => $review['reviewer_uid']]);
                 endforeach; ?>
             </ul>

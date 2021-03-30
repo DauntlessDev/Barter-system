@@ -74,9 +74,6 @@ class UserProfile extends BaseController
         $data = [
             'changes' => $changes
         ];
-
-        // var_dump($changes);
-
         
         return view('pages/auth/reviewHistory', $data);
     }
