@@ -94,7 +94,6 @@ class UserProfile extends BaseController
         $isOwner = $user_id === $reviewee_uid;
 
         $data = [
-            'class' => $this,
             'reviews' => $reviews,
             'user' => $this->userModel->find($reviewee_uid),
             'AddButton' => [

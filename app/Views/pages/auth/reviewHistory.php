@@ -15,7 +15,7 @@
 
 <?php // Main Content ?>
 <?= $this->section('content') // located in Views/layouts/main.php "renderSection" ?>
-    <div class="container">\
+    <div class="container">
             <?= $this->include('components/profile/reviewHistory') ?>   
     </div>
 <?= $this->endSection() ?>

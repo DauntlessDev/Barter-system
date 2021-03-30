@@ -1,9 +1,6 @@
 .history-container {
   margin: 20px auto;
-  /* border-radius:  5px; */
-  /* border: 1px solid rgb(151, 184, 211); */
-  /* background: red; */
-  width: 1000px;
+  width: 80%;
 }
 
 .history-header{
