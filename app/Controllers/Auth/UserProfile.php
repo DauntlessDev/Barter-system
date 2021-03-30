@@ -68,13 +68,17 @@ class UserProfile extends BaseController
         }
     }
 
-    
-
     public function getHistory(int $reviewee_uid, int $reviewer_uid){
         $searchQuery = ['reviewee_uid' => $reviewee_uid, 'reviewer_uid' =>  $reviewer_uid];
-        $reviewChanges = $this->reviewModel->get($searchQuery);
-		return $reviewChanges;
+        $changes = $this->reviewModel->get($searchQuery);
+        $data = [
+            'changes' => $changes
+        ];
 
+        // var_dump($changes);
+
+        
+        return view('pages/auth/reviewHistory', $data);
     }
 
     public function reviews(int $reviewee_uid) {

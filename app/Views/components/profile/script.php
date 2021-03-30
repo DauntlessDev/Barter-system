@@ -1,1 +1,0 @@
-<script src="<?= base_url('js/reviewHistory.js') ?>"></script>
