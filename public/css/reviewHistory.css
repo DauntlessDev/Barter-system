@@ -8,7 +8,7 @@
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
     transition: 200ms ease-in-out;
-    border: 1px solid black;
+    border: 1px solid #437eb1;
     border-radius: 10px;
     z-index: 10;
     background-color: white;
@@ -25,7 +25,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #437eb1;
   }
   
   .modal-header .title {
@@ -54,7 +54,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, .5);
+    box-shadow: #437eb1;
     pointer-events: none;
   }
   

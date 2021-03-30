@@ -12,7 +12,6 @@ use Exception;
 class UserProfile extends BaseController
 {
     protected $userModel;
-
 	public function __construct() {
 		helper(['form']);
 		$this->validation = Services::validation();
@@ -69,6 +68,14 @@ class UserProfile extends BaseController
         }
     }
 
+    
+
+    public function getHistory(int $reviewee_uid, int $reviewer_uid){
+        $searchQuery = ['reviewee_uid' => $reviewee_uid, 'reviewer_uid' =>  $reviewer_uid];
+        $reviewChanges = $this->reviewModel->get($searchQuery);
+		return $reviewChanges;
+
+    }
 
     public function reviews(int $reviewee_uid) {
         $reviews = $this->reviewModel->getAllRecentReviews(['reviewee_uid' => $reviewee_uid]);
@@ -83,6 +90,7 @@ class UserProfile extends BaseController
         $isOwner = $user_id === $reviewee_uid;
 
         $data = [
+            'class' => $this,
             'reviews' => $reviews,
             'user' => $this->userModel->find($reviewee_uid),
             'AddButton' => [
