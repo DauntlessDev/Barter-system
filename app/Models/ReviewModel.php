@@ -33,6 +33,7 @@ class ReviewModel implements ModelInterface
      * 
      */
     public function create($data){
+        $data['created_at'] = date("Y-m-d H:i:s");
         return $this->builder->insert($data);
     }
 
