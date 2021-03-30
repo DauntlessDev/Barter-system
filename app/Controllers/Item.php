@@ -37,7 +37,7 @@ class Item extends BaseController
 		$msgURL = base_url(route_to('message')."?user_id=$user[user_id]&username=$user[username]");
 		$offers = $this->offerModel->get(['item_id' => $item_id]);
 		$canPlaceOffer = false;
-		$reviews = $this->reviewModel->get(['reviewee_uid' => $item['poster_uid']]);
+		$reviews = $this->reviewModel->getAllRecentReviews(['reviewee_uid' => $item['poster_uid']]);
 		$rating = $this->calculateRating($reviews);
 
 		if (session()->get('user')) {

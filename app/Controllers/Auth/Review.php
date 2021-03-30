@@ -83,11 +83,13 @@ class Review extends BaseController
                 return view('pages/auth/reviewsEdit', $data);
             }
 
-            if ($this->reviewModel->update($_POST, $searchQuery) === false) {
+            $review_data = array_merge($_POST, $searchQuery);
+
+            if ($this->reviewModel->create($review_data) === false) {
 				throw new Exception('Error while inserting using ReviewModel');
 			}
 
-            return redirect()->route('reviewsEdit', [$reviewee_uid])->with('msg', 'Review updated successfully');
+            return redirect()->route('userReviews', [$reviewee_uid])->with('msg', 'Review updated successfully');
 		}
     }
 
