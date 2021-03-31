@@ -12,7 +12,6 @@ use Exception;
 class UserProfile extends BaseController
 {
     protected $userModel;
-
 	public function __construct() {
 		helper(['form']);
 		$this->validation = Services::validation();
@@ -69,6 +68,15 @@ class UserProfile extends BaseController
         }
     }
 
+    public function getHistory(int $reviewee_uid, int $reviewer_uid){
+        $searchQuery = ['reviewee_uid' => $reviewee_uid, 'reviewer_uid' =>  $reviewer_uid];
+        $changes = $this->reviewModel->get($searchQuery);
+        $data = [
+            'changes' => $changes
+        ];
+        
+        return view('pages/auth/reviewHistory', $data);
+    }
 
     public function reviews(int $reviewee_uid) {
         $reviews = $this->reviewModel->getAllRecentReviews(['reviewee_uid' => $reviewee_uid]);

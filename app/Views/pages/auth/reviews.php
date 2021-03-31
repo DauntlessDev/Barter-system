@@ -10,6 +10,7 @@
 <?php // OPTIONAL CSS ?>
 <?= $this->section('css') ?>
     <link rel="stylesheet" href="<?= base_url('css/reviews.css') // located in public/css/userProfile.css ?>">
+    <link rel="stylesheet" href="<?= base_url('css/reviewHistory.css') ?>" >
 <?= $this->endSection() ?>
 
 <?php // Main Content ?>

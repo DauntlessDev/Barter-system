@@ -2,7 +2,7 @@
 namespace App\Libraries;
 
 class Review{
-    public function getReviews($params){
-        return view('components/profile/reviews', $params);
+    public function getReview($params){
+        return view('components/profile/review', $params);
     }
 }
