@@ -6,9 +6,6 @@
 
     <div class="history-body">
     <?php
-    if (count($changes) < 1) :
-        echo ("Review has no edit changes.");
-    else :
         foreach ($changes as $change) : ?>
             <div class="p-review">
                 <div class="p-review-container">
@@ -36,7 +33,6 @@
             </div>
     <?php
         endforeach;
-    endif;
     ?>
 </div>
 </div>
