@@ -1,5 +1,5 @@
 # Barter system ⚡️
-Barter system using Codeigniter 4
+Barter system using php built using CI4
 
 Features:
 - [x] intended routes *(redirect back to previously visited URL after login)*
@@ -17,13 +17,13 @@ Features:
 - [x] search for items
 - [x] place item listing
 - [x] view reviews
+- [x] review history 
 - [x] image uploads
 
 <br>
 
 - no front-end framework (pure css/js)
 - uses MVC design pattern
-- proof of work can be found [here](https://github.com/Simperfy/Barter-system/pulls?q=is%3Apr+is%3Aclosed) and [here](https://github.com/Simperfy/Barter-system/issues?q=is%3Aissue+is%3Aclosed)
 
 <br>
 
@@ -174,7 +174,7 @@ add the following lines, and restart the live server.
 
 <br>
 
-## Authors 🏅
+## Contributors 🏅
 
 **Amazing people behind these project:**
 
@@ -273,6 +273,7 @@ Person who `worked` on features:
 - home page `@DauntlessDev`
 - place item listing `@Hezzz, @Simperfy, @stormy26`
 - reviews UI `@briellers`
+- review history `@DauntlessDev`
 - image uploads `@Simperfy`
 
 <br>
